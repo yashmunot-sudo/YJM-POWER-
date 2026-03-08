@@ -56,3 +56,311 @@
           </div>
           <div class="zone">
             <div class="zh"><div class="zt">Overdue</div><span id="ocnt" style="font-size:11px;color:var(--gold)">0</span></div>
+        <select class="fs" id="prioritySelect">
+          <option value="normal">Normal</option>
+          <option value="high">High</option>
+          <option value="critical">Critical</option>
+          <option value="low">Low</option>
+        </select>
+        <div class="mlbl">ASSIGN TO</div>
+        <select class="fs" id="ownerSelect"></select>
+        <button class="gbtn" onclick="createCase()">CREATE CASE</button>
+        <div id="aiResult" style="display:none;background:rgba(13,191,111,0.08);border:1px solid rgba(13,191,111,0.2);border-radius:10px;padding:14px;margin-bottom:12px">
+          <div style="color:var(--green);font-weight:700;margin-bottom:8px">CASE CREATED</div>
+          <div id="createdTitle" style="font-size:12px;margin-bottom:10px"></div>
+          <div style="display:flex;gap:8px">
+            <button onclick="goToCases()" style="flex:1;padding:10px;border-radius:8px;border:none;background:var(--green);color:#fff;font-weight:700;cursor:pointer">VIEW CASES</button>
+            <button onclick="resetCapture()" style="padding:10px 14px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer">NEW</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="pane-yash-cases" class="pane">
+        <div id="casesList">
+          <div class="empty"><div class="etxt">No cases yet</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Team member views -->
+    <div id="vu-kajal" class="uview">
+      <div class="th2">
+        <div class="ta" style="background:var(--purple);color:#fff">K</div>
+        <div><div style="font-size:16px;font-weight:800">Kajal</div><div style="font-size:10px;color:var(--muted)">Executive Assistant</div></div>
+      </div>
+      <div id="kajalTasks"><div class="empty"><div class="etxt">No tasks assigned</div></div></div>
+    </div>
+
+    <div id="vu-fazal" class="uview">
+      <div class="th2">
+        <div class="ta" style="background:var(--blue);color:#fff">F</div>
+        <div><div style="font-size:16px;font-weight:800">Fazal</div><div style="font-size:10px;color:var(--muted)">Operations + Purchase</div></div>
+      </div>
+      <div id="fazalTasks"><div class="empty"><div class="etxt">No tasks assigned</div></div></div>
+    </div>
+
+    <div id="vu-sanjay" class="uview">
+      <div class="th2">
+        <div class="ta" style="background:var(--teal);color:#fff">S</div>
+        <div><div style="font-size:16px;font-weight:800">Sanjay</div><div style="font-size:10px;color:var(--muted)">Logistics + Sales</div></div>
+      </div>
+      <div id="sanjayTasks"><div class="empty"><div class="etxt">No tasks assigned</div></div></div>
+    </div>
+
+    <div id="vu-deepak" class="uview">
+      <div class="th2">
+        <div class="ta" style="background:var(--green);color:#fff">D</div>
+        <div><div style="font-size:16px;font-weight:800">Deepak</div><div style="font-size:10px;color:var(--muted)">Accounts</div></div>
+      </div>
+      <div id="deepakTasks"><div class="empty"><div class="etxt">No tasks assigned</div></div></div>
+    </div>
+  </div>
+
+  <div class="bnav" id="bottomNav">
+    <button class="nb active" id="bn-today" onclick="switchTab('yash','today');setBN('bn-today')">
+      <span style="font-size:18px">H</span><span class="nl">Today</span>
+    </button>
+    <button class="nb" id="bn-capture" onclick="switchTab('yash','capture');setBN('bn-capture')">
+      <span style="font-size:18px">+</span><span class="nl">Capture</span>
+    </button>
+    <button class="nb" id="bn-cases" onclick="switchTab('yash','cases');setBN('bn-cases')">
+      <span style="font-size:18px">F</span><span class="nl">Cases</span>
+    </button>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    let curUser = 'yash';
+    let selDomain = 'Business';
+    let people = [
+      {id: 'yash', name: 'Yash', color: '--blue2'},
+      {id: 'kajal', name: 'Kajal', color: '--purple', role: 'Executive Assistant'},
+      {id: 'fazal', name: 'Fazal', color: '--blue', role: 'Operations + Purchase'},
+      {id: 'sanjay', name: 'Sanjay', color: '--teal', role: 'Logistics + Sales'},
+      {id: 'deepak', name: 'Deepak', color: '--green', role: 'Accounts'}
+    ];
+    let domains = ['Business', 'Technical', 'HR', 'Finance', 'Operations'];
+    let cases = [];
+    let tasks = [];
+
+    window.onload = function() {
+      setDate();
+      loadPeople();
+      loadDomains();
+      loadDashboard();
+    };
+
+    function setDate() {
+      const now = new Date();
+      const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+      document.getElementById('todayDate').textContent = now.toLocaleDateString('en-US', options);
+      const hour = now.getHours();
+      const greeting = document.getElementById('greeting');
+      if (hour < 12) greeting.textContent = 'Good Morning, Yash';
+      else if (hour < 17) greeting.textContent = 'Good Afternoon, Yash';
+      else greeting.textContent = 'Good Evening, Yash';
+    }
+
+    function switchTab(user, tab) {
+      if (user !== curUser) return;
+      document.querySelectorAll('.stab').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.pane').forEach(pane => pane.classList.remove('active'));
+      const tabBtn = document.getElementById(`tab-${user}-${tab}`);
+      const pane = document.getElementById(`pane-${user}-${tab}`);
+      if (tabBtn && pane) {
+        tabBtn.classList.add('active');
+        pane.classList.add('active');
+      }
+    }
+
+    function setBN(id) {
+      document.querySelectorAll('.nb').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function switchUser(user, btn) {
+      curUser = user;
+      document.querySelectorAll('.usr').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.uview').forEach(v => v.classList.remove('active'));
+      document.getElementById(`vu-${user}`).classList.add('active');
+      if (document.getElementById(`tab-${user}-today`)) {
+        switchTab(user, 'today');
+        setBN('bn-today');
+      } else {
+        document.querySelectorAll('.nb').forEach(b => b.classList.remove('active'));
+      }
+      loadDashboard();
+    }
+
+    function loadPeople() {
+      const select = document.getElementById('ownerSelect');
+      select.innerHTML = '';
+      people.forEach(p => {
+        const opt = document.createElement('option');
+        opt.value = p.id;
+        opt.textContent = p.name;
+        select.appendChild(opt);
+      });
+    }
+
+    function loadDomains() {
+      const grid = document.getElementById('domainGrid');
+      grid.innerHTML = '';
+      domains.forEach(domain => {
+        const div = document.createElement('div');
+        div.className = 'db' + (selDomain === domain ? ' sel' : '');
+        div.innerHTML = `<div class="di">${domain}</div><div class="dl2">${domain.toLowerCase()}</div>`;
+        div.onclick = () => selDom(domain, div);
+        grid.appendChild(div);
+      });
+    }
+
+    function selDom(domain, el) {
+      selDomain = domain;
+      document.querySelectorAll('.db').forEach(d => d.classList.remove('sel'));
+      el.classList.add('sel');
+    }
+
+    function loadDashboard() {
+      document.getElementById('sTasks').textContent = tasks.length.toString();
+      document.getElementById('sBlocked').textContent = '0';
+      document.getElementById('sCases').textContent = cases.length.toString();
+      renderTasks();
+      renderBlocked();
+      renderOverdue();
+      renderCases();
+    }
+
+    function renderTasks() {
+      const list = document.getElementById('taskList');
+      if (!tasks.length) {
+        list.innerHTML = `
+          <div class="empty">
+            <div class="etxt">No tasks yet</div>
+            <div style="font-size:11px;margin-top:3px">Use Capture to create your first case</div>
+          </div>
+        `;
+        document.getElementById('tcnt').textContent = '0';
+        return;
+      }
+      list.innerHTML = '';
+      tasks.forEach(t => {
+        const div = document.createElement('div');
+        div.className = 'ti';
+        div.onclick = () => doneTask(div);
+        div.innerHTML = `
+          <div class="tcb${t.done ? ' chk' : ''}"></div>
+          <div class="tt">${t.title}</div>
+        `;
+        list.appendChild(div);
+      });
+      document.getElementById('tcnt').textContent = tasks.length.toString();
+    }
+
+    function renderBlocked() {
+      const list = document.getElementById('blockedList');
+      list.innerHTML = '<div style="font-size:11px;color:var(--muted);padding:6px">None</div>';
+      document.getElementById('bcnt').textContent = '0';
+    }
+
+    function renderOverdue() {
+      const list = document.getElementById('overdueList');
+      list.innerHTML = '<div style="font-size:11px;color:var(--muted);padding:6px">None</div>';
+      document.getElementById('ocnt').textContent = '0';
+    }
+
+    function renderCases() {
+      const list = document.getElementById('casesList');
+      if (!cases.length) {
+        list.innerHTML = '<div class="empty"><div class="etxt">No cases yet</div></div>';
+        return;
+      }
+      list.innerHTML = '';
+      cases.forEach(c => {
+        const card = document.createElement('div');
+        card.className = 'cc';
+        card.innerHTML = `
+          <div>
+            <div class="cit">${c.title}</div>
+            <div style="font-size:10px;color:var(--muted)">Owner: ${c.ownerName} • Priority: ${c.priority}</div>
+          </div>
+          <div class="cs">${c.status}</div>
+        `;
+        list.appendChild(card);
+      });
+    }
+
+    function doneTask(el) {
+      const name = el.querySelector('.tt').textContent;
+      const t = tasks.find(x => x.title === name);
+      const cb = el.querySelector('.tcb');
+      const checked = !cb.classList.contains('chk');
+      cb.classList.toggle('chk', checked);
+      if (t) t.done = checked;
+      toast(checked ? 'Task completed!' : 'Task reopened');
+    }
+
+    function createCase() {
+      const desc = document.getElementById('captureInput').value.trim();
+      const outcome = document.getElementById('outcomeInput').value.trim();
+      const priority = document.getElementById('prioritySelect').value;
+      const owner = document.getElementById('ownerSelect').value;
+
+      if (!desc) {
+        toast('Please describe the problem');
+        return;
+      }
+
+      const ownerObj = people.find(p => p.id === owner);
+      const caseId = cases.length + 1;
+      const title = `${selDomain}: ${desc.substring(0, 40)}${desc.length > 40 ? '...' : ''}`;
+
+      const newCase = {
+        id: caseId,
+        title,
+        desc,
+        outcome,
+        priority,
+        owner,
+        ownerName: ownerObj ? ownerObj.name : owner,
+        status: 'open'
+      };
+
+      cases.push(newCase);
+      tasks.push({ title, done: false });
+
+      document.getElementById('createdTitle').textContent = newCase.title;
+      document.getElementById('aiResult').style.display = 'block';
+      document.getElementById('captureInput').value = '';
+
+      loadDashboard();
+      toast('Case created successfully!');
+    }
+
+    function goToCases() {
+      switchTab(curUser, 'cases');
+      setBN('bn-cases');
+    }
+
+    function resetCapture() {
+      document.getElementById('captureInput').value = '';
+      document.getElementById('outcomeInput').value = '';
+      document.getElementById('prioritySelect').value = 'normal';
+      document.getElementById('ownerSelect').value = 'yash';
+      document.getElementById('aiResult').style.display = 'none';
+      selDomain = 'Business';
+      loadDomains();
+    }
+
+    function toast(message) {
+      const toastEl = document.getElementById('toast');
+      toastEl.textContent = message;
+      toastEl.classList.add('show');
+      setTimeout(() => toastEl.classList.remove('show'), 2000);
+    }
+  </script>
+</body>
+</html>
+
