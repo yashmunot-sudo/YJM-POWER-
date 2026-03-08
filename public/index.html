@@ -50,8 +50,6 @@
     .cc{background:rgba(19,25,41,0.8);border:1px solid var(--border);border-radius:11px;padding:14px;cursor:pointer;display:flex;align-items:center;gap:12px;margin-bottom:8px}
     .cit{font-size:12px;font-weight:600;margin-bottom:4px}
     .cs{font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px;background:rgba(45,126,255,0.12);color:var(--blue2)}
-    .cd{background:rgba(19,25,41,0.85);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:8px;display:none}
-    .cd.show{display:block}
     .th2{display:flex;align-items:center;gap:12px;margin-bottom:16px;background:rgba(19,25,41,0.7);border:1px solid var(--border);border-radius:11px;padding:14px}
     .ta{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;flex-shrink:0}
     .bnav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:#0A0F1E;border-top:1px solid var(--border);display:flex;justify-content:center;padding:0 16px}
@@ -208,7 +206,7 @@
     ];
     const domains=['Business','Technical','HR','Finance','Operations'];
     const cases=[];
-    const tasks=[]; // {title, ownerId, done}
+    const tasks=[];
 
     window.onload=function(){
       setDate();
@@ -340,7 +338,6 @@
         list.appendChild(card);
       });
     }
-
     function renderTeamTasks(userId){
       const targetId=userId+'Tasks';
       const list=document.getElementById(targetId);
@@ -388,7 +385,10 @@
       };
       cases.push(c);
       tasks.push({title,ownerId:owner,done:false});
-      document.getElementById('createdTitle').textContent=title;      renderDashboard();
+      document.getElementById('createdTitle').textContent=title;
+      document.getElementById('aiResult').style.display='block';
+      document.getElementById('captureInput').value='';
+      renderDashboard();
       if(curUser!=='yash')renderTeamTasks(curUser);
       toast('Case created');
     }
@@ -403,8 +403,4 @@
 </body>
 </html>
 
-      document.getElementById('aiResult').style.display='block';
-      document.getElementById('captureInput').value='';      document.getElementById('createdTitle').textContent=title;
-      document.getElementById('aiResult').style.display='block';
-      document.getElementById('captureInput').value='';
-            
+    
