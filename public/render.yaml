@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: yjm-power
+    env: node
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+Step 4 — Scroll down. Click Commit changes twice.
