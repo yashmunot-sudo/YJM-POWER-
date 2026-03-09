@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const morgan = require('morgan');
+
 require('dotenv').config();
 
 const app = express();
@@ -9,8 +9,16 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// API LOGGING MIDDLEWARE
-app.use(morgan('tiny'));
+
+// INLINE API LOGGER (no dependencies)
+app.use((req, res, next) => {
+  const start = Date.now();
+  res.on('finish', () => {
+    console.log(`${new Date().toISOString()} ${req.method} ${req.path} ${res.statusCode} ${Date.now()-start}ms`);
+  });
+  next();
+});
+
 
 const { Pool } = require('pg');
 const pool = new Pool({
