@@ -290,6 +290,31 @@ a{text-decoration:none;color:inherit}
 .form-select{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:9px;padding:11px 14px;color:var(--white);font-size:14px;outline:none;margin-bottom:14px}
 .form-textarea-m{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:9px;padding:11px 14px;color:var(--white);font-size:14px;outline:none;resize:none;min-height:80px;margin-bottom:14px}
 
+
+/* ── SKILL CARD ── */
+.skill-card{background:linear-gradient(135deg,rgba(26,92,248,0.08),rgba(232,160,0,0.06));border:1px solid rgba(59,127,255,0.2);border-radius:14px;padding:18px;margin-bottom:14px;position:relative;overflow:hidden}
+.skill-card::before{content:'';position:absolute;top:0;right:0;width:80px;height:80px;background:radial-gradient(circle,rgba(59,127,255,0.08),transparent 70%);border-radius:50%}
+.skill-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.skill-label{font-size:9px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue2);display:flex;align-items:center;gap:6px}
+.skill-cat{font-size:9px;font-weight:700;padding:3px 8px;border-radius:20px;letter-spacing:0.5px}
+.skill-cat.ai{background:rgba(139,111,255,0.12);color:var(--purple);border:1px solid rgba(139,111,255,0.2)}
+.skill-cat.fin{background:rgba(0,193,122,0.1);color:var(--green);border:1px solid rgba(0,193,122,0.15)}
+.skill-title{font-size:17px;font-weight:700;color:var(--white);margin-bottom:6px;line-height:1.3}
+.skill-desc{font-size:12px;color:var(--muted2);line-height:1.6;margin-bottom:14px}
+.skill-meta{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.skill-time{font-size:10px;font-weight:700;color:var(--gold);background:rgba(232,160,0,0.1);border:1px solid rgba(232,160,0,0.2);padding:3px 9px;border-radius:20px}
+.skill-level{font-size:10px;color:var(--muted2)}
+.skill-link{display:flex;align-items:center;justify-content:space-between;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:11px 14px;text-decoration:none;transition:all 0.2s;cursor:pointer}
+.skill-link:hover{border-color:var(--blue2);background:rgba(59,127,255,0.06)}
+.skill-link-left{display:flex;flex-direction:column;gap:2px}
+.skill-link-src{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted2)}
+.skill-link-title{font-size:12px;font-weight:600;color:var(--white)}
+.skill-link-arrow{font-size:18px;color:var(--blue2)}
+.skill-progress{margin-top:12px;display:flex;align-items:center;gap:10px}
+.skill-progress-bar{flex:1;height:3px;background:var(--bg4);border-radius:3px;overflow:hidden}
+.skill-progress-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--blue2));border-radius:3px;transition:width 0.3s}
+.skill-progress-lbl{font-size:9px;color:var(--muted2);white-space:nowrap}
+
 /* ── TOAST ── */
 .toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:var(--bg3);border:1px solid var(--border2);color:var(--white);padding:10px 20px;border-radius:10px;font-size:13px;font-weight:600;opacity:0;transition:opacity 0.2s;z-index:400;pointer-events:none;white-space:nowrap;box-shadow:0 4px 24px rgba(0,0,0,0.5)}
 .toast.show{opacity:1}
@@ -307,34 +332,31 @@ a{text-decoration:none;color:inherit}
   :root{--sidebar-w:190px}
   .stats-row{grid-template-columns:repeat(3,1fr)}
   .cg{grid-template-columns:1fr}
-  .topbar-pills{display:none}
   .domain-grid{grid-template-columns:repeat(5,1fr)}
 }
-@media(max-width:640px){
-  .app{grid-template-columns:1fr;grid-template-rows:var(--topbar-h) 1fr}
-  .sidebar{display:none}
+
+.sidebar-toggle{display:none;width:36px;height:36px;border-radius:9px;background:var(--bg3);border:1px solid var(--border);align-items:center;justify-content:center;font-size:18px;cursor:pointer;flex-shrink:0}
+@media(max-width:800px){
+  .sidebar-toggle{display:flex}
+  .sidebar{position:fixed;top:var(--topbar-h);left:0;height:calc(100vh - var(--topbar-h));z-index:150;transform:translateX(-100%);transition:transform 0.25s ease;box-shadow:4px 0 20px rgba(0,0,0,0.4)}
+  .sidebar.open{transform:translateX(0)}
+  .app{grid-template-columns:1fr}
+  .topbar-date{display:none}
+  .topbar-pills{display:none}
+}
+@media(max-width:480px){
   .mobile-nav{display:flex}
   .main{padding:14px 14px 90px}
-  .logo-wrap{width:auto}
-  .topbar-date{display:none}
+  .ph-title{font-size:28px}
   .stats-row{grid-template-columns:repeat(3,1fr);gap:7px}
   .sn{font-size:28px}
   .sl{font-size:9px}
-  .ph-title{font-size:28px}
   .cg{grid-template-columns:1fr}
   .card-hdr,.task-row.priority-row,.task-row{padding-left:14px;padding-right:14px}
-  .domain-grid{grid-template-columns:repeat(5,1fr)}
-  .ai-fields{grid-template-columns:1fr 1fr}
   .capture-wrap{max-width:100%}
   .topbar{padding:0 12px}
-  .t-title{font-size:14px}
-  .task-row.priority-row .t-title{font-size:15px}
 }
-@media(max-width:400px){
-  .domain-grid{grid-template-columns:repeat(2,1fr)}
-  .stats-row{grid-template-columns:repeat(3,1fr)}
-  .ai-fields{grid-template-columns:1fr}
-}
+
 </style>
 </head>
 <body>
@@ -343,15 +365,18 @@ a{text-decoration:none;color:inherit}
 <!-- TOPBAR -->
 <header class="topbar">
   <div class="logo-wrap">
-    <img class="logo-img" src="/logo.png" id="logoImg" alt="YJM" onerror="this.style.display='none';document.getElementById('logoFb').style.display='flex'">
-    <div class="logo-fallback" id="logoFb" style="display:none">YJM</div>
-    <span class="logo-text">YJM POWER</span>
+    <img class="logo-img" id="logoImg" src="/logo.png" alt="YJM Power"
+      style="height:36px;width:auto;max-width:160px;object-fit:contain"
+      onload="document.getElementById('logoText').style.display='none'"
+      onerror="this.style.display='none';document.getElementById('logoText').style.display='flex'">
+    <span class="logo-text" id="logoText">YJM POWER</span>
   </div>
   <div class="topbar-center">
     <div class="topbar-date" id="topDate">MON 9 MAR 2026</div>
     <div class="topbar-pills" id="topPills"></div>
   </div>
   <div class="topbar-right">
+    <button class="sidebar-toggle" id="sidebarToggle">☰</button>
     <div class="notif-btn" id="notifBtn">🔔<div class="notif-dot"></div></div>
     <div class="user-chip">
       <div class="user-av" id="topUserAv">Y</div>
@@ -402,13 +427,61 @@ a{text-decoration:none;color:inherit}
     <div class="page-hdr">
       <div class="ph-left">
         <div class="ph-title" id="greeting">Good Morning, Yash</div>
-        <div class="ph-sub" id="heroSub">Monday 9 March 2026 · Loading tasks...</div>
+        <div class="ph-sub" id="heroSub">Monday 9 March 2026 · Pune</div>
       </div>
       <div class="ph-actions">
         <button class="btn-secondary" onclick="openModal('modal-alltasks')">All Tasks</button>
         <button class="btn-primary" onclick="switchTab('capture')">+ Capture</button>
       </div>
     </div>
+
+    <!-- AI Insight -->
+    <div class="card" style="margin-bottom:14px">
+      <div class="card-hdr">
+        <div class="card-title"><div class="cdot" style="background:var(--orange)"></div>AI Insight</div>
+      </div>
+      <div class="insight-box">
+        <div class="ins-lbl">⚡ Daily Intelligence</div>
+        <div class="ins-txt" id="aiInsight">Loading...</div>
+      </div>
+    </div>
+
+    <!-- Quick Tasks -->
+    <div class="card" style="margin-bottom:14px">
+      <div class="card-hdr">
+        <div class="card-title"><div class="cdot" style="background:var(--teal)"></div>Quick Tasks</div>
+        <span style="font-size:10px;color:var(--muted2)">AI extracts date from text or voice</span>
+      </div>
+      <div class="quick-add-bar">
+        <input class="qa-in" id="quickInput" placeholder="Type task — include date e.g. 'by Friday' or '15 March'...">
+        <button class="qa-btn" id="quickAddBtn">+ Add</button>
+      </div>
+      <div id="quickList"></div>
+    </div>
+
+    <!-- Top 3 Priority -->
+    <div class="card" style="margin-bottom:14px">
+      <div class="card-hdr">
+        <div class="card-title"><div class="cdot" style="background:var(--gold)"></div>Top 3 Priority</div>
+        <button class="card-action" onclick="openModal('modal-alltasks')">All 10 →</button>
+      </div>
+      <div id="top3Wrap">
+        <div style="padding:20px;text-align:center;color:var(--muted);font-size:13px">Loading...</div>
+      </div>
+    </div>
+
+    <!-- Remaining 4-10 -->
+    <div class="card" style="margin-bottom:14px">
+      <div class="card-hdr">
+        <div class="card-title"><div class="cdot" style="background:var(--muted)"></div>Remaining Tasks (4–10)</div>
+        <span id="remainCount" style="font-size:11px;color:var(--muted2)"></span>
+      </div>
+      <div id="remainWrap">
+        <div style="padding:14px 18px;text-align:center;color:var(--muted);font-size:12px">Loading...</div>
+      </div>
+    </div>
+
+    <!-- Stats row — bottom -->
     <div class="stats-row" id="statsRow">
       <div class="stat-card s-red" onclick="switchTab('cases')"><div class="sn" id="st-overdue">0</div><div class="sl">Overdue</div></div>
       <div class="stat-card s-amber" onclick="switchTab('cases')"><div class="sn" id="st-blocked">0</div><div class="sl">Blocked</div></div>
@@ -416,64 +489,15 @@ a{text-decoration:none;color:inherit}
       <div class="stat-card s-purple" onclick="switchTab('cases')"><div class="sn" id="st-cases">0</div><div class="sl">Cases</div></div>
       <div class="stat-card s-green"><div class="sn" id="st-done">0</div><div class="sl">Done Today</div></div>
     </div>
-    <div class="cg">
-      <div>
-        <!-- Priority Top 3 -->
-        <div class="card">
-          <div class="card-hdr">
-            <div class="card-title"><div class="cdot" style="background:var(--gold)"></div>Top 3 Priority</div>
-            <button class="card-action" onclick="openModal('modal-alltasks')">All 10 →</button>
-          </div>
-          <div id="top3Wrap">
-            <div style="padding:20px;text-align:center;color:var(--muted);font-size:13px">Loading...</div>
-          </div>
-        </div>
-        <!-- Remaining 4-10 -->
-        <div class="card">
-          <div class="card-hdr">
-            <div class="card-title"><div class="cdot" style="background:var(--muted)"></div>Remaining Tasks</div>
-            <span id="remainCount" style="font-size:11px;color:var(--muted2)"></span>
-          </div>
-          <div id="remainWrap">
-            <div style="padding:14px 18px;text-align:center;color:var(--muted);font-size:12px">Loading...</div>
-          </div>
-        </div>
-        <!-- Quick Tasks -->
-        <div class="card">
-          <div class="card-hdr">
-            <div class="card-title"><div class="cdot" style="background:var(--teal)"></div>Quick Tasks</div>
-            <span style="font-size:10px;color:var(--muted2)">AI extracts date from text</span>
-          </div>
-          <div class="quick-add-bar">
-            <input class="qa-in" id="quickInput" placeholder="Type or paste task — include date if needed...">
-            <button class="qa-btn" id="quickAddBtn">+ Add</button>
-          </div>
-          <div id="quickList"></div>
-        </div>
-      </div>
-      <div>
-        <!-- Team widget -->
-        <div class="card">
-          <div class="card-hdr">
-            <div class="card-title"><div class="cdot" style="background:var(--purple)"></div>Team Status</div>
-            <button class="card-action" onclick="switchTab('team')">Full →</button>
-          </div>
-          <div class="tm-wrap" id="teamMiniWrap"></div>
-        </div>
-        <!-- AI Insight -->
-        <div class="card">
-          <div class="card-hdr">
-            <div class="card-title"><div class="cdot" style="background:var(--orange)"></div>AI Insight</div>
-          </div>
-          <div class="insight-box">
-            <div class="ins-lbl">⚡ Daily Intelligence</div>
-            <div class="ins-txt" id="aiInsight">Loading...</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
+    <div id="teamMiniWrap" style="display:none"></div>
+
+    <!-- Daily Skill -->
+    <div class="skill-card" id="skillCard">
+      <div style="padding:10px 0;text-align:center;color:var(--muted);font-size:12px">Loading skill...</div>
+    </div>
+
+  </div>
   <!-- CAPTURE -->
   <div class="screen" id="screen-capture">
     <div class="page-hdr">
@@ -727,6 +751,7 @@ document.addEventListener('DOMContentLoaded', function(){
   loadData();
   initEvents();
   loadInsight();
+  loadDailySkill();
   scheduleNotifs();
   setInterval(function(){if(!document.hidden)loadData();}, 5*60*1000);
 });
@@ -1432,6 +1457,87 @@ function showToast(msg){
   clearTimeout(toastRef);toastRef=setTimeout(function(){el.classList.remove('show');},2500);
 }
 
+
+
+// ── DAILY SKILL ──────────────────────────────────────────
+var SKILLS = [
+  // AI & Technology
+  {cat:'ai', catLabel:'AI & Tech', title:'Prompt Engineering Fundamentals', desc:'Learn how to write precise, structured prompts that get consistent, high-quality outputs from AI models. The single highest-leverage skill for any business owner using AI.', time:'1 hr', level:'Beginner', source:'Anthropic Docs', url:'https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview'},
+  {cat:'fin', catLabel:'Finance', title:'Reading a Cash Flow Statement', desc:'The cash flow statement shows you the real health of a business. Learn to distinguish operating, investing and financing cash flows — and why profit can lie but cash never does.', time:'1 hr', level:'Beginner', source:'Investopedia', url:'https://www.investopedia.com/investing/what-is-a-cash-flow-statement/'},
+  {cat:'ai', catLabel:'AI & Tech', title:'How Large Language Models Work', desc:'Understand tokenisation, context windows, temperature and why models hallucinate. Knowing this makes you a better user and gives you a real edge over people who treat AI as a black box.', time:'1 hr', level:'Intermediate', source:'3Blue1Brown · YouTube', url:'https://www.youtube.com/watch?v=wjZofJX0v4M'},
+  {cat:'fin', catLabel:'Finance', title:'Working Capital Management', desc:'Working capital is the oxygen of a manufacturing business. Learn the cash conversion cycle, debtor days, creditor days — and how improving each by 5 days can free up significant cash.', time:'1 hr', level:'Intermediate', source:'CFI · Free Course', url:'https://corporatefinanceinstitute.com/resources/accounting/working-capital/'},
+  {cat:'ai', catLabel:'AI & Tech', title:'AI Agents and Agentic Workflows', desc:'AI agents can plan, use tools, and execute multi-step tasks autonomously. This is the next wave — and understanding it now puts you ahead of 95% of business owners.', time:'1 hr', level:'Intermediate', source:'DeepLearning.AI', url:'https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/'},
+  {cat:'fin', catLabel:'Finance', title:'Understanding EBITDA and Margins', desc:'EBITDA is the language of business valuation and deal-making. Learn what it means, why banks use it, and how to benchmark your forging business against industry standards of 12-18%.', time:'1 hr', level:'Beginner', source:'Investopedia', url:'https://www.investopedia.com/terms/e/ebitda.asp'},
+  {cat:'ai', catLabel:'AI & Tech', title:'Retrieval-Augmented Generation (RAG)', desc:'RAG lets AI answer questions using your own documents and data — not just its training. This is how enterprise AI works. Understanding it helps you evaluate and buy the right tools.', time:'1 hr', level:'Intermediate', source:'IBM Technology · YouTube', url:'https://www.youtube.com/watch?v=T-D1OfcDW1M'},
+  {cat:'fin', catLabel:'Finance', title:'Equity vs Debt Financing', desc:'When should you raise equity and when should you take debt? Learn the cost of capital, dilution, and how to think about the right capital structure for a growing manufacturing business.', time:'1 hr', level:'Intermediate', source:'Khan Academy', url:'https://www.khanacademy.org/economics-finance-domain/core-finance/stock-and-bonds'},
+  {cat:'ai', catLabel:'AI & Tech', title:'Fine-tuning vs Prompting vs RAG', desc:'Three ways to customise AI for your business — understand the tradeoffs in cost, complexity and control. This will save you from expensive mistakes when you invest in AI tools.', time:'1 hr', level:'Advanced', source:'Hugging Face Blog', url:'https://huggingface.co/blog/rlhf'},
+  {cat:'fin', catLabel:'Finance', title:'Letter of Credit — How It Works', desc:'LC is fundamental to export business in forging. Learn how LCs work, the documents required, discrepancies that cause rejection, and how to protect your receivables in international trade.', time:'1 hr', level:'Beginner', source:'Trade Finance Global', url:'https://www.tradefinanceglobal.com/letters-of-credit/'},
+  {cat:'ai', catLabel:'AI & Tech', title:'AI for Operations and Supply Chain', desc:'How manufacturers are using AI for demand forecasting, inventory optimisation and predictive maintenance. Includes real case studies from Indian manufacturing companies.', time:'1 hr', level:'Beginner', source:'McKinsey Insights', url:'https://www.mckinsey.com/capabilities/operations/our-insights/succeeding-in-the-ai-supply-chain-revolution'},
+  {cat:'fin', catLabel:'Finance', title:'Valuation Methods for Private Companies', desc:'Understand DCF, comparable multiples and asset-based valuation. Critical knowledge for any acquisition, JV negotiation or when a PE firm approaches you about your business.', time:'1 hr', level:'Advanced', source:'Aswath Damodaran · NYU', url:'https://pages.stern.nyu.edu/~adamodar/'},
+  {cat:'ai', catLabel:'AI & Tech', title:'ChatGPT and Claude for Business Writing', desc:'How to use AI to write proposals, emails, reports and contracts faster. Includes specific prompt templates for business communication that you can use immediately.', time:'1 hr', level:'Beginner', source:'HBR Guide', url:'https://hbr.org/2023/11/how-to-use-ai-to-do-stuff-an-opinionated-guide'},
+  {cat:'fin', catLabel:'Finance', title:'GST Input Tax Credit — Optimisation', desc:'Most manufacturing businesses leave ITC on the table. Learn how to maximise input tax credit recovery, handle blocked credits, and structure your vendor base for GST efficiency.', time:'1 hr', level:'Intermediate', source:'ClearTax', url:'https://cleartax.in/s/input-tax-credit-under-gst'}
+];
+
+function loadDailySkill() {
+  var el = document.getElementById('skillCard');
+  if (!el) return;
+  // Rotate by day of year so it changes daily
+  var dayOfYear = Math.floor((TODAY - new Date(TODAY.getFullYear(),0,0)) / 86400000);
+  var skill = SKILLS[dayOfYear % SKILLS.length];
+  // Check if user has marked it done today
+  var doneKey = 'skill_done_' + TODAY.toISOString().split('T')[0];
+  var isDone = localStorage.getItem(doneKey) === '1';
+  el.innerHTML =
+    '<div class="skill-top">' +
+      '<div class="skill-label">📚 1-Hour Skill — ' + TODAY.toLocaleDateString('en-IN',{weekday:'long'}) + '</div>' +
+      '<span class="skill-cat ' + skill.cat + '">' + skill.catLabel + '</span>' +
+    '</div>' +
+    '<div class="skill-title">' + esc(skill.title) + '</div>' +
+    '<div class="skill-desc">' + esc(skill.desc) + '</div>' +
+    '<div class="skill-meta">' +
+      '<span class="skill-time">⏱ ' + skill.time + '</span>' +
+      '<span class="skill-level">Level: ' + skill.level + '</span>' +
+    '</div>' +
+    '<a class="skill-link" href="' + skill.url + '" target="_blank" rel="noopener">' +
+      '<div class="skill-link-left">' +
+        '<div class="skill-link-src">' + esc(skill.source) + '</div>' +
+        '<div class="skill-link-title">Open ' + esc(skill.title) + ' →</div>' +
+      '</div>' +
+      '<span class="skill-link-arrow">↗</span>' +
+    '</a>' +
+    '<div class="skill-progress">' +
+      '<div class="skill-progress-bar"><div class="skill-progress-fill" id="skillFill" style="width:' + (isDone?'100':'0') + '%"></div></div>' +
+      '<button id="skillDoneBtn" style="font-size:10px;font-weight:800;padding:4px 10px;border-radius:6px;border:1px solid ' + (isDone?'var(--green)':'var(--border2)') + ';background:' + (isDone?'rgba(0,193,122,0.1)':'var(--bg3)') + ';color:' + (isDone?'var(--green)':'var(--muted2)') + ';cursor:pointer">' + (isDone?'✓ Done today':'Mark done') + '</button>' +
+    '</div>';
+  var doneBtn = document.getElementById('skillDoneBtn');
+  if (doneBtn) {
+    doneBtn.addEventListener('click', function() {
+      localStorage.setItem(doneKey, '1');
+      document.getElementById('skillFill').style.width = '100%';
+      doneBtn.textContent = '✓ Done today';
+      doneBtn.style.color = 'var(--green)';
+      doneBtn.style.borderColor = 'var(--green)';
+      doneBtn.style.background = 'rgba(0,193,122,0.1)';
+      showToast('Skill complete — great work!');
+    });
+  }
+}
+
+  // Sidebar toggle
+  var sbt=document.getElementById('sidebarToggle');
+  if(sbt){
+    sbt.addEventListener('click',function(){
+      var sb=document.getElementById('sidebar');
+      if(sb)sb.classList.toggle('open');
+    });
+    // Close sidebar when nav item clicked on mobile
+    document.querySelectorAll('.nav-item').forEach(function(ni){
+      ni.addEventListener('click',function(){
+        var sb=document.getElementById('sidebar');
+        if(sb&&window.innerWidth<=800)sb.classList.remove('open');
+      });
+    });
+  }
 })();
 </script>
 </body>
