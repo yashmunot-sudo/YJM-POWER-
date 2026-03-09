@@ -7,7 +7,19 @@ require('dotenv').config();
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
+// Cache static assets (JS, CSS, images) but never cache HTML
+app.use(express.static(path.join(__dirname, 'public'), {
+  etag: false,
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.html')) {
+      res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+      res.setHeader('Pragma', 'no-cache');
+      res.setHeader('Expires', '0');
+    } else {
+      res.setHeader('Cache-Control', 'public, max-age=86400');
+    }
+  }
+}));
 
 
 // INLINE API LOGGER (no dependencies)
@@ -39,7 +51,10 @@ app.get('/health', async (req, res) => {
 // ── TEAM URL ROUTING ──────────────────────────────────────
 const teamRoutes = ['kajal','fazal','sanjay','deepak'];
 teamRoutes.forEach(member => {
-  app.get('/' + member, (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
+  app.get('/' + member, (req, res) => {
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate');
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  });
 });
 
 // ── CASES ─────────────────────────────────────────────────
@@ -221,7 +236,10 @@ app.post('/api/tasks/score/refresh', async (req, res) => {
 });
 
 // ── CATCH ALL ─────────────────────────────────────────────
-app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
+app.get('*', (req, res) => {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate');
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 const PORT = process.env.PORT || 3000;
 // ── QUICK TASKS ──────────────────────────────────────────
