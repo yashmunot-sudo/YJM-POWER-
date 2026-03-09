@@ -235,6 +235,15 @@ app.post('/api/tasks/score/refresh', async (req, res) => {
   } catch(e) { res.status(500).json({ error: e.message }) }
 });
 
+// ── ONE-TIME MIGRATION ───────────────────────────────────
+app.get('/api/migrate', async (req, res) => {
+  try {
+    await pool.query(`ALTER TABLE tasks ADD COLUMN IF NOT EXISTS task_type VARCHAR(20) DEFAULT 'task'`);
+    await pool.query(`ALTER TABLE tasks ADD COLUMN IF NOT EXISTS created_at TIMESTAMP DEFAULT NOW()`);
+    res.json({ ok: true, message: 'Migration complete' });
+  } catch(e) { res.status(500).json({ error: e.message }); }
+});
+
 // ── QUICK TASKS ──────────────────────────────────────────
 app.get('/api/quicktasks', async (req, res) => {
   try {
@@ -283,6 +292,15 @@ app.get('*', (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
+// ── ONE-TIME MIGRATION ───────────────────────────────────
+app.get('/api/migrate', async (req, res) => {
+  try {
+    await pool.query(`ALTER TABLE tasks ADD COLUMN IF NOT EXISTS task_type VARCHAR(20) DEFAULT 'task'`);
+    await pool.query(`ALTER TABLE tasks ADD COLUMN IF NOT EXISTS created_at TIMESTAMP DEFAULT NOW()`);
+    res.json({ ok: true, message: 'Migration complete' });
+  } catch(e) { res.status(500).json({ error: e.message }); }
+});
+
 // ── QUICK TASKS ──────────────────────────────────────────
 app.get('/api/quicktasks', async (req, res) => {
   try {
