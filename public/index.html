@@ -70,22 +70,16 @@ body{background:var(--ink);color:var(--white);font-family:'DM Sans',sans-serif;m
 .dom-label{font-size:8px;font-weight:600;color:var(--muted)}
 .dom-count{font-size:9px;font-weight:800;min-width:16px;height:16px;border-radius:8px;background:var(--red);color:#fff;display:none;align-items:center;justify-content:center;margin:2px auto 0;padding:0 4px}
 .dom-count.show{display:flex}
-
-/* ── EISENHOWER MATRIX BADGES ── */
 .eq-q1{background:rgba(240,62,62,0.12);color:#FF7070;border:1px solid rgba(240,62,62,0.25)}
 .eq-q2{background:rgba(240,165,0,0.12);color:var(--gold);border:1px solid rgba(240,165,0,0.2)}
 .eq-q3{background:rgba(45,126,255,0.1);color:var(--blue2);border:1px solid rgba(45,126,255,0.2)}
 .eq-q4{background:rgba(90,112,144,0.1);color:var(--muted);border:1px solid rgba(90,112,144,0.15)}
-
-/* ── CASE LIFECYCLE STATUS ── */
 .cs-new{background:rgba(13,194,170,0.1);color:var(--teal);border:1px solid rgba(13,194,170,0.2)}
 .cs-planning{background:rgba(123,92,240,0.1);color:var(--purple);border:1px solid rgba(123,92,240,0.2)}
 .cs-active{background:rgba(45,126,255,0.12);color:var(--blue2);border:1px solid rgba(45,126,255,0.2)}
 .cs-blocked{background:rgba(240,62,62,0.1);color:var(--red);border:1px solid rgba(240,62,62,0.2)}
 .cs-review{background:rgba(240,165,0,0.1);color:var(--gold);border:1px solid rgba(240,165,0,0.2)}
 .cs-closed{background:rgba(13,191,111,0.1);color:var(--green);border:1px solid rgba(13,191,111,0.2)}
-
-/* ── OUTCOME VERIFICATION ── */
 .outcome-verify-box{background:rgba(19,25,41,0.9);border:1px solid rgba(13,191,111,0.2);border-radius:10px;padding:14px;margin-top:12px}
 .ov-label{font-size:9px;font-weight:700;letter-spacing:2px;color:var(--green);margin-bottom:8px}
 .ov-target{font-size:11px;color:rgba(240,244,255,0.7);margin-bottom:10px;line-height:1.5;padding:8px 10px;background:rgba(13,191,111,0.06);border-radius:6px;border-left:2px solid var(--green)}
@@ -94,8 +88,6 @@ body{background:var(--ink);color:var(--white);font-family:'DM Sans',sans-serif;m
 .ov-btn-row{display:flex;gap:8px}
 .ov-yes{flex:1;padding:9px;border-radius:7px;border:none;background:linear-gradient(135deg,var(--green),#0AA85E);color:#fff;font-weight:700;font-size:10px;letter-spacing:2px;cursor:pointer;font-family:'Syne',sans-serif}
 .ov-no{flex:1;padding:9px;border-radius:7px;background:rgba(240,62,62,0.08);border:1px solid rgba(240,62,62,0.2);color:var(--red);font-size:10px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif}
-
-/* ── WEEKLY REVIEW BANNER ── */
 .review-banner{background:linear-gradient(135deg,rgba(123,92,240,0.12),rgba(45,126,255,0.08));border:1px solid rgba(123,92,240,0.25);border-radius:11px;padding:14px;margin-bottom:14px;display:none}
 .review-banner.show{display:block}
 .rb-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:800;letter-spacing:2px;color:var(--purple);margin-bottom:4px}
@@ -115,8 +107,6 @@ body{background:var(--ink);color:var(--white);font-family:'DM Sans',sans-serif;m
 .gen-btn{width:100%;padding:14px;border-radius:10px;border:none;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:'Syne',sans-serif;transition:all 0.2s;margin-bottom:16px}
 .gen-btn:hover{opacity:0.9}
 .gen-btn:disabled{opacity:0.6;cursor:not-allowed}
-
-/* ── AI THINKING PANEL ── */
 .ai-thinking{background:rgba(19,25,41,0.95);border:1px solid rgba(45,126,255,0.3);border-radius:12px;padding:20px;display:none;text-align:center;margin-bottom:12px}
 .ai-thinking.show{display:block}
 .ai-thinking-icon{font-size:32px;margin-bottom:10px;animation:pulse 1.5s ease-in-out infinite}
@@ -127,28 +117,20 @@ body{background:var(--ink);color:var(--white);font-family:'DM Sans',sans-serif;m
 .ai-dots span:nth-child(2){animation-delay:0.2s}
 .ai-dots span:nth-child(3){animation-delay:0.4s}
 @keyframes bounce{0%,80%,100%{transform:translateY(0);opacity:0.4}40%{transform:translateY(-6px);opacity:1}}
-
-/* ── AI RESULT PREVIEW PANEL ── */
 .ai-result{background:rgba(19,25,41,0.95);border:1px solid rgba(45,126,255,0.3);border-radius:14px;padding:0;display:none;overflow:hidden;margin-bottom:12px}
 .ai-result.show{display:block;animation:slideUp 0.35s ease}
 @keyframes slideUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-
 .ar-header{background:linear-gradient(135deg,rgba(27,95,212,0.25),rgba(45,126,255,0.1));padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
 .ar-header-icon{font-size:20px}
 .ar-header-text{flex:1}
 .ar-hdr{font-family:'Syne',sans-serif;font-size:12px;font-weight:800;letter-spacing:2px;color:var(--blue2)}
 .ar-hdr-sub{font-size:10px;color:var(--muted);margin-top:2px}
 .ar-badge{font-size:9px;font-weight:700;letter-spacing:1px;padding:3px 8px;border-radius:5px;background:rgba(45,126,255,0.15);color:var(--blue2);border:1px solid rgba(45,126,255,0.25)}
-
 .ar-body{padding:14px 16px}
 .ar-section{margin-bottom:14px}
 .ar-section-label{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:7px;display:flex;align-items:center;gap:5px}
 .ar-section-label::after{content:'';flex:1;height:1px;background:var(--border)}
-
-/* Outcome */
 .ar-outcome-box{background:rgba(13,191,111,0.07);border:1px solid rgba(13,191,111,0.2);border-radius:8px;padding:10px 14px;font-size:12px;color:rgba(240,244,255,0.9);line-height:1.6}
-
-/* Tasks */
 .ar-task{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-radius:9px;margin-bottom:6px;background:rgba(28,38,64,0.5);border:1px solid var(--border);transition:border-color 0.2s}
 .ar-task:hover{border-color:rgba(45,126,255,0.25)}
 .ar-task-num{width:20px;height:20px;border-radius:5px;background:rgba(45,126,255,0.15);border:1px solid rgba(45,126,255,0.2);color:var(--blue2);font-size:9px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
@@ -164,19 +146,13 @@ body{background:var(--ink);color:var(--white);font-family:'DM Sans',sans-serif;m
 .owner-outsource{background:rgba(240,69,176,0.12);color:var(--pink);border:1px solid rgba(240,69,176,0.2)}
 .dl-chip{font-size:9px;color:var(--muted);background:rgba(28,38,64,0.8);border:1px solid var(--border);padding:2px 6px;border-radius:4px}
 .impact-chip{font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px}
-
-/* Risk flags */
 .ar-risk{display:flex;align-items:flex-start;gap:8px;padding:8px 12px;border-radius:8px;margin-bottom:5px;background:rgba(240,62,62,0.05);border:1px solid rgba(240,62,62,0.15);font-size:11px;line-height:1.5;color:rgba(240,244,255,0.8)}
 .ar-risk-icon{font-size:13px;flex-shrink:0;margin-top:1px}
-
-/* Actions */
 .ar-actions{display:flex;gap:8px;padding:14px 16px;border-top:1px solid var(--border);background:rgba(10,15,30,0.4)}
 .approve-btn{flex:1;padding:12px;border-radius:9px;border:none;background:linear-gradient(135deg,var(--green),#0AA85E);color:#fff;font-weight:800;font-size:11px;letter-spacing:2px;cursor:pointer;font-family:'Syne',sans-serif;transition:all 0.2s}
 .approve-btn:hover{opacity:0.9;transform:translateY(-1px)}
 .edit-btn{padding:12px 16px;border-radius:9px;background:rgba(28,38,64,0.8);border:1px solid var(--border);color:var(--muted);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s}
 .edit-btn:hover{border-color:var(--blue2);color:var(--white)}
-.discard-btn{padding:12px 16px;border-radius:9px;background:rgba(240,62,62,0.08);border:1px solid rgba(240,62,62,0.2);color:var(--red);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif}
-
 .case-list{display:grid;gap:8px}
 .case-card{background:rgba(19,25,41,0.8);border:1px solid var(--border);border-radius:11px;padding:14px;cursor:pointer;transition:all 0.18s;display:flex;align-items:center;gap:12px}
 .case-card:hover{border-color:rgba(45,126,255,0.3)}
@@ -186,10 +162,6 @@ body{background:var(--ink);color:var(--white);font-family:'DM Sans',sans-serif;m
 .case-title{font-size:12px;font-weight:600;margin-bottom:4px}
 .case-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .cs{font-size:9px;font-weight:700;letter-spacing:1px;padding:2px 6px;border-radius:4px}
-.cs-active{background:rgba(45,126,255,0.12);color:var(--blue2);border:1px solid rgba(45,126,255,0.2)}
-.cs-blocked{background:rgba(240,62,62,0.1);color:var(--red);border:1px solid rgba(240,62,62,0.2)}
-.cs-review{background:rgba(240,165,0,0.1);color:var(--gold);border:1px solid rgba(240,165,0,0.2)}
-.cs-new{background:rgba(13,194,170,0.1);color:var(--teal);border:1px solid rgba(13,194,170,0.2)}
 .prog-bar{width:50px;height:3px;background:rgba(28,38,64,0.8);border-radius:2px;overflow:hidden;margin-left:auto}
 .prog-fill{height:100%;border-radius:2px;background:var(--blue2)}
 .case-detail{background:rgba(19,25,41,0.85);border:1px solid var(--border);border-radius:12px;padding:16px;margin-top:10px;display:none}
@@ -236,28 +208,20 @@ body{background:var(--ink);color:var(--white);font-family:'DM Sans',sans-serif;m
 .empty-icon{font-size:36px;margin-bottom:10px}
 .empty-text{font-size:13px;font-weight:600}
 .empty-sub{font-size:11px;margin-top:5px}
-.new-case-btn{width:100%;padding:12px;border-radius:10px;border:none;background:rgba(28,38,64,0.8);border:1px solid var(--border);color:var(--white);font-size:12px;font-weight:600;cursor:pointer;margin-bottom:12px;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px}
+.new-case-btn{width:100%;padding:12px;border-radius:10px;border:1px solid var(--border);background:rgba(28,38,64,0.8);color:var(--white);font-size:12px;font-weight:600;cursor:pointer;margin-bottom:12px;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px}
 .new-case-btn:hover{border-color:var(--blue2)}
-
-/* AI model label */
 .ai-model-badge{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:700;letter-spacing:1px;color:var(--blue2);background:rgba(45,126,255,0.08);border:1px solid rgba(45,126,255,0.2);border-radius:5px;padding:2px 7px;margin-left:6px}
-
-/* ── VOICE ── */
 .mic-btn{background:rgba(28,38,64,0.8);border:1px solid var(--border);border-radius:7px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all 0.2s;flex-shrink:0;outline:none}
 .mic-btn:hover{border-color:var(--blue2)}
 .mic-btn.recording{background:rgba(240,62,62,0.15);border-color:var(--red);animation:micPulse 1s ease-in-out infinite}
 @keyframes micPulse{0%,100%{box-shadow:0 0 0 0 rgba(240,62,62,0.4)}50%{box-shadow:0 0 0 6px rgba(240,62,62,0)}}
 .voice-status{font-size:10px;color:var(--red);font-weight:700;letter-spacing:1px;display:none;margin-bottom:8px;text-align:center;padding:6px;background:rgba(240,62,62,0.07);border-radius:7px;border:1px solid rgba(240,62,62,0.15)}
 .voice-status.show{display:block}
-
-/* ── NOTIFICATION BELL ── */
 .topbar-right{display:flex;align-items:center;gap:8px}
 .notif-bell{position:relative;cursor:pointer;width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(28,38,64,0.6);border:1px solid var(--border);font-size:16px;transition:all 0.2s}
 .notif-bell:hover{border-color:var(--blue2)}
 .notif-count{position:absolute;top:3px;right:3px;min-width:14px;height:14px;border-radius:7px;background:var(--red);color:#fff;font-size:8px;font-weight:800;display:none;align-items:center;justify-content:center;padding:0 3px;border:1.5px solid var(--ink)}
 .notif-count.show{display:flex}
-
-/* ── NOTIFICATION DRAWER ── */
 .notif-drawer{position:fixed;top:56px;right:0;width:310px;max-height:calc(100vh - 56px);overflow-y:auto;background:rgba(13,19,41,0.98);backdrop-filter:blur(20px);border-left:1px solid var(--border);border-bottom:1px solid var(--border);z-index:200;transform:translateX(100%);transition:transform 0.28s cubic-bezier(0.4,0,0.2,1)}
 .notif-drawer.open{transform:translateX(0)}
 .nd-header{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:rgba(13,19,41,0.98)}
@@ -275,11 +239,8 @@ body{background:var(--ink);color:var(--white);font-family:'DM Sans',sans-serif;m
 .ni-title{font-size:11px;font-weight:600;margin-bottom:2px;line-height:1.4}
 .ni-sub{font-size:10px;color:var(--muted);line-height:1.4}
 .ni-time{font-size:9px;color:var(--muted);margin-top:4px}
-.nd-section{padding:8px 16px 4px;font-size:9px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase;border-bottom:1px solid var(--border)}
 .nd-empty{padding:40px 20px;text-align:center;color:var(--muted);font-size:12px}
 .nd-empty-icon{font-size:28px;margin-bottom:8px}
-
-/* ── GOOGLE CALENDAR SYNC ── */
 .cal-sync-row{display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(13,194,170,0.05);border:1px solid rgba(13,194,170,0.15);border-radius:8px;margin-top:8px;font-size:11px}
 .cal-sync-icon{font-size:14px}
 .cal-sync-text{flex:1;color:rgba(240,244,255,0.65);font-size:10px}
@@ -323,7 +284,6 @@ body{background:var(--ink);color:var(--white);font-family:'DM Sans',sans-serif;m
 
     <!-- TODAY -->
     <div class="screen active" id="yash-today">
-      <!-- Weekly Review Banner (shows Fridays or when idle cases exist) -->
       <div class="review-banner" id="reviewBanner">
         <div class="rb-title">📋 WEEKLY REVIEW</div>
         <div class="rb-sub">These cases have had no activity in 7+ days. Choose an action for each.</div>
@@ -342,7 +302,6 @@ body{background:var(--ink);color:var(--white);font-family:'DM Sans',sans-serif;m
           <div class="stat-pill"><div class="stat-num" id="statCases" style="color:var(--teal)">-</div><div class="stat-lbl">Cases</div></div>
         </div>
       </div>
-
       <div class="zone">
         <div class="zone-hdr">
           <div class="zone-title"><div class="zdot" style="background:var(--gold)"></div>Suggested Tasks</div>
@@ -350,7 +309,6 @@ body{background:var(--ink);color:var(--white);font-family:'DM Sans',sans-serif;m
         </div>
         <div class="zone-body" id="taskList"><div class="loading">Loading tasks...</div></div>
       </div>
-
       <div class="two-col">
         <div class="zone">
           <div class="zone-hdr">
@@ -405,16 +363,12 @@ body{background:var(--ink);color:var(--white);font-family:'DM Sans',sans-serif;m
           <button class="gen-btn" id="saveTaskBtn" onclick="saveDirectTask()" style="margin-bottom:0;flex:1;background:rgba(28,38,64,0.9);border:1px solid var(--border);font-size:11px;padding:13px 8px">💾 SAVE TASK</button>
           <button class="gen-btn" id="createCaseBtn" onclick="runAICapture()" style="margin-bottom:0;flex:2;font-size:11px;padding:13px 8px">⚡ ANALYSE WITH AI</button>
         </div>
-
-        <!-- AI THINKING STATE -->
         <div class="ai-thinking" id="aiThinking">
           <div class="ai-thinking-icon">🤖</div>
           <div class="ai-thinking-text">CLAUDE IS ANALYSING</div>
           <div class="ai-thinking-sub" id="thinkingStep">Reading problem context...</div>
           <div class="ai-dots" style="margin-top:12px"><span></span><span></span><span></span></div>
         </div>
-
-        <!-- AI RESULT PREVIEW -->
         <div class="ai-result" id="aiResult">
           <div class="ar-header">
             <div class="ar-header-icon">🧠</div>
@@ -424,27 +378,20 @@ body{background:var(--ink);color:var(--white);font-family:'DM Sans',sans-serif;m
             </div>
             <div class="ar-badge">PREVIEW</div>
           </div>
-
           <div class="ar-body">
-            <!-- Outcome -->
             <div class="ar-section">
               <div class="ar-section-label">✅ Outcome</div>
               <div class="ar-outcome-box" id="arOutcome"></div>
             </div>
-
-            <!-- Tasks -->
             <div class="ar-section">
               <div class="ar-section-label">📋 Task Breakdown</div>
               <div id="arTasks"></div>
             </div>
-
-            <!-- Risk Flags -->
             <div class="ar-section" id="arRiskSection">
               <div class="ar-section-label">⚠️ Risk Flags</div>
               <div id="arRisks"></div>
             </div>
           </div>
-
           <div class="ar-actions">
             <button class="approve-btn" onclick="approveAndSave()">✓ APPROVE + SAVE TO DATABASE</button>
             <button class="edit-btn" onclick="resetCapture()">↩ NEW CAPTURE</button>
@@ -457,15 +404,12 @@ body{background:var(--ink);color:var(--white);font-family:'DM Sans',sans-serif;m
             </div>
           </div>
         </div>
-
       </div>
     </div>
 
     <!-- CASES -->
     <div class="screen" id="yash-cases">
-      <button class="new-case-btn" onclick="switchTab('capture','yash',document.querySelector('#view-yash .stab:nth-child(2)'));setActiveNav('bnav-capture')">
-        ⚡ New Case
-      </button>
+      <button class="new-case-btn" onclick="switchTab('capture','yash',document.querySelector('#view-yash .stab:nth-child(2)'));setActiveNav('bnav-capture')">⚡ New Case</button>
       <div id="casesList"><div class="loading">Loading cases...</div></div>
     </div>
   </div>
@@ -534,7 +478,6 @@ body{background:var(--ink);color:var(--white);font-family:'DM Sans',sans-serif;m
 
 <div class="toast" id="toast"></div>
 
-<!-- NOTIFICATION DRAWER -->
 <div class="notif-drawer" id="notifDrawer">
   <div class="nd-header">
     <div class="nd-title">🔔 NOTIFICATIONS</div>
@@ -550,9 +493,8 @@ let selectedDomain = 'Business';
 let selectedOwner = 1;
 let people = [];
 let domains = [];
-let pendingAIResult = null; // Holds AI output until Yash approves
+let pendingAIResult = null;
 
-// ── INIT ──────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   setDate();
   loadPeople();
@@ -561,7 +503,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initVoice();
   initNotifications();
   checkWeeklyReview();
-  // Close notif drawer when clicking outside
   document.addEventListener('click', e => {
     const drawer = document.getElementById('notifDrawer');
     const bell = document.querySelector('.notif-bell');
@@ -581,7 +522,6 @@ function setDate() {
   document.getElementById('greeting').textContent = `${greet}, Yash ☀️`;
 }
 
-// ── LOAD DATA ──────────────────────────────────────────
 async function loadPeople() {
   try {
     const res = await fetch(`${API}/api/people`);
@@ -597,14 +537,13 @@ async function loadDomains() {
     domains = await res.json();
   } catch(e) {
     domains = [
-      {name:'Business',icon:'⚙',is_private:false},{name:'Customer',icon:'🤝',is_private:false},
+      {name:'Business',icon:'⚙️',is_private:false},{name:'Customer',icon:'🤝',is_private:false},
       {name:'Strategy',icon:'🎯',is_private:false},{name:'Operations',icon:'🏭',is_private:false},
-      {name:'Finance',icon:'💰',is_private:false},{name:'AIFI',icon:'🏛',is_private:false},
-      {name:'Legal',icon:'⚖',is_private:false},{name:'Wealth',icon:'📈',is_private:true},
-      {name:'Health',icon:'❤',is_private:true},{name:'Neha',icon:'💗',is_private:true}
+      {name:'Finance',icon:'💰',is_private:false},{name:'AIFI',icon:'🏛️',is_private:false},
+      {name:'Legal',icon:'⚖️',is_private:false},{name:'Wealth',icon:'📈',is_private:true},
+      {name:'Health',icon:'❤️',is_private:true},{name:'Neha',icon:'💗',is_private:true}
     ];
   }
-  // Load domain pending counts
   try {
     const cr = await fetch(`${API}/api/domains/counts`);
     const countsArr = await cr.json();
@@ -702,10 +641,10 @@ function renderCases(cases) {
       <div class="case-info">
         <div class="case-title">${c.title}</div>
         <div class="case-meta">
-          <span class="cs cs-${c.status}">${c.status.toUpperCase()}</span>
+          <span class="cs cs-${c.status||'active'}">${(c.status||'active').toUpperCase()}</span>
           <span class="case-tag">${c.domain||''}</span>
           ${c.is_private?`<span class="badge-priv">🔒</span>`:''}
-          <span style="font-size:10px;color:var(--muted)">${c.priority}</span>
+          <span style="font-size:10px;color:var(--muted)">${c.priority||'normal'}</span>
         </div>
       </div>
       <div class="prog-bar"><div class="prog-fill" style="width:${c.status==='closed'?100:c.status==='active'?50:25}%"></div></div>
@@ -721,7 +660,7 @@ function renderCases(cases) {
         <div class="outcome-verify-box">
           <div class="ov-label">OUTCOME VERIFICATION REQUIRED</div>
           <div class="ov-target">${c.outcome}</div>
-          <input class="ov-proof-input" id="ov-proof-${c.case_id}" placeholder="Enter proof of completion e.g. Rs 25L received on 12 Mar, ref UTR 123456">
+          <input class="ov-proof-input" id="ov-proof-${c.case_id}" placeholder="Enter proof e.g. Rs 25L received on 12 Mar, ref UTR 123456">
           <div class="ov-btn-row">
             <button class="ov-yes" onclick="verifyOutcome(${c.case_id},true)">✓ OUTCOME ACHIEVED</button>
             <button class="ov-no" onclick="verifyOutcome(${c.case_id},false)">✗ NOT YET — GENERATE NEXT STEPS</button>
@@ -751,7 +690,6 @@ function renderCases(cases) {
     </div>`).join('');
 }
 
-// ── TEAM TASKS ─────────────────────────────────────────
 async function loadTeamTasks(personId, containerId, isKajal) {
   try {
     const res = await fetch(`${API}/api/tasks?owner_id=${personId}`);
@@ -791,347 +729,200 @@ async function loadTeamTasks(personId, containerId, isKajal) {
   } catch(e) { document.getElementById(containerId).innerHTML='<div class="empty"><div class="empty-text">Could not load tasks</div></div>' }
 }
 
-// ── DIRECT SAVE (NO AI) ────────────────────────────────
 async function saveDirectTask() {
   const title = document.getElementById('captureInput').value.trim();
   const outcome = document.getElementById('outcomeInput').value.trim();
   const priority = document.getElementById('prioritySelect').value;
   const owner_id = document.getElementById('ownerSelect').value;
-
   if(!title){ showToast('Please describe the task first'); return; }
-
   const btn = document.getElementById('saveTaskBtn');
-  btn.disabled = true;
-  btn.textContent = '⚙ Saving...';
-
+  btn.disabled = true; btn.textContent = '⚙ Saving...';
   try {
     const caseRes = await fetch(`${API}/api/cases`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      method: 'POST', headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({ title, domain: selectedDomain, priority, outcome: outcome || title, case_type: 'execution' })
     });
     const newCase = await caseRes.json();
-
     await fetch(`${API}/api/tasks`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      method: 'POST', headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({ case_id: newCase.case_id, description: title, owner_id: parseInt(owner_id), execution_mode: 'delegate', impact_score: 3, priority })
     });
-
     showToast('Task saved ✓');
-    // Calendar sync for direct tasks
-    syncTasksToCalendar([{
-      description: title,
-      owner: document.getElementById('ownerSelect').options[document.getElementById('ownerSelect').selectedIndex]?.text || 'Yash',
-      deadline_days: 7,
-      impact_score: 3,
-      execution_mode: 'delegate'
-    }], title);
+    syncTasksToCalendar([{description:title,owner:document.getElementById('ownerSelect').options[document.getElementById('ownerSelect').selectedIndex]?.text||'Yash',deadline_days:7,impact_score:3,execution_mode:'delegate'}],title);
     resetCapture();
     loadDashboard();
     setTimeout(checkNotifications, 1000);
-  } catch(e) {
-    showToast('Error saving task. Check database connection.');
-  }
-
-  btn.disabled = false;
-  btn.textContent = '💾 SAVE TASK';
+  } catch(e) { showToast('Error saving task. Check database connection.'); }
+  btn.disabled = false; btn.textContent = '💾 SAVE TASK';
 }
 
-// ── AI CAPTURE — CORE FUNCTION ─────────────────────────
 async function runAICapture() {
   const problem = document.getElementById('captureInput').value.trim();
   const outcome = document.getElementById('outcomeInput').value.trim();
   const priority = document.getElementById('prioritySelect').value;
-
   if(!problem){ showToast('Please describe the problem first'); return; }
-
-  // UI: disable button, show thinking state
   const btn = document.getElementById('createCaseBtn');
-  btn.disabled = true;
-  btn.textContent = '🤖 Analysing...';
+  btn.disabled = true; btn.textContent = '🤖 Analysing...';
   document.getElementById('saveTaskBtn').disabled = true;
   document.getElementById('aiResult').classList.remove('show');
   document.getElementById('aiThinking').classList.add('show');
-
-  const steps = [
-    'Reading problem context...',
-    'Identifying responsible team members...',
-    'Structuring task breakdown...',
-    'Assigning deadlines...',
-    'Flagging risks and blockers...'
-  ];
+  const steps = ['Reading problem context...','Identifying responsible team members...','Structuring task breakdown...','Assigning deadlines...','Flagging risks and blockers...'];
   let stepIdx = 0;
-  const stepInterval = setInterval(() => {
-    stepIdx = (stepIdx + 1) % steps.length;
-    document.getElementById('thinkingStep').textContent = steps[stepIdx];
-  }, 1200);
-
+  const stepInterval = setInterval(() => { stepIdx = (stepIdx+1)%steps.length; document.getElementById('thinkingStep').textContent = steps[stepIdx]; }, 1200);
   const today = new Date();
   const todayStr = today.toISOString().split('T')[0];
-
-  // ── DOMAIN-SPECIFIC CONTEXT ──────────────────────────
   const domainContext = {
-    'Business':    'YJM Power is a forging industry company in Pune. Core business: metal forging components for automotive, industrial sectors. Key relationships: vendors, OEM customers, raw material suppliers.',
-    'Customer':    'Customer management: collections, relationship issues, escalations, credit limits. Top concern: overdue payments, delivery complaints, new orders. Sanjay owns customer relationships.',
-    'Finance':     'Finance scope: AR collections, vendor payments, GST compliance, TDS, cash flow. Deepak (Accounts) handles all finance tasks. Critical: overdue receivables, payment reconciliation.',
-    'Operations':  'Forging operations: press operations, die maintenance, raw material procurement, production planning. Fazal owns procurement and operations. Lead times: raw material 7-14 days.',
-    'Legal':       'Legal matters: contracts, disputes, compliance, labour law, IP, regulatory. External lawyers handle court matters. Timeline: legal responses typically 7-30 days. Kajal coordinates with lawyers.',
-    'Strategy':    'Strategic decisions: new markets, capex, partnerships, product lines. Yash owns strategy. Requires research, analysis, and often external consultant input.',
-    'AIFI':        'AIFI: government scheme, institutional finance, or investment vehicle. Requires CA, legal, and Yash review. Documentation-heavy.',
-    'Wealth':      'Personal wealth: investments, property, portfolio review. Private. Yash handles personally with CA/financial advisor.',
-    'Health':      'Personal health: medical appointments, tests, follow-ups. Private. Kajal coordinates scheduling.',
-    'Neha':        'Personal family matters. Private. Yash handles directly.'
+    'Business':'YJM Power is a forging industry company in Pune. Core business: metal forging components for automotive, industrial sectors.',
+    'Customer':'Customer management: collections, relationship issues, escalations, credit limits. Sanjay owns customer relationships.',
+    'Finance':'Finance scope: AR collections, vendor payments, GST compliance, TDS, cash flow. Deepak handles all finance tasks.',
+    'Operations':'Forging operations: press operations, die maintenance, raw material procurement, production planning. Fazal owns procurement.',
+    'Legal':'Legal matters: contracts, disputes, compliance, labour law. External lawyers handle court matters. Kajal coordinates.',
+    'Strategy':'Strategic decisions: new markets, capex, partnerships. Yash owns strategy.',
+    'AIFI':'Government scheme or institutional finance. Documentation-heavy. Requires CA and Yash review.',
+    'Wealth':'Personal wealth: investments, property, portfolio. Private. Yash handles personally.',
+    'Health':'Personal health: medical appointments, tests. Private. Kajal coordinates scheduling.',
+    'Neha':'Personal family matters. Private. Yash handles directly.'
   };
-
   const context = domainContext[selectedDomain] || domainContext['Business'];
-
   const systemPrompt = `You are the Chief of Staff AI for YJM Power, a forging industry company in Pune, India.
 
 DOMAIN CONTEXT — ${selectedDomain}:
 ${context}
 
 TEAM:
-- Yash: Owner / Final decision maker / Strategic calls
-- Kajal: Executive Assistant — scheduling, follow-ups, coordination, reminders, lawyer/CA liaison
-- Fazal: Operations & Purchase — vendors, procurement, production ops, material follow-up
-- Sanjay: Logistics & Sales — customer delivery, collections follow-up, new orders
-- Deepak: Accounts — invoices, payments, GST, TDS, collections, reconciliation
-- Outsource: External lawyers, CA, consultants, agencies (NOT internal team)
+- Yash: Owner / Final decision maker
+- Kajal: Executive Assistant — scheduling, follow-ups, coordination
+- Fazal: Operations & Purchase — vendors, procurement, production
+- Sanjay: Logistics & Sales — customer delivery, collections
+- Deepak: Accounts — invoices, payments, GST, TDS
+- Outsource: External lawyers, CA, consultants
 
 Today: ${todayStr}
 
-RULES — FOLLOW STRICTLY:
-1. Generate MAXIMUM 3 tasks for simple cases, MAXIMUM 5 for complex multi-party cases. NEVER more than 5.
-2. Each task must have ONE clear owner. No shared ownership.
-3. Deadlines: realistic, 1-14 days unless stated otherwise.
-4. Impact scores: 5=strategic decision, 4=direct revenue/financial, 3=operational execution, 2=routine admin, 1=minor
-5. Mark is_urgent=true only if deadline < 3 days or financial loss risk
-6. Mark is_important=true if outcome affects revenue, compliance, or strategic position
-7. Risks: 2-3 maximum, only real blockers specific to this case
-8. Outcome must be MEASURABLE with a number or date — not vague
+RULES:
+1. MAX 3 tasks simple cases, MAX 5 complex multi-party. NEVER more than 5.
+2. Each task ONE clear owner.
+3. Deadlines: 1-14 days realistic.
+4. Impact: 5=strategic, 4=financial, 3=operational, 2=admin, 1=minor
+5. is_urgent=true only if deadline < 3 days or financial loss risk
+6. is_important=true if affects revenue, compliance, or strategy
+7. Outcome MEASURABLE with number or date
 
-Respond ONLY in valid JSON, no preamble, no markdown:
+Respond ONLY in valid JSON:
 {
   "case_title": "short specific title",
   "status": "planning",
   "priority": "critical|high|normal|low",
   "outcome": "measurable outcome with number/date",
-  "tasks": [
-    {
-      "description": "specific action",
-      "owner": "Yash|Kajal|Fazal|Sanjay|Deepak|Outsource",
-      "deadline_days": 3,
-      "impact_score": 4,
-      "is_urgent": true,
-      "is_important": true,
-      "execution_mode": "delegate|execute|review"
-    }
-  ],
-  "risks": ["specific risk 1", "specific risk 2"]
+  "tasks": [{"description":"","owner":"Yash|Kajal|Fazal|Sanjay|Deepak|Outsource","deadline_days":3,"impact_score":4,"is_urgent":true,"is_important":true,"execution_mode":"delegate|execute|review"}],
+  "risks": ["risk 1","risk 2"]
 }`;
-
-  const userPrompt = `Domain: ${selectedDomain}
-Priority: ${priority}
-Problem: ${problem}
-${outcome ? `Desired Outcome: ${outcome}` : ''}
-
-Analyse this and generate the case breakdown.`;
-
+  const userPrompt = `Domain: ${selectedDomain}\nPriority: ${priority}\nProblem: ${problem}${outcome?'\nDesired Outcome: '+outcome:''}`;
   try {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: systemPrompt,
-        messages: [{ role: 'user', content: userPrompt }]
-      })
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:systemPrompt,messages:[{role:'user',content:userPrompt}]})
     });
-
     clearInterval(stepInterval);
-
     if(!response.ok) throw new Error(`API error: ${response.status}`);
-
     const data = await response.json();
-    const rawText = data.content.map(b => b.text || '').join('').trim();
-
+    const rawText = data.content.map(b=>b.text||'').join('').trim();
     let parsed;
-    try {
-      const clean = rawText.replace(/```json|```/g, '').trim();
-      parsed = JSON.parse(clean);
-    } catch(e) {
-      throw new Error('Could not parse AI response as JSON');
-    }
-
-    // Store for approval
-    pendingAIResult = {
-      case_title: parsed.case_title || problem,
-      outcome: parsed.outcome || outcome || '',
-      domain: selectedDomain,
-      priority: priority,
-      tasks: parsed.tasks || [],
-      risks: parsed.risks || []
-    };
-
+    try { parsed = JSON.parse(rawText.replace(/```json|```/g,'').trim()); }
+    catch(e) { throw new Error('Could not parse AI response'); }
+    pendingAIResult = {case_title:parsed.case_title||problem,outcome:parsed.outcome||outcome||'',domain:selectedDomain,priority,tasks:parsed.tasks||[],risks:parsed.risks||[]};
     renderAIPreview(pendingAIResult, today);
     document.getElementById('aiThinking').classList.remove('show');
     document.getElementById('aiResult').classList.add('show');
     showToast('AI analysis complete — review below');
-
   } catch(e) {
     clearInterval(stepInterval);
     document.getElementById('aiThinking').classList.remove('show');
-    showToast('AI error: ' + (e.message || 'Unknown error'));
-    console.error(e);
+    showToast('AI error: '+(e.message||'Unknown error'));
   }
-
-  btn.disabled = false;
-  btn.textContent = '⚡ ANALYSE WITH AI';
+  btn.disabled = false; btn.textContent = '⚡ ANALYSE WITH AI';
   document.getElementById('saveTaskBtn').disabled = false;
 }
 
 function getEisenhowerLabel(t) {
-  if(t.is_urgent && t.is_important)   return {cls:'eq-q1', label:'🔴 DO NOW'};
-  if(!t.is_urgent && t.is_important)  return {cls:'eq-q2', label:'🟡 SCHEDULE'};
-  if(t.is_urgent && !t.is_important)  return {cls:'eq-q3', label:'🔵 DELEGATE'};
-  return {cls:'eq-q4', label:'⚪ ELIMINATE'};
+  if(t.is_urgent && t.is_important)   return {cls:'eq-q1',label:'🔴 DO NOW'};
+  if(!t.is_urgent && t.is_important)  return {cls:'eq-q2',label:'🟡 SCHEDULE'};
+  if(t.is_urgent && !t.is_important)  return {cls:'eq-q3',label:'🔵 DELEGATE'};
+  return {cls:'eq-q4',label:'⚪ ELIMINATE'};
 }
 
 function renderAIPreview(result, today) {
-  // Outcome
   document.getElementById('arOutcome').textContent = result.outcome || result.case_title;
-
-  // Tasks
-  const ownerClassMap = {
-    'Yash':'owner-yash','Kajal':'owner-kajal','Fazal':'owner-fazal',
-    'Sanjay':'owner-sanjay','Deepak':'owner-deepak','Outsource':'owner-outsource'
-  };
-  const impactColors = { 5:'var(--gold)', 4:'#FF7070', 3:'var(--blue2)', 2:'var(--muted)', 1:'var(--muted)' };
-
-  document.getElementById('arTasks').innerHTML = result.tasks.map((t, i) => {
-    const dl = new Date(today);
-    dl.setDate(dl.getDate() + (t.deadline_days || 7));
-    const dlStr = dl.toLocaleDateString('en-IN', { day:'numeric', month:'short' });
-    const ownerClass = ownerClassMap[t.owner] || 'owner-yash';
-    const impColor = impactColors[t.impact_score] || 'var(--muted)';
+  const ownerClassMap = {Yash:'owner-yash',Kajal:'owner-kajal',Fazal:'owner-fazal',Sanjay:'owner-sanjay',Deepak:'owner-deepak',Outsource:'owner-outsource'};
+  const impactColors = {5:'var(--gold)',4:'#FF7070',3:'var(--blue2)',2:'var(--muted)',1:'var(--muted)'};
+  document.getElementById('arTasks').innerHTML = result.tasks.map((t,i) => {
+    const dl = new Date(today); dl.setDate(dl.getDate()+(t.deadline_days||7));
+    const dlStr = dl.toLocaleDateString('en-IN',{day:'numeric',month:'short'});
     const eq = getEisenhowerLabel(t);
-    return `
-      <div class="ar-task">
-        <div class="ar-task-num">${i+1}</div>
-        <div class="ar-task-content">
-          <div class="ar-task-desc">${t.description}</div>
-          <div class="ar-task-meta">
-            <span class="owner-chip ${ownerClass}">${t.owner.toUpperCase()}</span>
-            <span class="task-tag ${eq.cls}" style="font-size:8px">${eq.label}</span>
-            <span class="dl-chip">📅 ${dlStr}</span>
-            <span class="impact-chip" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:${impColor};font-size:9px;padding:2px 6px;border-radius:4px">I${t.impact_score}</span>
-          </div>
+    return `<div class="ar-task">
+      <div class="ar-task-num">${i+1}</div>
+      <div class="ar-task-content">
+        <div class="ar-task-desc">${t.description}</div>
+        <div class="ar-task-meta">
+          <span class="owner-chip ${ownerClassMap[t.owner]||'owner-yash'}">${t.owner.toUpperCase()}</span>
+          <span class="task-tag ${eq.cls}" style="font-size:8px">${eq.label}</span>
+          <span class="dl-chip">📅 ${dlStr}</span>
+          <span class="impact-chip" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:${impactColors[t.impact_score]||'var(--muted)'};font-size:9px;padding:2px 6px;border-radius:4px">I${t.impact_score}</span>
         </div>
-      </div>`;
+      </div>
+    </div>`;
   }).join('');
-
-  // Risks
   if(result.risks && result.risks.length > 0) {
     document.getElementById('arRiskSection').style.display = 'block';
-    document.getElementById('arRisks').innerHTML = result.risks.map(r => `
-      <div class="ar-risk"><span class="ar-risk-icon">⚠️</span><div>${r}</div></div>`).join('');
-  } else {
-    document.getElementById('arRiskSection').style.display = 'none';
-  }
+    document.getElementById('arRisks').innerHTML = result.risks.map(r=>`<div class="ar-risk"><span class="ar-risk-icon">⚠️</span><div>${r}</div></div>`).join('');
+  } else { document.getElementById('arRiskSection').style.display = 'none'; }
 }
 
-// ── APPROVE AND SAVE ───────────────────────────────────
 async function approveAndSave() {
   if(!pendingAIResult) return;
-
   const btn = document.querySelector('.approve-btn');
-  btn.textContent = '⚙ Saving...';
-  btn.disabled = true;
-
+  btn.textContent = '⚙ Saving...'; btn.disabled = true;
   const today = new Date();
-
   try {
-    // 1. Create the case
     const caseRes = await fetch(`${API}/api/cases`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        title: pendingAIResult.case_title,
-        domain: pendingAIResult.domain,
-        priority: pendingAIResult.priority || 'normal',
-        status: pendingAIResult.status || 'planning',
-        outcome: pendingAIResult.outcome,
-        case_type: 'execution'
-      })
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({title:pendingAIResult.case_title,domain:pendingAIResult.domain,priority:pendingAIResult.priority||'normal',status:'planning',outcome:pendingAIResult.outcome,case_type:'execution'})
     });
     const newCase = await caseRes.json();
-    const caseId = newCase.case_id;
-
-    // 2. Save each AI-generated task
     const ownerIdMap = buildOwnerMap();
     for(const t of pendingAIResult.tasks) {
-      const ownerId = ownerIdMap[t.owner] || ownerIdMap['Yash'] || 1;
-      const dl = new Date(today);
-      dl.setDate(dl.getDate() + (t.deadline_days || 7));
+      const dl = new Date(today); dl.setDate(dl.getDate()+(t.deadline_days||7));
       await fetch(`${API}/api/tasks`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          case_id: caseId,
-          description: t.description,
-          owner_id: ownerId,
-          execution_mode: t.execution_mode || 'delegate',
-          impact_score: t.impact_score || 3,
-          is_urgent: t.is_urgent || false,
-          is_important: t.is_important || false,
-          priority: pendingAIResult.priority,
-          deadline: dl.toISOString().split('T')[0]
-        })
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({case_id:newCase.case_id,description:t.description,owner_id:ownerIdMap[t.owner]||1,execution_mode:t.execution_mode||'delegate',impact_score:t.impact_score||3,is_urgent:t.is_urgent||false,is_important:t.is_important||false,priority:pendingAIResult.priority,deadline:dl.toISOString().split('T')[0]})
       });
     }
-
     showToast('Case + tasks saved ✓');
-    // Trigger calendar sync (non-blocking)
     syncTasksToCalendar(pendingAIResult.tasks, pendingAIResult.case_title);
     pendingAIResult = null;
     resetCapture();
     loadDashboard();
-    setTimeout(() => {
-      goToCases();
-    }, 800);
-
+    setTimeout(goToCases, 800);
   } catch(e) {
     showToast('Save error — check database connection');
-    console.error(e);
-    btn.textContent = '✓ APPROVE + SAVE TO DATABASE';
-    btn.disabled = false;
+    btn.textContent = '✓ APPROVE + SAVE TO DATABASE'; btn.disabled = false;
   }
 }
 
 function buildOwnerMap() {
   const nameMap = {};
   people.forEach(p => { nameMap[p.name] = p.person_id; });
-  // fallback aliases
-  return {
-    'Yash': nameMap['Yash'] || 1,
-    'Kajal': nameMap['Kajal'] || 5,
-    'Fazal': nameMap['Fazal'] || 2,
-    'Sanjay': nameMap['Sanjay'] || 3,
-    'Deepak': nameMap['Deepak'] || 4,
-    'Outsource': nameMap['Outsource'] || 1
-  };
+  return {Yash:nameMap['Yash']||1,Kajal:nameMap['Kajal']||5,Fazal:nameMap['Fazal']||2,Sanjay:nameMap['Sanjay']||3,Deepak:nameMap['Deepak']||4,Outsource:nameMap['Outsource']||1};
 }
 
-// ── OTHER ACTIONS ──────────────────────────────────────
 async function completeTask(taskId, item) {
   const cb = item.querySelector('.task-cb');
-  const content = item.querySelector('.task-content');
   if(cb.classList.contains('checked')) return;
   try {
-    await fetch(`${API}/api/tasks/${taskId}`, { method:'PATCH', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ status:'done', completion_note:'Completed via dashboard' }) });
+    await fetch(`${API}/api/tasks/${taskId}`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:'done',completion_note:'Completed via dashboard'})});
     cb.classList.add('checked');
+    const content = item.querySelector('.task-content');
     if(content) content.classList.add('done');
     showToast('Task completed ✓');
     setTimeout(loadDashboard, 500);
@@ -1142,18 +933,12 @@ async function markKajalDone(taskId, btn) {
   const ta = btn.previousElementSibling;
   if(!ta.value || ta.value.trim().length < 10) {
     ta.style.borderColor = 'var(--red)';
-    ta.placeholder = 'Please write what was completed first...';
-    setTimeout(()=>ta.style.borderColor='', 2000);
-    return;
+    setTimeout(()=>ta.style.borderColor='',2000); return;
   }
   try {
-    await fetch(`${API}/api/tasks/${taskId}`, { method:'PATCH', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ status:'done', completion_note:ta.value }) });
-    const task = btn.closest('.kajal-task');
-    task.querySelector('.task-cb').classList.add('checked');
-    task.querySelector('.kajal-task-title').style.textDecoration = 'line-through';
-    btn.textContent = '✓ COMPLETED';
-    btn.style.background = 'var(--green)';
-    btn.disabled = true;
+    await fetch(`${API}/api/tasks/${taskId}`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:'done',completion_note:ta.value})});
+    btn.closest('.kajal-task').querySelector('.task-cb').classList.add('checked');
+    btn.textContent='✓ COMPLETED'; btn.style.background='var(--green)'; btn.disabled=true;
     showToast('Done · Note saved ✓');
   } catch(e) { showToast('Error marking done') }
 }
@@ -1171,10 +956,10 @@ async function addTask(caseId) {
   const deadline = document.getElementById(`new-task-deadline-${caseId}`).value;
   if(!desc){ showToast('Enter task description'); return; }
   try {
-    await fetch(`${API}/api/tasks`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ case_id:caseId, description:desc, owner_id:parseInt(owner_id), impact_score:parseInt(impact_score), deadline:deadline||null, execution_mode:'delegate' }) });
+    await fetch(`${API}/api/tasks`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({case_id:caseId,description:desc,owner_id:parseInt(owner_id),impact_score:parseInt(impact_score),deadline:deadline||null,execution_mode:'delegate'})});
     showToast('Task added ✓');
     loadCaseTasks(caseId);
-    document.getElementById(`new-task-desc-${caseId}`).value = '';
+    document.getElementById(`new-task-desc-${caseId}`).value='';
     loadDashboard();
   } catch(e) { showToast('Error adding task') }
 }
@@ -1185,7 +970,7 @@ async function loadCaseTasks(caseId) {
     const tasks = await res.json();
     const el = document.getElementById(`case-tasks-${caseId}`);
     if(!tasks.length){ el.innerHTML='<div style="font-size:11px;color:var(--muted);padding:6px 0">No tasks yet</div>'; return; }
-    el.innerHTML = tasks.map(t => `
+    el.innerHTML = tasks.map(t=>`
       <div class="task-item" onclick="completeTask(${t.task_id},this)">
         <div class="task-cb ${t.status==='done'?'checked':''}"></div>
         <div class="task-content ${t.status==='done'?'done':''}">
@@ -1200,7 +985,6 @@ async function loadCaseTasks(caseId) {
   } catch(e) {}
 }
 
-// ── UI HELPERS ─────────────────────────────────────────
 function switchUser(user, btn) {
   document.querySelectorAll('.usr').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
@@ -1270,186 +1054,109 @@ function isUrgent(d){ return new Date(d) <= new Date(); }
 function getDomainIcon(domain){ const d=domains.find(x=>x.name===domain); return d?d.icon:'📁'; }
 function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2200); }
 
-// ══════════════════════════════════════════════════════
-// ── OUTCOME VERIFICATION ──────────────────────────────
-// ══════════════════════════════════════════════════════
 async function verifyOutcome(caseId, achieved) {
   if(achieved) {
     const proof = document.getElementById(`ov-proof-${caseId}`)?.value?.trim();
-    if(!proof || proof.length < 5) {
-      showToast('Enter proof of completion first');
-      document.getElementById(`ov-proof-${caseId}`).style.borderColor = 'var(--red)';
-      return;
-    }
+    if(!proof || proof.length < 5){ showToast('Enter proof of completion first'); return; }
     try {
-      await fetch(`${API}/api/cases/${caseId}/verify`, {
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({ outcome_verified: true, outcome_proof: proof, status: 'review' })
-      });
+      await fetch(`${API}/api/cases/${caseId}/verify`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({outcome_verified:true,outcome_proof:proof,status:'review'})});
       showToast('Outcome verified ✓ — Case moved to Review');
       loadDashboard();
     } catch(e) { showToast('Error verifying outcome'); }
   } else {
-    // Not achieved — trigger AI to generate next steps
     showToast('Generating next steps...');
     try {
       const caseRes = await fetch(`${API}/api/cases/${caseId}`);
       const caseData = await caseRes.json();
-      document.getElementById('captureInput').value =
-        `FOLLOW-UP: Outcome not achieved for case "${caseData.title}". Original outcome: ${caseData.outcome}. Generate next escalation steps.`;
+      document.getElementById('captureInput').value = `FOLLOW-UP: Outcome not achieved for case "${caseData.title}". Original outcome: ${caseData.outcome}. Generate next escalation steps.`;
       document.getElementById('outcomeInput').value = caseData.outcome;
-      switchTab('capture','yash', document.querySelector('#view-yash .stab:nth-child(2)'));
+      switchTab('capture','yash',document.querySelector('#view-yash .stab:nth-child(2)'));
       setActiveNav('bnav-capture');
-    } catch(e) {
-      showToast('Could not load case — use Capture to create follow-up manually');
-    }
+    } catch(e) { showToast('Use Capture to create follow-up manually'); }
   }
 }
 
-// ══════════════════════════════════════════════════════
-// ── WEEKLY REVIEW ENGINE ──────────────────────────────
-// ══════════════════════════════════════════════════════
 async function checkWeeklyReview() {
-  const today = new Date();
-  const isFriday = today.getDay() === 5;
-  // Show on Fridays OR if called manually
-  if(!isFriday) return;
+  if(new Date().getDay() !== 5) return;
   try {
     const res = await fetch(`${API}/api/review/weekly`);
     const staleCases = await res.json();
     if(!staleCases.length) return;
-    const banner = document.getElementById('reviewBanner');
-    const list = document.getElementById('reviewCaseList');
-    list.innerHTML = staleCases.map(c => `
+    document.getElementById('reviewCaseList').innerHTML = staleCases.map(c=>`
       <div class="rb-case">
-        <div>
-          <div class="rb-case-title">${c.title}</div>
-          <div style="font-size:9px;color:var(--muted)">${c.domain} · ${c.days_idle} days idle</div>
-        </div>
+        <div><div class="rb-case-title">${c.title}</div><div style="font-size:9px;color:var(--muted)">${c.domain} · ${c.days_idle} days idle</div></div>
         <div class="rb-actions">
           <button class="rb-btn rb-close" onclick="reviewAction(${c.case_id},'close',this)">CLOSE</button>
           <button class="rb-btn rb-extend" onclick="reviewAction(${c.case_id},'extend',this)">EXTEND</button>
           <button class="rb-btn rb-reassign" onclick="reviewAction(${c.case_id},'reassign',this)">REASSIGN</button>
         </div>
       </div>`).join('');
-    banner.classList.add('show');
-  } catch(e) { /* backend not yet ready */ }
+    document.getElementById('reviewBanner').classList.add('show');
+  } catch(e) {}
 }
 
 async function reviewAction(caseId, action, btn) {
   try {
-    await fetch(`${API}/api/cases/${caseId}`, {
-      method: 'PATCH',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({
-        review_action: action,
-        last_reviewed_at: new Date().toISOString(),
-        status: action === 'close' ? 'closed' : undefined
-      })
-    });
-    btn.closest('.rb-case').style.opacity = '0.4';
-    btn.closest('.rb-case').style.pointerEvents = 'none';
+    await fetch(`${API}/api/cases/${caseId}`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({review_action:action,last_reviewed_at:new Date().toISOString(),status:action==='close'?'closed':undefined})});
+    btn.closest('.rb-case').style.opacity='0.4';
+    btn.closest('.rb-case').style.pointerEvents='none';
     showToast(`Case ${action}d ✓`);
   } catch(e) { showToast('Error — try again'); }
 }
 
-function dismissReview() {
-  document.getElementById('reviewBanner').classList.remove('show');
-}
+function dismissReview(){ document.getElementById('reviewBanner').classList.remove('show'); }
 
-// ══════════════════════════════════════════════════════
-let recognition = null;
-let activeVoiceField = null;
-let activeMicBtn = null;
+let recognition = null, activeVoiceField = null, activeMicBtn = null;
 
 function initVoice() {
-  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if(!SpeechRecognition) {
-    document.querySelectorAll('.mic-btn').forEach(b => {
-      b.title = 'Voice not supported in this browser';
-      b.style.opacity = '0.3';
-      b.style.cursor = 'not-allowed';
-    });
-    return;
-  }
-  recognition = new SpeechRecognition();
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if(!SR){ document.querySelectorAll('.mic-btn').forEach(b=>{b.style.opacity='0.3';b.style.cursor='not-allowed';}); return; }
+  recognition = new SR();
   recognition.lang = 'en-IN';
   recognition.continuous = false;
   recognition.interimResults = true;
-
   recognition.onresult = (e) => {
-    const transcript = Array.from(e.results).map(r => r[0].transcript).join('');
+    const transcript = Array.from(e.results).map(r=>r[0].transcript).join('');
     if(!activeVoiceField) return;
     const el = document.getElementById(activeVoiceField);
     if(!el) return;
-    if(el.tagName === 'TEXTAREA') {
-      el.value = transcript;
-      updateCharCount(el);
-    } else {
-      el.value = transcript;
-    }
+    if(el.tagName==='TEXTAREA'){ el.value=transcript; updateCharCount(el); } else { el.value=transcript; }
   };
-
   recognition.onend = () => stopVoice();
-  recognition.onerror = (e) => {
-    showToast('Voice error: ' + e.error);
-    stopVoice();
-  };
+  recognition.onerror = (e) => { showToast('Voice error: '+e.error); stopVoice(); };
 }
 
 function toggleVoice(fieldId, btnId) {
-  if(!recognition) { showToast('Voice not supported in this browser'); return; }
-  if(activeMicBtn === btnId) {
-    recognition.stop();
-    return;
-  }
+  if(!recognition){ showToast('Voice not supported'); return; }
+  if(activeMicBtn===btnId){ recognition.stop(); return; }
   if(activeMicBtn) stopVoice();
-  activeVoiceField = fieldId;
-  activeMicBtn = btnId;
+  activeVoiceField = fieldId; activeMicBtn = btnId;
   document.getElementById(btnId).classList.add('recording');
-  document.getElementById(btnId).textContent = '⏹️';
+  document.getElementById(btnId).textContent='⏹️';
   document.getElementById('voiceStatus').classList.add('show');
   recognition.start();
 }
 
 function stopVoice() {
-  if(activeMicBtn) {
-    const btn = document.getElementById(activeMicBtn);
-    if(btn){ btn.classList.remove('recording'); btn.textContent = '🎙️'; }
-  }
+  if(activeMicBtn){ const btn=document.getElementById(activeMicBtn); if(btn){btn.classList.remove('recording');btn.textContent='🎙️';} }
   document.getElementById('voiceStatus').classList.remove('show');
-  activeVoiceField = null;
-  activeMicBtn = null;
+  activeVoiceField=null; activeMicBtn=null;
 }
 
-// ══════════════════════════════════════════════════════
-// ── NOTIFICATIONS ─────────────────────────────────────
-// ══════════════════════════════════════════════════════
 let notifications = [];
 
 function initNotifications() {
-  // Request browser push permission (for future push support)
-  if('Notification' in window && Notification.permission === 'default') {
-    Notification.requestPermission();
-  }
-
-  // Check immediately on load
+  if('Notification' in window && Notification.permission==='default') Notification.requestPermission();
   checkNotifications();
-
-  // Smart check-ins: Morning (8am), Afternoon (1pm), Evening (6pm)
-  // Run every minute but only trigger at the right hour
   let lastCheckHour = -1;
   setInterval(() => {
     const h = new Date().getHours();
-    const isCheckIn = (h === 8 || h === 13 || h === 18);
-    if(isCheckIn && h !== lastCheckHour) {
-      lastCheckHour = h;
-      checkNotifications();
-      const labels = { 8: '☀️ Morning briefing', 13: '🕐 Afternoon check-in', 18: '🌆 Evening update' };
+    if((h===8||h===13||h===18) && h!==lastCheckHour){
+      lastCheckHour=h; checkNotifications();
+      const labels={8:'☀️ Morning briefing',13:'🕐 Afternoon check-in',18:'🌆 Evening update'};
       showToast(labels[h]);
     }
-  }, 60 * 1000); // checks once per minute, fires only at 8am / 1pm / 6pm
+  }, 60000);
 }
 
 async function checkNotifications() {
@@ -1457,83 +1164,27 @@ async function checkNotifications() {
     const res = await fetch(`${API}/api/dashboard/1`);
     const data = await res.json();
     notifications = [];
-    const today = new Date();
-    today.setHours(0,0,0,0);
-
-    // Overdue tasks
-    (data.overdue || []).forEach(t => {
-      notifications.push({
-        type: 'overdue',
-        icon: '⏰',
-        badge: 'OVERDUE',
-        badgeClass: 'ni-overdue',
-        title: t.description,
-        sub: `Assigned to ${t.owner_name || 'Unassigned'} · was due ${formatDate(t.deadline)}`,
-        time: 'Overdue',
-        unread: true
-      });
-    });
-
-    // Tasks due today
-    (data.tasks || []).forEach(t => {
+    const today = new Date(); today.setHours(0,0,0,0);
+    (data.overdue||[]).forEach(t=>notifications.push({type:'overdue',icon:'⏰',badge:'OVERDUE',badgeClass:'ni-overdue',title:t.description,sub:`Assigned to ${t.owner_name||'Unassigned'} · was due ${formatDate(t.deadline)}`,time:'Overdue',unread:true}));
+    (data.tasks||[]).forEach(t=>{
       if(!t.deadline) return;
-      const dl = new Date(t.deadline);
-      dl.setHours(0,0,0,0);
-      if(dl.getTime() === today.getTime() && t.status !== 'done') {
-        notifications.push({
-          type: 'today',
-          icon: '📋',
-          badge: 'DUE TODAY',
-          badgeClass: 'ni-today',
-          title: t.description,
-          sub: `Assigned to ${t.owner_name || 'Unassigned'}`,
-          time: 'Today',
-          unread: true
-        });
-      }
+      const dl=new Date(t.deadline); dl.setHours(0,0,0,0);
+      if(dl.getTime()===today.getTime()&&t.status!=='done') notifications.push({type:'today',icon:'📋',badge:'DUE TODAY',badgeClass:'ni-today',title:t.description,sub:`Assigned to ${t.owner_name||'Unassigned'}`,time:'Today',unread:true});
     });
-
-    // Blocked tasks
-    (data.blocked || []).forEach(t => {
-      notifications.push({
-        type: 'blocked',
-        icon: '🚧',
-        badge: 'BLOCKED',
-        badgeClass: 'ni-overdue',
-        title: t.description,
-        sub: `Waiting on: ${t.waiting_for || 'dependency'}`,
-        time: 'Action needed',
-        unread: true
-      });
-    });
-
-    renderNotifications();
-    updateNotifBadge();
-
-    // Browser push for critical items (if permission granted)
-    if('Notification' in window && Notification.permission === 'granted') {
-      const critical = notifications.filter(n => n.type === 'overdue');
-      if(critical.length > 0 && document.hidden) {
-        new Notification('YJM Power — Action Required', {
-          body: `${critical.length} overdue task${critical.length > 1 ? 's' : ''} need attention`,
-          icon: '/favicon.ico'
-        });
-      }
+    (data.blocked||[]).forEach(t=>notifications.push({type:'blocked',icon:'🚧',badge:'BLOCKED',badgeClass:'ni-overdue',title:t.description,sub:`Waiting on: ${t.waiting_for||'dependency'}`,time:'Action needed',unread:true}));
+    renderNotifications(); updateNotifBadge();
+    if('Notification' in window && Notification.permission==='granted'){
+      const critical=notifications.filter(n=>n.type==='overdue');
+      if(critical.length>0 && document.hidden) new Notification('YJM Power — Action Required',{body:`${critical.length} overdue task${critical.length>1?'s':''} need attention`});
     }
-
-  } catch(e) {
-    // Silent fail — backend may not be connected
-  }
+  } catch(e) {}
 }
 
 function renderNotifications() {
   const el = document.getElementById('notifList');
-  if(!notifications.length) {
-    el.innerHTML = '<div class="nd-empty"><div class="nd-empty-icon">✅</div>All clear — no alerts</div>';
-    return;
-  }
-  el.innerHTML = notifications.map(n => `
-    <div class="notif-item ${n.unread ? 'unread' : ''}">
+  if(!notifications.length){ el.innerHTML='<div class="nd-empty"><div class="nd-empty-icon">✅</div>All clear — no alerts</div>'; return; }
+  el.innerHTML = notifications.map(n=>`
+    <div class="notif-item ${n.unread?'unread':''}">
       <div class="ni-icon">${n.icon}</div>
       <div class="ni-body">
         <div class="ni-badge ${n.badgeClass}">${n.badge}</div>
@@ -1545,83 +1196,36 @@ function renderNotifications() {
 }
 
 function updateNotifBadge() {
-  const count = notifications.filter(n => n.unread).length;
-  const el = document.getElementById('notifCount');
-  if(count > 0) {
-    el.textContent = count > 9 ? '9+' : count;
-    el.classList.add('show');
-  } else {
-    el.classList.remove('show');
-  }
+  const count=notifications.filter(n=>n.unread).length;
+  const el=document.getElementById('notifCount');
+  if(count>0){el.textContent=count>9?'9+':count;el.classList.add('show');}else{el.classList.remove('show');}
 }
 
 function toggleNotifDrawer() {
-  const drawer = document.getElementById('notifDrawer');
+  const drawer=document.getElementById('notifDrawer');
   drawer.classList.toggle('open');
-  if(drawer.classList.contains('open')) {
-    const h = new Date().getHours();
-    const title = h < 12 ? '☀️ MORNING BRIEFING' : h < 17 ? '🕐 AFTERNOON CHECK-IN' : '🌆 EVENING UPDATE';
-    document.querySelector('.nd-title').textContent = title;
-    // Mark all as read when opened
-    notifications.forEach(n => n.unread = false);
-    updateNotifBadge();
+  if(drawer.classList.contains('open')){
+    const h=new Date().getHours();
+    document.querySelector('.nd-title').textContent=h<12?'☀️ MORNING BRIEFING':h<17?'🕐 AFTERNOON CHECK-IN':'🌆 EVENING UPDATE';
+    notifications.forEach(n=>n.unread=false); updateNotifBadge();
   }
 }
 
-// ══════════════════════════════════════════════════════
-// ── GOOGLE CALENDAR SYNC ──────────────────────────────
-// ══════════════════════════════════════════════════════
-// Architecture: Frontend calls your backend endpoint POST /api/calendar/sync
-// Backend holds Yash's Google OAuth token and creates events via Google Calendar API
-// Each event title includes owner name so team can see at a glance on shared calendar
-
 async function syncTasksToCalendar(tasks, caseTitle) {
-  const statusEl = document.getElementById('calSyncStatus');
-  if(statusEl) { statusEl.textContent = 'SYNCING...'; statusEl.className = 'cal-sync-status cal-pending'; }
-
-  const today = new Date();
-  const events = tasks.map(t => {
-    const dl = new Date(today);
-    dl.setDate(dl.getDate() + (t.deadline_days || 7));
-    return {
-      title: `[${t.owner}] ${t.description}`,
-      description: `Case: ${caseTitle}\nOwner: ${t.owner}\nImpact: ${t.impact_score}\nMode: ${t.execution_mode}`,
-      date: dl.toISOString().split('T')[0],
-      owner: t.owner
-    };
-  });
-
+  const statusEl=document.getElementById('calSyncStatus');
+  if(statusEl){statusEl.textContent='SYNCING...';statusEl.className='cal-sync-status cal-pending';}
+  const today=new Date();
+  const events=tasks.map(t=>{const dl=new Date(today);dl.setDate(dl.getDate()+(t.deadline_days||7));return{title:`[${t.owner}] ${t.description}`,description:`Case: ${caseTitle}\nOwner: ${t.owner}\nImpact: ${t.impact_score}`,date:dl.toISOString().split('T')[0],owner:t.owner};});
   try {
-    const res = await fetch(`${API}/api/calendar/sync`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ events, calendar: 'yash_primary' })
-    });
-
-    if(res.ok) {
-      if(statusEl) { statusEl.textContent = 'SYNCED ✓'; statusEl.className = 'cal-sync-status cal-synced'; }
-      // Add notification for calendar sync
-      notifications.unshift({
-        type: 'calendar',
-        icon: '📅',
-        badge: 'CALENDAR',
-        badgeClass: 'ni-cal',
-        title: `${events.length} task${events.length > 1 ? 's' : ''} added to Google Calendar`,
-        sub: `Case: ${caseTitle}`,
-        time: 'Just now',
-        unread: true
-      });
-      updateNotifBadge();
-      renderNotifications();
-    } else {
-      throw new Error('Sync failed');
-    }
+    const res=await fetch(`${API}/api/calendar/sync`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({events,calendar:'yash_primary'})});
+    if(res.ok){
+      if(statusEl){statusEl.textContent='SYNCED ✓';statusEl.className='cal-sync-status cal-synced';}
+      notifications.unshift({type:'calendar',icon:'📅',badge:'CALENDAR',badgeClass:'ni-cal',title:`${events.length} task${events.length>1?'s':''} added to Google Calendar`,sub:`Case: ${caseTitle}`,time:'Just now',unread:true});
+      updateNotifBadge(); renderNotifications();
+    } else { throw new Error('Sync failed'); }
   } catch(e) {
-    // Backend not yet connected — log and continue gracefully
-    console.warn('Calendar sync skipped — backend endpoint /api/calendar/sync not yet configured:', e.message);
-    if(statusEl) { statusEl.textContent = 'BACKEND NEEDED'; statusEl.className = 'cal-sync-status cal-failed'; }
-    // WhatsApp/SMS hook placeholder — wire when backend is ready
-    // await fetch(`${API}/api/notify/whatsapp`, { method:'POST', body: JSON.stringify({ to: 'yash', message: `New case created: ${caseTitle}` }) });
+    console.warn('Calendar sync skipped — backend not yet configured');
+    if(statusEl){statusEl.textContent='BACKEND NEEDED';statusEl.className='cal-sync-status cal-failed';}
   }
 }
 </script>
