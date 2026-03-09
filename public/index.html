@@ -315,6 +315,53 @@ a{text-decoration:none;color:inherit}
 .skill-progress-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--blue2));border-radius:3px;transition:width 0.3s}
 .skill-progress-lbl{font-size:9px;color:var(--muted2);white-space:nowrap}
 
+
+/* ── AI BREAKDOWN & CHAT ── */
+.ai-breakdown{display:none;background:var(--bg2);border:1px solid var(--border2);border-radius:14px;padding:18px;margin-bottom:14px}
+.ai-breakdown.show{display:block}
+.ai-breakdown-lbl{font-size:9px;font-weight:800;letter-spacing:2px;color:var(--teal);text-transform:uppercase;margin-bottom:12px}
+.breakdown-step{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
+.bs-num{width:22px;height:22px;border-radius:6px;background:rgba(0,191,165,0.1);border:1px solid rgba(0,191,165,0.2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--teal);flex-shrink:0;margin-top:1px}
+.bs-text{font-size:13px;color:var(--muted2);line-height:1.5;flex:1}
+.bs-text strong{color:var(--white)}
+.ai-discuss-btn{width:100%;padding:11px;border-radius:10px;background:rgba(139,111,255,0.08);border:1px solid rgba(139,111,255,0.2);color:var(--purple);font-size:13px;font-weight:700;margin-top:4px;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.ai-discuss-btn:hover{background:rgba(139,111,255,0.15);border-color:var(--purple)}
+.ai-chat-box{display:none;margin-top:12px;border-top:1px solid var(--border);padding-top:12px}
+.ai-chat-box.show{display:block}
+.chat-msgs{max-height:260px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;margin-bottom:10px}
+.chat-msg{padding:10px 13px;border-radius:10px;font-size:13px;line-height:1.55;max-width:90%}
+.chat-msg.user{background:var(--blue3);border:1px solid var(--border2);align-self:flex-end;color:var(--white)}
+.chat-msg.ai{background:var(--bg3);border:1px solid var(--border);align-self:flex-start;color:var(--muted2)}
+.chat-msg.ai strong{color:var(--white)}
+.chat-input-row{display:flex;gap:8px}
+.chat-inp{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 13px;color:var(--white);font-size:13px;outline:none}
+.chat-inp:focus{border-color:var(--purple)}
+.chat-send{padding:10px 16px;border-radius:8px;background:var(--purple);border:none;color:#fff;font-size:13px;font-weight:700;flex-shrink:0}
+
+
+/* ── AI PLAN & IMPORT ── */
+.ai-plan-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;gap:10px;align-items:flex-start}
+.ai-plan-card .pc-num{width:24px;height:24px;border-radius:6px;background:rgba(0,191,165,0.1);border:1px solid rgba(0,191,165,0.2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--teal);flex-shrink:0;margin-top:2px}
+.ai-plan-card .pc-body{flex:1}
+.ai-plan-card .pc-title{font-size:13px;font-weight:700;color:var(--white);margin-bottom:4px;outline:none;background:transparent;border:none;width:100%;padding:0}
+.ai-plan-card .pc-title:focus{border-bottom:1px solid var(--teal)}
+.ai-plan-card .pc-meta{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.ai-plan-card .pc-owner{font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:rgba(255,255,255,0.07);color:var(--muted2)}
+.ai-plan-card .pc-date{font-size:10px;color:var(--muted);padding:2px 0}
+.ai-plan-card input[type=date]{font-size:10px;background:var(--bg2);border:1px solid var(--border);border-radius:5px;color:var(--muted2);padding:2px 6px;outline:none}
+.ai-plan-remove{background:none;border:none;color:var(--muted);font-size:14px;cursor:pointer;padding:2px 4px;flex-shrink:0;margin-top:2px}
+.ai-plan-remove:hover{color:var(--red)}
+.ai-import-bar{background:var(--bg2);border:1px solid var(--border2);border-radius:12px;padding:14px 16px;margin-top:4px}
+.ai-import-lbl{font-size:9px;font-weight:800;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:10px}
+.ai-import-domain{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.ai-import-domain .idom-btn{padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:var(--bg3);color:var(--muted2);font-size:11px;font-weight:600;cursor:pointer;transition:all 0.15s}
+.ai-import-domain .idom-btn.sel{background:rgba(0,191,165,0.12);border-color:var(--teal);color:var(--teal)}
+.ai-import-btn{width:100%;padding:13px;border-radius:10px;background:linear-gradient(135deg,var(--teal),var(--blue));border:none;color:#fff;font-size:14px;font-weight:800;letter-spacing:0.5px;cursor:pointer;transition:all 0.2s}
+.ai-import-btn:hover{opacity:0.9;transform:translateY(-1px)}
+.ai-import-btn:disabled{opacity:0.5;transform:none;cursor:not-allowed}
+.ai-clarify-q{background:var(--bg3);border-left:3px solid var(--teal);border-radius:0 10px 10px 0;padding:12px 14px;margin-bottom:10px;font-size:13px;color:var(--muted2);line-height:1.5}
+.ai-clarify-q strong{color:var(--white);display:block;margin-bottom:6px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--teal)}
+
 /* ── TOAST ── */
 .toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:var(--bg3);border:1px solid var(--border2);color:var(--white);padding:10px 20px;border-radius:10px;font-size:13px;font-weight:600;opacity:0;transition:opacity 0.2s;z-index:400;pointer-events:none;white-space:nowrap;box-shadow:0 4px 24px rgba(0,0,0,0.5)}
 .toast.show{opacity:1}
@@ -559,6 +606,38 @@ a{text-decoration:none;color:inherit}
           </div>
         </div>
 
+        <!-- AI Breakdown + Plan -->
+        <div class="ai-breakdown" id="aiBreakdown">
+          <!-- Phase 1: Clarifying questions -->
+          <div id="clarifyPhase" style="display:none">
+            <div class="ai-breakdown-lbl">💬 Claude needs a few details</div>
+            <div id="clarifyQuestions"></div>
+            <div class="chat-input-row" style="margin-top:8px">
+              <input class="chat-inp" id="clarifyInp" placeholder="Answer here...">
+              <button class="chat-send" id="clarifySendBtn">→</button>
+            </div>
+          </div>
+          <!-- Phase 2: Plan cards -->
+          <div id="planPhase" style="display:none">
+            <div class="ai-breakdown-lbl">📋 Your Plan — edit any task before importing</div>
+            <div id="planCards"></div>
+            <button class="ai-discuss-btn" id="discussBtn" style="margin-bottom:12px">💬 Refine with Claude</button>
+            <div class="ai-chat-box" id="aiChatBox">
+              <div class="chat-msgs" id="chatMsgs"></div>
+              <div class="chat-input-row">
+                <input class="chat-inp" id="chatInp" placeholder="Ask anything — Claude will update the plan...">
+                <button class="chat-send" id="chatSendBtn">Send</button>
+              </div>
+            </div>
+            <!-- Import bar -->
+            <div class="ai-import-bar">
+              <div class="ai-import-lbl">Choose domain for this Case</div>
+              <div class="ai-import-domain" id="importDomainPicker"></div>
+              <button class="ai-import-btn" id="importCaseBtn">⚡ Create Case + Import All Tasks</button>
+            </div>
+          </div>
+        </div>
+
         <!-- Domain grid -->
         <div class="domain-section">
           <label class="cap-label">Domain <span style="color:var(--muted2);font-weight:400;letter-spacing:0;text-transform:none;font-size:11px">(select to override AI suggestion)</span></label>
@@ -775,27 +854,10 @@ function initUI(){
   if(!isYash()){var sr=document.getElementById('statsRow');if(sr)sr.style.display='none';}
 }
 
-// ── MOCK DATA ──
+// ── MOCK DATA — cleared, loading from DB only ──
 function loadMockData(){
-  var now=new Date();
-  allTasks=[
-    {task_id:1,title:'Call ABC Forgings re overdue payment Rs 18L',owner:'Sanjay',domain:'Customer',deadline:new Date(now-3*86400000).toISOString(),priority_score:21,status:'pending',acknowledged:true},
-    {task_id:2,title:'Sign Aurangabad plant maintenance contract',owner:'Yash',domain:'Legal',deadline:now.toISOString(),priority_score:18,status:'pending',acknowledged:true},
-    {task_id:3,title:'Approve Q1 MIS report — Deepak waiting',owner:'Deepak',domain:'Finance',deadline:now.toISOString(),priority_score:15,status:'pending',acknowledged:false},
-    {task_id:4,title:'Railway RFQ response — send today',owner:'Fazal',domain:'Operations',deadline:new Date(now-2*86400000).toISOString(),priority_score:12,status:'pending',acknowledged:false},
-    {task_id:5,title:'JV agreement legal docs — Kajal to review',owner:'Kajal',domain:'Legal',deadline:new Date(now+2*86400000).toISOString(),priority_score:9,status:'pending',acknowledged:false},
-    {task_id:6,title:'Follow up on steel price quotes — 3 vendors',owner:'Fazal',domain:'Operations',deadline:new Date(now+1*86400000).toISOString(),priority_score:8,status:'pending',acknowledged:true},
-    {task_id:7,title:'Review Neha school admission documents',owner:'Yash',domain:'Neha',deadline:new Date(now+3*86400000).toISOString(),priority_score:6,status:'pending',acknowledged:true},
-    {task_id:8,title:'Quarterly tax advance payment confirmation',owner:'Deepak',domain:'Finance',deadline:new Date(now+5*86400000).toISOString(),priority_score:5,status:'pending',acknowledged:true},
-    {task_id:9,title:'Update customer dispatch status — 4 orders',owner:'Sanjay',domain:'Customer',deadline:new Date(now+2*86400000).toISOString(),priority_score:4,status:'pending',acknowledged:true},
-    {task_id:10,title:'AIFI compliance review — annual filing',owner:'Kajal',domain:'AIFI',deadline:new Date(now+7*86400000).toISOString(),priority_score:3,status:'pending',acknowledged:true}
-  ];
-  allCases=[
-    {case_id:1,title:'ABC Forgings Collection Rs 18L',domain:'Customer',status:'active',priority:'critical'},
-    {case_id:2,title:'Aurangabad Plant Maintenance Contract',domain:'Legal',status:'review',priority:'high'},
-    {case_id:3,title:'Q1 MIS Approval',domain:'Finance',status:'active',priority:'normal'},
-    {case_id:4,title:'Railway Sector Expansion',domain:'Strategy',status:'planning',priority:'high'}
-  ];
+  allTasks=[];
+  allCases=[];
   render();
 }
 
@@ -1246,9 +1308,12 @@ async function runAIAnalyse(){
     var res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:500,messages:[{role:'user',content:prompt}]})});
     var data=await res.json();
     var raw=(data.content&&data.content[0]?data.content[0].text:'{}').replace(/```json|```/g,'').trim();
-    showAIPreview(JSON.parse(raw),text);
+    var parsed=JSON.parse(raw);
+    showAIPreview(parsed,text);
+    runBreakdown(parsed.title||text, parsed.domain||'Business', parsed.owner||'Yash', parsed.deadline);
   }catch(e){
     showAIPreview({title:text,domain:selectedDomain||'Business',owner:'Yash',deadline:null,isUrgent:false,isImportant:true},text);
+    runBreakdown(text,'Business','Yash',null);
   }
   document.getElementById('aiThinking').classList.remove('show');
 }
@@ -1264,9 +1329,8 @@ function showAIPreview(d,originalText){
   setText('pv-urgency',d.isUrgent?'Urgent':'Normal');
   var ow=document.getElementById('pv-outsource-wrap');
   if(d.outsourceProfessional){setText('pv-outsource',d.outsourceProfessional);ow.style.display='block';}else{ow.style.display='none';}
-  var dup=allTasks.find(function(t){var words=(d.title||'').toLowerCase().split(' ').filter(function(w){return w.length>3;});return words.some(function(w){return(t.title||'').toLowerCase().indexOf(w)>=0;});});
-  var dw=document.getElementById('dupWarn');
-  if(dup){setText('dupText',(dup.title||'').substring(0,45));dw.style.display='block';}else{dw.style.display='none';}
+  // Duplicate detection removed — too many false positives
+  document.getElementById('dupWarn').style.display='none';
   if(d.domain){
     document.querySelectorAll('.domain-card').forEach(function(c){c.classList.remove('sel');});
     var dc=document.querySelector('[data-domain="'+d.domain+'"]');if(dc)dc.classList.add('sel');
@@ -1414,11 +1478,12 @@ window.closeModal=function(id){
 // ── EVENTS ──
 function initEvents(){
   initQuickEvents();
+  initBreakdownEvents();
   document.getElementById('voiceBtn').addEventListener('click',toggleVoice);
   document.getElementById('quickSaveBtn').addEventListener('click',quickSaveTask);
   document.getElementById('aiAnalyseBtn').addEventListener('click',runAIAnalyse);
   document.getElementById('approveBtn').addEventListener('click',approveAndSave);
-  document.getElementById('editAiBtn').addEventListener('click',function(){document.getElementById('aiPreview').classList.remove('show');});
+  document.getElementById('editAiBtn').addEventListener('click',function(){document.getElementById('aiPreview').classList.remove('show');document.getElementById('aiBreakdown').classList.remove('show');currentPlanTasks=[];clarifyHistory=[];});
   document.getElementById('saveManualBtn').addEventListener('click',function(){
     var text=document.getElementById('taskDesc').value.trim();
     if(!text){showToast('Enter a task');return;}
@@ -1476,6 +1541,195 @@ function showToast(msg){
 }
 
 
+
+
+// ── AI BREAKDOWN & PLAN ──────────────────────────────────
+var chatHistory = [];
+var currentTaskContext = '';
+var currentPlanTasks = [];
+var importDomain = '';
+var clarifyHistory = [];
+var originalTaskText = '';
+
+// Entry point — called after showAIPreview
+async function runBreakdown(taskTitle, domain, owner, deadline){
+  originalTaskText = taskTitle;
+  currentTaskContext = 'Task: ' + taskTitle + ' | Domain: ' + domain + ' | Owner: ' + owner + (deadline ? ' | Deadline: ' + deadline : '');
+  var breakdown = document.getElementById('aiBreakdown');
+  breakdown.classList.add('show');
+  document.getElementById('clarifyPhase').style.display = 'block';
+  document.getElementById('planPhase').style.display = 'none';
+  document.getElementById('clarifyQuestions').innerHTML = '<div style="padding:8px 0;color:var(--muted);font-size:12px">Thinking<span class="ai-dots"><span class="ai-dot"></span><span class="ai-dot"></span><span class="ai-dot"></span></span></div>';
+
+  // Ask 2-3 clarifying questions
+  var prompt = 'You are chief of staff AI for YJM Power, Pune. The user wants to capture this task: "' + taskTitle + '". Ask EXACTLY 2-3 short, sharp clarifying questions to understand scope and deadlines so you can break it into actionable subtasks with deadlines. Return ONLY a JSON array of question strings, no markdown: ["Q1?","Q2?","Q3?"]';
+  try {
+    var res = await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:300,messages:[{role:'user',content:prompt}]})});
+    var data = await res.json();
+    var raw = (data.content&&data.content[0]?data.content[0].text:'[]').replace(/```json|```/g,'').trim();
+    var questions = JSON.parse(raw);
+    clarifyHistory = [{role:'user',content:'Task: ' + taskTitle}];
+    var html = '';
+    questions.forEach(function(q,i){
+      html += '<div class="ai-clarify-q"><strong>Question '+(i+1)+'</strong>'+esc(q)+'</div>';
+    });
+    document.getElementById('clarifyQuestions').innerHTML = html;
+    clarifyHistory.push({role:'assistant', content: questions.join(' | ')});
+  } catch(e) {
+    document.getElementById('clarifyQuestions').innerHTML = '<div class="ai-clarify-q"><strong>Question 1</strong>What are the key dates or deadlines involved?</div>';
+  }
+  // Init import domain picker
+  renderImportDomainPicker(domain);
+}
+
+function renderImportDomainPicker(suggestedDomain){
+  importDomain = suggestedDomain || 'Business';
+  var html = '';
+  DOMAINS.forEach(function(d){
+    html += '<button class="idom-btn'+(d.name===importDomain?' sel':'')+'" data-d="'+d.name+'" onclick="selectImportDomain(this,''+d.name+'')">'+d.name+'</button>';
+  });
+  document.getElementById('importDomainPicker').innerHTML = html;
+}
+
+function selectImportDomain(el, domain){
+  importDomain = domain;
+  document.querySelectorAll('.idom-btn').forEach(function(b){b.classList.remove('sel');});
+  el.classList.add('sel');
+}
+
+async function submitClarification(){
+  var inp = document.getElementById('clarifyInp');
+  var answer = inp.value.trim();
+  if(!answer) return;
+  inp.value = '';
+  clarifyHistory.push({role:'user', content: answer});
+  document.getElementById('clarifyQuestions').innerHTML += '<div style="padding:6px 0;color:var(--muted);font-size:12px">Building your plan<span class="ai-dots"><span class="ai-dot"></span><span class="ai-dot"></span><span class="ai-dot"></span></span></div>';
+  await buildPlan(answer);
+}
+
+async function buildPlan(clarificationAnswer){
+  var sysPrompt = 'You are chief of staff AI for YJM Power, forging company Pune. Build a practical action plan.';
+  var userMsg = 'Original task: "' + originalTaskText + '". Context from clarification: "' + clarificationAnswer + '". Break this into 4-8 specific, actionable subtasks. Each must have a clear title, assigned owner (Yash/Kajal/Fazal/Sanjay/Deepak/Outsource), and a realistic deadline date. Return ONLY a JSON array, no markdown: [{"title":"Task title","owner":"Name","deadline":"YYYY-MM-DD","note":"optional 1 line note"},...]';
+  try {
+    var res = await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:800,system:sysPrompt,messages:[...clarifyHistory,{role:'user',content:userMsg}]})});
+    var data = await res.json();
+    var raw = (data.content&&data.content[0]?data.content[0].text:'[]').replace(/```json|```/g,'').trim();
+    currentPlanTasks = JSON.parse(raw);
+    document.getElementById('clarifyPhase').style.display = 'none';
+    document.getElementById('planPhase').style.display = 'block';
+    renderPlanCards();
+    chatHistory = [{role:'user',content:'Task: '+originalTaskText+'. Plan: '+JSON.stringify(currentPlanTasks)},{role:'assistant',content:'Plan is ready. I can adjust deadlines, reassign owners, add or remove tasks.'}];
+  } catch(e) {
+    document.getElementById('clarifyQuestions').innerHTML = '<div style="color:var(--red);font-size:13px;padding:8px">Could not build plan — check connection</div>';
+  }
+}
+
+function renderPlanCards(){
+  var html = '';
+  currentPlanTasks.forEach(function(t,i){
+    var dl = t.deadline || '';
+    html += '<div class="ai-plan-card" id="pc-'+i+'">'
+      + '<div class="pc-num">'+(i+1)+'</div>'
+      + '<div class="pc-body">'
+      + '<input class="pc-title" value="'+esc(t.title||'')+'" onchange="currentPlanTasks['+i+'].title=this.value" placeholder="Task title">'
+      + '<div class="pc-meta">'
+      + '<span class="pc-owner">'+esc(t.owner||'Yash')+'</span>'
+      + '<input type="date" value="'+dl+'" onchange="currentPlanTasks['+i+'].deadline=this.value" style="font-size:10px;background:var(--bg2);border:1px solid var(--border);border-radius:5px;color:var(--muted2);padding:2px 6px;outline:none">'
+      + (t.note ? '<span style="font-size:10px;color:var(--muted);flex:1">'+esc(t.note)+'</span>' : '')
+      + '</div></div>'
+      + '<button class="ai-plan-remove" onclick="removePlanTask('+i+')" title="Remove">✕</button>'
+      + '</div>';
+  });
+  document.getElementById('planCards').innerHTML = html;
+}
+
+function removePlanTask(i){
+  currentPlanTasks.splice(i,1);
+  renderPlanCards();
+}
+
+async function importCaseAndTasks(){
+  var btn = document.getElementById('importCaseBtn');
+  if(!importDomain){showToast('Select a domain first');return;}
+  if(!currentPlanTasks.length){showToast('No tasks to import');return;}
+  btn.disabled = true;
+  btn.textContent = 'Creating...';
+  try {
+    // Create the Case
+    var caseRes = await fetch(API+'/api/cases',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({title:originalTaskText,domain:importDomain,priority:'normal',case_type:'execution',status:'new',outcome:'Completed successfully'})});
+    var caseData = await caseRes.json();
+    var caseId = caseData.case_id;
+    if(!caseId) throw new Error('Case creation failed');
+    // Create each task linked to case
+    var created = 0;
+    for(var i=0;i<currentPlanTasks.length;i++){
+      var t = currentPlanTasks[i];
+      await fetch(API+'/api/tasks',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({title:t.title,case_id:caseId,owner:t.owner||'Yash',deadline:t.deadline||null,is_urgent:false,is_important:true,status:'pending',acknowledged:true})});
+      created++;
+    }
+    btn.textContent = '✓ Done — '+created+' tasks created';
+    btn.style.background = 'var(--teal)';
+    showToast('Case created with '+created+' tasks');
+    // Reload dashboard data
+    setTimeout(function(){loadData();},1000);
+  } catch(e) {
+    btn.disabled = false;
+    btn.textContent = '⚡ Create Case + Import All Tasks';
+    showToast('Error: '+e.message);
+  }
+}
+
+async function sendChatMessage(){
+  var inp = document.getElementById('chatInp');
+  var msg = inp.value.trim();
+  if(!msg) return;
+  inp.value = '';
+  var msgs = document.getElementById('chatMsgs');
+  msgs.innerHTML += '<div class="chat-msg user">'+esc(msg)+'</div>';
+  msgs.scrollTop = msgs.scrollHeight;
+  chatHistory.push({role:'user',content:msg});
+  var thinking = document.createElement('div');
+  thinking.className = 'chat-msg ai';
+  thinking.innerHTML = 'Thinking<span class="ai-dots"><span class="ai-dot"></span><span class="ai-dot"></span><span class="ai-dot"></span></span>';
+  msgs.appendChild(thinking);
+  msgs.scrollTop = msgs.scrollHeight;
+  try {
+    var sysPrompt = 'You are chief of staff AI for YJM Power, Pune. Current plan: '+JSON.stringify(currentPlanTasks)+'. If the user asks to change tasks, respond with the updated JSON plan array AND a brief message. Format: {"reply":"your message","plan":[...updated tasks...]}. If no plan change needed just reply normally as plain text.';
+    var res = await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,system:sysPrompt,messages:chatHistory})});
+    var data = await res.json();
+    var reply = data.content&&data.content[0] ? data.content[0].text : 'Could not respond';
+    chatHistory.push({role:'assistant',content:reply});
+    // Check if reply contains updated plan
+    try {
+      var parsed = JSON.parse(reply.replace(/```json|```/g,'').trim());
+      if(parsed.plan && Array.isArray(parsed.plan)){
+        currentPlanTasks = parsed.plan;
+        renderPlanCards();
+        thinking.textContent = parsed.reply || 'Plan updated.';
+      } else { thinking.innerHTML = reply.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>'); }
+    } catch(pe){ thinking.innerHTML = reply.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>'); }
+    msgs.scrollTop = msgs.scrollHeight;
+  } catch(e){ thinking.textContent = 'Connection error'; }
+}
+
+function initBreakdownEvents(){
+  document.getElementById('discussBtn').addEventListener('click', function(){
+    var box = document.getElementById('aiChatBox');
+    box.classList.toggle('show');
+    if(box.classList.contains('show')){
+      var msgs = document.getElementById('chatMsgs');
+      if(!msgs.children.length){
+        msgs.innerHTML = '<div class="chat-msg ai">Plan is ready. Want to adjust deadlines, swap owners, or add tasks? Just ask.</div>';
+      }
+      document.getElementById('chatInp').focus();
+    }
+  });
+  document.getElementById('chatSendBtn').addEventListener('click', sendChatMessage);
+  document.getElementById('chatInp').addEventListener('keydown', function(e){if(e.key==='Enter') sendChatMessage();});
+  document.getElementById('clarifySendBtn').addEventListener('click', submitClarification);
+  document.getElementById('clarifyInp').addEventListener('keydown', function(e){if(e.key==='Enter') submitClarification();});
+  document.getElementById('importCaseBtn').addEventListener('click', importCaseAndTasks);
+}
 
 // ── DAILY SKILL ──────────────────────────────────────────
 var SKILLS = [
