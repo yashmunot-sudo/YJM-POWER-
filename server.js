@@ -224,4 +224,46 @@ app.post('/api/tasks/score/refresh', async (req, res) => {
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
 
 const PORT = process.env.PORT || 3000;
+// ── QUICK TASKS ──────────────────────────────────────────
+app.get('/api/quicktasks', async (req, res) => {
+  try {
+    const user = req.query.user || 'Yash';
+    const result = await pool.query(
+      `SELECT id, title, status, deadline FROM tasks 
+       WHERE owner = $1 AND task_type = 'quick' 
+       ORDER BY created_at DESC LIMIT 20`,
+      [user]
+    );
+    res.json(result.rows);
+  } catch(e) { res.json([]); }
+});
+
+app.post('/api/quicktasks', async (req, res) => {
+  try {
+    const { title, user, deadline, status } = req.body;
+    const result = await pool.query(
+      `INSERT INTO tasks (title, owner, deadline, status, task_type, is_urgent, is_important, acknowledged, priority_score)
+       VALUES ($1, $2, $3, $4, 'quick', false, false, true, 1) RETURNING id, task_id`,
+      [title, user || 'Yash', deadline || null, status || 'pending']
+    );
+    res.json(result.rows[0]);
+  } catch(e) { res.json({id: Date.now()}); }
+});
+
+app.patch('/api/quicktasks/:id', async (req, res) => {
+  try {
+    const { status } = req.body;
+    await pool.query(`UPDATE tasks SET status=$1 WHERE task_id=$2`, [status, req.params.id]);
+    res.json({ok:true});
+  } catch(e) { res.json({ok:false}); }
+});
+
+app.delete('/api/quicktasks/:id', async (req, res) => {
+  try {
+    await pool.query(`DELETE FROM tasks WHERE task_id=$1`, [req.params.id]);
+    res.json({ok:true});
+  } catch(e) { res.json({ok:false}); }
+});
+
+
 app.listen(PORT, () => console.log('YJM Power running on port ' + PORT));
