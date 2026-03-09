@@ -808,9 +808,8 @@ async function loadData(){
     if(tr.tasks&&tr.tasks.length){allTasks=tr.tasks;render();}
     var cr=await fetch(API+'/api/cases');
     if(cr.ok){var c=await cr.json();if(c&&c.length){allCases=c;renderCases();updateStats();}}
-    // Load quick tasks from DB
-    var qr=await fetch(API+'/api/quicktasks?user='+USER);
-    if(qr.ok){var qt=await qr.json();if(qt&&qt.length){quickTasks=qt.map(function(t){return{id:t.id,text:t.title,done:t.status==='done',date:t.deadline};});renderQuickList();}}
+    // Quick tasks loaded from localStorage — no DB needed
+    loadQuickTasksFromStorage();
   }catch(e){}
 }
 
@@ -890,28 +889,47 @@ function toggleDone(id,btn){
   fetch(API+'/api/tasks/'+id,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:done?'done':'pending'})}).catch(function(){});
 }
 
+// ── QUICK TASKS STORAGE ──────────────────────────────────
+function saveQuickTasksToStorage(){
+  var key='yjm_qt_'+TODAY.toISOString().split('T')[0]+'_'+USER;
+  localStorage.setItem(key, JSON.stringify(quickTasks));
+}
+
+function loadQuickTasksFromStorage(){
+  // Load today's tasks
+  var key='yjm_qt_'+TODAY.toISOString().split('T')[0]+'_'+USER;
+  try{
+    var stored=localStorage.getItem(key);
+    if(stored){quickTasks=JSON.parse(stored);}
+    else{quickTasks=[];}
+  }catch(e){quickTasks=[];}
+  // Clean up old days
+  var todayKey=TODAY.toISOString().split('T')[0];
+  Object.keys(localStorage).forEach(function(k){
+    if(k.startsWith('yjm_qt_')&&k.indexOf(todayKey)<0){
+      localStorage.removeItem(k);
+    }
+  });
+  renderQuickList();
+}
+
 // ── QUICK TASKS ──
 function initQuickEvents(){
   document.getElementById('quickAddBtn').addEventListener('click',addQuickTask);
   document.getElementById('quickInput').addEventListener('keydown',function(e){if(e.key==='Enter')addQuickTask();});
 }
 
-async function addQuickTask(){
+function addQuickTask(){
   var inp=document.getElementById('quickInput');
   var text=inp.value.trim();
   if(!text)return;
-  // Extract date from text using simple patterns
   var extractedDate=extractDateFromText(text);
-  var task={id:'local_'+Date.now(),text:text,done:false,date:extractedDate};
+  var task={id:'qt_'+Date.now(),text:text,done:false,date:extractedDate};
   quickTasks.unshift(task);
   inp.value='';
+  saveQuickTasksToStorage();
   renderQuickList();
-  showToast(extractedDate?'Added — date: '+formatDate(new Date(extractedDate)):'Added');
-  // Save to DB
-  try{
-    var r=await fetch(API+'/api/quicktasks',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({title:text,user:USER,deadline:extractedDate,status:'pending'})});
-    if(r.ok){var d=await r.json();task.id=d.id||task.id;}
-  }catch(e){}
+  showToast(extractedDate?'Added — due: '+formatDate(new Date(extractedDate)):'Added');
 }
 
 function extractDateFromText(text){
@@ -986,14 +1004,14 @@ function toggleQuick(id){
   var t=quickTasks.find(function(x){return x.id===id;});
   if(!t)return;
   t.done=!t.done;
+  saveQuickTasksToStorage();
   renderQuickList();
-  fetch(API+'/api/quicktasks/'+id,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:t.done?'done':'pending'})}).catch(function(){});
 }
 
 function deleteQuick(id){
   quickTasks=quickTasks.filter(function(x){return x.id!==id;});
+  saveQuickTasksToStorage();
   renderQuickList();
-  fetch(API+'/api/quicktasks/'+id,{method:'DELETE'}).catch(function(){});
 }
 
 // ── STATS ──
