@@ -153,7 +153,22 @@ app.get('/api/setup', async (req, res) => {
     res.json({ message:'Setup complete' });
   } catch(e) { res.status(500).json({ error: e.message }) }
 });
-
+app.post('/api/ai/generate', async (req, res) => {
+  try {
+    const { description, domain, outcome } = req.body;
+    if (!process.env.ANTHROPIC_API_KEY) return res.status(503).json({ error: 'No API key', fallback: true });
+    if (!description) return res.status(400).json({ error: 'description required' });
+    const prompt = `You are the AI Chief of Staff for Yash J. Munot, CEO of Varsha Forgings, Pune, India.\nDomain: ${domain||'Business'}\nProblem: ${description}\nOutcome: ${outcome||'Not specified'}\n\nRespond in valid JSON only, no markdown:\n{"title":"case title max 10 words","outcome":"measurable success in one sentence","priority":"normal|high|critical|low","tasks":[{"description":"action","owner":"Yash|Fazal|Sanjay|Deepak|Kajal","execution_mode":"self|delegate|outsource","impact_score":3},{"description":"action","owner":"Yash","execution_mode":"self","impact_score":3},{"description":"action","owner":"Yash","execution_mode":"delegate","impact_score":3}]}`;
+    const r = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type':'application/json', 'x-api-key': process.env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
+      body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1000, messages: [{ role: 'user', content: prompt }] })
+    });
+    const d = await r.json();
+    const text = d.content[0].text.trim().replace(/```json\n?/g,'').replace(/```\n?/g,'').trim();
+    res.json(JSON.parse(text));
+  } catch(e) { res.status(500).json({ error: e.message }); }
+});
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
