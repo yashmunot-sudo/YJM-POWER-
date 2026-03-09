@@ -412,11 +412,17 @@ a{text-decoration:none;color:inherit}
 <!-- TOPBAR -->
 <header class="topbar">
   <div class="logo-wrap">
-    <img class="logo-img" id="logoImg" src="/logo.png" alt="YJM Power"
-      style="height:36px;width:auto;max-width:160px;object-fit:contain"
-      onload="document.getElementById('logoText').style.display='none'"
-      onerror="this.style.display='none';document.getElementById('logoText').style.display='flex'">
-    <span class="logo-text" id="logoText">YJM POWER</span>
+    <svg width="140" height="40" viewBox="0 0 260 80" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+      <defs>
+        <linearGradient id="boltG" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#FFB347"/>
+          <stop offset="100%" stop-color="#7B5CF0"/>
+        </linearGradient>
+      </defs>
+      <polygon points="30,10 50,10 35,40 55,40 20,70 35,45 15,45" fill="url(#boltG)"/>
+      <text x="68" y="38" font-size="26" fill="white" font-family="Arial,sans-serif" font-weight="bold" letter-spacing="1">YJM</text>
+      <text x="68" y="62" font-size="22" fill="#2D7EFF" font-family="Arial,sans-serif" letter-spacing="2">POWER</text>
+    </svg>
   </div>
   <div class="topbar-center">
     <div class="topbar-date" id="topDate">MON 9 MAR 2026</div>
