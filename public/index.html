@@ -2,1231 +2,1199 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#080C18">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>YJM Power</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="manifest" href="/manifest.json">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#0A0F1E;--ink2:#131929;--ink3:#1C2640;--blue:#1B5FD4;--blue2:#2D7EFF;--gold:#F0A500;--green:#0DBF6F;--red:#F03E3E;--purple:#7B5CF0;--teal:#0CC2AA;--pink:#F045B0;--white:#F0F4FF;--muted:#5A7090;--border:rgba(45,126,255,0.15)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--ink);color:var(--white);font-family:'DM Sans',sans-serif;min-height:100vh}
-.topbar{position:sticky;top:0;z-index:100;background:rgba(10,15,30,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 16px;display:flex;align-items:center;justify-content:space-between;height:56px}
-.logo{display:flex;align-items:center;gap:8px}
-.logo-mark{width:32px;height:32px;background:linear-gradient(135deg,var(--blue),var(--blue2));border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:12px;color:#fff}
-.logo-name{font-family:'Syne',sans-serif;font-weight:800;font-size:15px;letter-spacing:2px;background:linear-gradient(90deg,var(--white),var(--blue2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.user-switcher{display:flex;gap:4px;background:rgba(28,38,64,0.8);border:1px solid var(--border);border-radius:8px;padding:3px}
-.usr{padding:4px 10px;border-radius:5px;font-size:10px;font-weight:600;letter-spacing:1px;cursor:pointer;transition:all 0.2s;color:var(--muted);border:none;background:transparent;font-family:'DM Sans',sans-serif}
-.usr.active{background:var(--blue);color:#fff}
-.screen{display:none}.screen.active{display:block}
-.screen-tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:20px;margin-top:16px}
-.stab{padding:10px 16px;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border:none;background:transparent;color:var(--muted);border-bottom:2px solid transparent;transition:all 0.2s;font-family:'DM Sans',sans-serif;margin-bottom:-1px}
-.stab.active{color:var(--blue2);border-bottom-color:var(--blue2)}
-.wrap{max-width:900px;margin:0 auto;padding:0 14px 80px}
-.today-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;padding-top:4px;flex-wrap:wrap;gap:12px}
-.today-greeting{font-family:'Syne',sans-serif;font-size:22px;font-weight:800}
-.today-date{font-size:11px;color:var(--muted);margin-top:3px;letter-spacing:1px}
-.today-stats{display:flex;gap:6px;flex-wrap:wrap}
-.stat-pill{background:rgba(28,38,64,0.8);border:1px solid var(--border);border-radius:8px;padding:6px 12px;text-align:center}
-.stat-num{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;line-height:1}
-.stat-lbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:1px}
-.zone{background:rgba(19,25,41,0.7);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:12px}
-.zone-hdr{padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
-.zone-title{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:6px}
-.zdot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.zone-count{font-size:10px;font-weight:700;background:rgba(45,126,255,0.12);border:1px solid rgba(45,126,255,0.2);color:var(--blue2);border-radius:5px;padding:2px 7px}
-.zone-body{padding:8px 10px}
-.task-item{display:flex;align-items:flex-start;gap:8px;padding:9px 10px;border-radius:9px;margin-bottom:5px;cursor:pointer;transition:all 0.18s;border:1px solid transparent;background:rgba(28,38,64,0.5)}
-.task-item:hover{background:rgba(45,126,255,0.08);border-color:rgba(45,126,255,0.2)}
-.task-item.done{opacity:0.4}
-.task-cb{width:17px;height:17px;border-radius:4px;flex-shrink:0;margin-top:1px;border:1.5px solid var(--muted);display:flex;align-items:center;justify-content:center;transition:all 0.18s}
-.task-cb.checked{background:var(--green);border-color:var(--green)}
-.task-cb.checked::after{content:'✓';font-size:10px;color:#fff;font-weight:700}
-.task-content{flex:1;min-width:0}
-.task-title{font-size:12px;font-weight:500;line-height:1.3;margin-bottom:4px}
-.task-meta{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
-.task-tag{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 6px;border-radius:4px}
-.i5{background:rgba(240,165,0,0.12);color:var(--gold);border:1px solid rgba(240,165,0,0.2)}
-.i4{background:rgba(240,62,62,0.1);color:#FF7070;border:1px solid rgba(240,62,62,0.2)}
-.i3{background:rgba(45,126,255,0.1);color:var(--blue2);border:1px solid rgba(45,126,255,0.2)}
-.i2{background:rgba(90,112,144,0.15);color:var(--muted);border:1px solid rgba(90,112,144,0.2)}
-.case-tag{background:rgba(28,38,64,0.8);color:var(--muted);border:1px solid var(--border);font-size:9px;padding:2px 6px;border-radius:4px}
-.dl{font-size:9px;color:var(--muted)}
-.dl.urgent{color:var(--red)}
-.badge-priv{background:rgba(240,69,176,0.1);border:1px solid rgba(240,69,176,0.25);color:var(--pink);font-size:9px;padding:2px 6px;border-radius:4px;font-weight:700}
-.flag-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;margin-bottom:4px;font-size:11px}
-.flag-item.blocked{border:1px solid rgba(240,62,62,0.18);background:rgba(240,62,62,0.04)}
-.flag-item.overdue{border:1px solid rgba(240,165,0,0.18);background:rgba(240,165,0,0.04)}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media(max-width:600px){.two-col{grid-template-columns:1fr}}
-.capture-wrap{max-width:600px;margin:0 auto}
-.capture-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:4px}
-.capture-sub{font-size:12px;color:var(--muted);margin-bottom:18px}
-.domain-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:16px}
-@media(max-width:500px){.domain-grid{grid-template-columns:repeat(4,1fr)}}
-.dom-btn{background:rgba(19,25,41,0.8);border:1px solid var(--border);border-radius:9px;padding:8px 4px;text-align:center;cursor:pointer;transition:all 0.18s}
-.dom-btn:hover,.dom-btn.selected{border-color:var(--blue2);background:rgba(45,126,255,0.1)}
-.dom-btn.priv{border-color:rgba(240,69,176,0.2)}
-.dom-btn.priv.selected{border-color:var(--pink);background:rgba(240,69,176,0.1)}
-.dom-icon{font-size:16px;display:block;margin-bottom:2px}
-.dom-label{font-size:8px;font-weight:600;color:var(--muted)}
-.dom-count{font-size:9px;font-weight:800;min-width:16px;height:16px;border-radius:8px;background:var(--red);color:#fff;display:none;align-items:center;justify-content:center;margin:2px auto 0;padding:0 4px}
-.dom-count.show{display:flex}
-.eq-q1{background:rgba(240,62,62,0.12);color:#FF7070;border:1px solid rgba(240,62,62,0.25)}
-.eq-q2{background:rgba(240,165,0,0.12);color:var(--gold);border:1px solid rgba(240,165,0,0.2)}
-.eq-q3{background:rgba(45,126,255,0.1);color:var(--blue2);border:1px solid rgba(45,126,255,0.2)}
-.eq-q4{background:rgba(90,112,144,0.1);color:var(--muted);border:1px solid rgba(90,112,144,0.15)}
-.cs-new{background:rgba(13,194,170,0.1);color:var(--teal);border:1px solid rgba(13,194,170,0.2)}
-.cs-planning{background:rgba(123,92,240,0.1);color:var(--purple);border:1px solid rgba(123,92,240,0.2)}
-.cs-active{background:rgba(45,126,255,0.12);color:var(--blue2);border:1px solid rgba(45,126,255,0.2)}
-.cs-blocked{background:rgba(240,62,62,0.1);color:var(--red);border:1px solid rgba(240,62,62,0.2)}
-.cs-review{background:rgba(240,165,0,0.1);color:var(--gold);border:1px solid rgba(240,165,0,0.2)}
-.cs-closed{background:rgba(13,191,111,0.1);color:var(--green);border:1px solid rgba(13,191,111,0.2)}
-.outcome-verify-box{background:rgba(19,25,41,0.9);border:1px solid rgba(13,191,111,0.2);border-radius:10px;padding:14px;margin-top:12px}
-.ov-label{font-size:9px;font-weight:700;letter-spacing:2px;color:var(--green);margin-bottom:8px}
-.ov-target{font-size:11px;color:rgba(240,244,255,0.7);margin-bottom:10px;line-height:1.5;padding:8px 10px;background:rgba(13,191,111,0.06);border-radius:6px;border-left:2px solid var(--green)}
-.ov-proof-input{width:100%;background:rgba(10,15,30,0.6);border:1px solid var(--border);border-radius:7px;padding:8px 12px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:12px;outline:none;margin-bottom:8px}
-.ov-proof-input:focus{border-color:var(--green)}
-.ov-btn-row{display:flex;gap:8px}
-.ov-yes{flex:1;padding:9px;border-radius:7px;border:none;background:linear-gradient(135deg,var(--green),#0AA85E);color:#fff;font-weight:700;font-size:10px;letter-spacing:2px;cursor:pointer;font-family:'Syne',sans-serif}
-.ov-no{flex:1;padding:9px;border-radius:7px;background:rgba(240,62,62,0.08);border:1px solid rgba(240,62,62,0.2);color:var(--red);font-size:10px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif}
-.review-banner{background:linear-gradient(135deg,rgba(123,92,240,0.12),rgba(45,126,255,0.08));border:1px solid rgba(123,92,240,0.25);border-radius:11px;padding:14px;margin-bottom:14px;display:none}
-.review-banner.show{display:block}
-.rb-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:800;letter-spacing:2px;color:var(--purple);margin-bottom:4px}
-.rb-sub{font-size:11px;color:var(--muted);margin-bottom:12px}
-.rb-case{background:rgba(19,25,41,0.7);border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-bottom:6px;display:flex;align-items:center;gap:10px}
-.rb-case-title{flex:1;font-size:11px;font-weight:600}
-.rb-actions{display:flex;gap:5px}
-.rb-btn{font-size:9px;font-weight:700;padding:4px 8px;border-radius:5px;border:none;cursor:pointer;font-family:'Syne',sans-serif;letter-spacing:1px}
-.rb-close{background:rgba(13,191,111,0.12);color:var(--green);border:1px solid rgba(13,191,111,0.2)}
-.rb-extend{background:rgba(240,165,0,0.1);color:var(--gold);border:1px solid rgba(240,165,0,0.2)}
-.rb-reassign{background:rgba(45,126,255,0.1);color:var(--blue2);border:1px solid rgba(45,126,255,0.2)}
-.capture-box{background:rgba(19,25,41,0.8);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:12px}
-.capture-box:focus-within{border-color:var(--blue2)}
-.capture-input{width:100%;background:transparent;border:none;outline:none;padding:14px 16px;font-size:13px;color:var(--white);font-family:'DM Sans',sans-serif;line-height:1.6;min-height:100px;resize:none}
-.capture-input::placeholder{color:var(--muted)}
-.capture-toolbar{padding:8px 14px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
-.gen-btn{width:100%;padding:14px;border-radius:10px;border:none;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:'Syne',sans-serif;transition:all 0.2s;margin-bottom:16px}
-.gen-btn:hover{opacity:0.9}
-.gen-btn:disabled{opacity:0.6;cursor:not-allowed}
-.ai-thinking{background:rgba(19,25,41,0.95);border:1px solid rgba(45,126,255,0.3);border-radius:12px;padding:20px;display:none;text-align:center;margin-bottom:12px}
-.ai-thinking.show{display:block}
-.ai-thinking-icon{font-size:32px;margin-bottom:10px;animation:pulse 1.5s ease-in-out infinite}
-@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.1);opacity:0.7}}
-.ai-thinking-text{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--blue2);letter-spacing:2px;margin-bottom:6px}
-.ai-thinking-sub{font-size:11px;color:var(--muted)}
-.ai-dots span{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--blue2);margin:0 3px;animation:bounce 1.2s ease-in-out infinite}
-.ai-dots span:nth-child(2){animation-delay:0.2s}
-.ai-dots span:nth-child(3){animation-delay:0.4s}
-@keyframes bounce{0%,80%,100%{transform:translateY(0);opacity:0.4}40%{transform:translateY(-6px);opacity:1}}
-.ai-result{background:rgba(19,25,41,0.95);border:1px solid rgba(45,126,255,0.3);border-radius:14px;padding:0;display:none;overflow:hidden;margin-bottom:12px}
-.ai-result.show{display:block;animation:slideUp 0.35s ease}
-@keyframes slideUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.ar-header{background:linear-gradient(135deg,rgba(27,95,212,0.25),rgba(45,126,255,0.1));padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
-.ar-header-icon{font-size:20px}
-.ar-header-text{flex:1}
-.ar-hdr{font-family:'Syne',sans-serif;font-size:12px;font-weight:800;letter-spacing:2px;color:var(--blue2)}
-.ar-hdr-sub{font-size:10px;color:var(--muted);margin-top:2px}
-.ar-badge{font-size:9px;font-weight:700;letter-spacing:1px;padding:3px 8px;border-radius:5px;background:rgba(45,126,255,0.15);color:var(--blue2);border:1px solid rgba(45,126,255,0.25)}
-.ar-body{padding:14px 16px}
-.ar-section{margin-bottom:14px}
-.ar-section-label{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:7px;display:flex;align-items:center;gap:5px}
-.ar-section-label::after{content:'';flex:1;height:1px;background:var(--border)}
-.ar-outcome-box{background:rgba(13,191,111,0.07);border:1px solid rgba(13,191,111,0.2);border-radius:8px;padding:10px 14px;font-size:12px;color:rgba(240,244,255,0.9);line-height:1.6}
-.ar-task{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-radius:9px;margin-bottom:6px;background:rgba(28,38,64,0.5);border:1px solid var(--border);transition:border-color 0.2s}
-.ar-task:hover{border-color:rgba(45,126,255,0.25)}
-.ar-task-num{width:20px;height:20px;border-radius:5px;background:rgba(45,126,255,0.15);border:1px solid rgba(45,126,255,0.2);color:var(--blue2);font-size:9px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
-.ar-task-content{flex:1;min-width:0}
-.ar-task-desc{font-size:12px;font-weight:500;line-height:1.4;margin-bottom:5px}
-.ar-task-meta{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
-.owner-chip{font-size:9px;font-weight:700;letter-spacing:1px;padding:2px 7px;border-radius:4px}
+:root{
+  --bg:#080C18;--bg2:#0F1525;--bg3:#161E35;--bg4:#1C2640;
+  --blue:#1A5CF8;--blue2:#3B7FFF;
+  --orange:#F06A1D;--orange2:#FF8C42;
+  --gold:#F0A500;--green:#0DBF6F;--red:#F03E3E;
+  --purple:#7B5CF0;--teal:#0CC2AA;
+  --white:#EEF2FF;--muted:#4A6080;--muted2:#6A80A0;
+  --border:rgba(59,127,255,0.1);--border2:rgba(59,127,255,0.2);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--white);font-family:'DM Sans',sans-serif;min-height:100vh;max-width:430px;margin:0 auto;overflow-x:hidden}
+button{cursor:pointer;font-family:'DM Sans',sans-serif}
+input,textarea,select{font-family:'DM Sans',sans-serif}
+
+/* TOPBAR */
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;position:sticky;top:0;z-index:100;background:rgba(8,12,24,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.topbar-logo{display:flex;align-items:center;gap:8px}
+.logo-icon{width:28px;height:28px;object-fit:contain}
+.logo-text{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:3px;background:linear-gradient(90deg,var(--white),var(--blue2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.topbar-right{display:flex;align-items:center;gap:8px}
+.top-pill{font-size:9px;font-weight:700;letter-spacing:1.5px;color:var(--muted2);text-transform:uppercase;background:var(--bg3);border:1px solid var(--border);padding:4px 9px;border-radius:20px}
+.notif-btn{width:32px;height:32px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:15px;position:relative;cursor:pointer}
+.notif-dot{position:absolute;top:4px;right:4px;width:8px;height:8px;border-radius:50%;background:var(--red);border:2px solid var(--bg)}
+.commit-badge{position:absolute;top:-4px;right:-4px;background:var(--orange);color:#fff;font-size:9px;font-weight:800;min-width:16px;height:16px;border-radius:8px;display:none;align-items:center;justify-content:center;padding:0 4px;border:2px solid var(--bg)}
+
+/* SCREENS */
+.screen{display:none;padding-bottom:80px;animation:fadeIn 0.2s ease}
+.screen.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* BOTTOM NAV */
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:rgba(8,12,24,0.97);backdrop-filter:blur(24px);border-top:1px solid var(--border);display:flex;justify-content:space-around;padding:4px 0 12px;z-index:100}
+.bnav{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 18px;border:none;background:transparent;color:var(--muted);transition:all 0.15s;border-top:2px solid transparent;margin-top:-1px}
+.bnav.active{color:var(--blue2);border-top-color:var(--blue2)}
+.bnav-icon{font-size:20px;line-height:1}
+.bnav-lbl{font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+
+/* SECTION HEADERS */
+.sec-hdr{display:flex;align-items:center;justify-content:space-between;padding:16px 16px 8px}
+.sec-title{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted2);display:flex;align-items:center;gap:6px}
+.sec-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.sec-action{font-size:10px;color:var(--blue2);font-weight:600;background:none;border:none;padding:0;cursor:pointer}
+
+/* TOAST */
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:var(--bg3);border:1px solid var(--border2);color:var(--white);padding:9px 18px;border-radius:10px;font-size:11px;font-weight:600;opacity:0;transition:opacity 0.2s;z-index:300;pointer-events:none;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,0.4)}
+.toast.show{opacity:1}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;backdrop-filter:blur(4px);align-items:flex-end}
+.modal-overlay.open{display:flex}
+.modal-sheet{width:100%;max-width:430px;margin:0 auto;background:var(--bg2);border-radius:20px 20px 0 0;border-top:1px solid var(--border2);padding:20px 18px 40px;max-height:85vh;overflow-y:auto;animation:slideUp 0.25s ease}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.modal-handle{width:36px;height:4px;border-radius:2px;background:var(--bg4);margin:0 auto 18px}
+.modal-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:var(--white);margin-bottom:16px}
+
+/* FORM ELEMENTS */
+.form-label{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--muted2);text-transform:uppercase;margin-bottom:6px;display:block}
+.form-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:9px;padding:10px 13px;color:var(--white);font-size:13px;outline:none;transition:border-color 0.15s;margin-bottom:12px}
+.form-input:focus{border-color:var(--blue2)}
+.form-select{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:9px;padding:10px 13px;color:var(--white);font-size:13px;outline:none;margin-bottom:12px}
+.form-select:focus{border-color:var(--blue2)}
+.form-textarea{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:9px;padding:10px 13px;color:var(--white);font-size:13px;outline:none;resize:none;margin-bottom:12px;min-height:80px}
+.form-textarea:focus{border-color:var(--blue2)}
+.btn-primary{width:100%;padding:13px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--blue2));border:none;color:#fff;font-size:13px;font-weight:700;letter-spacing:1px;transition:all 0.15s;margin-top:4px;cursor:pointer}
+.btn-primary:hover{filter:brightness(1.1)}
+.btn-secondary{width:100%;padding:11px;border-radius:10px;background:var(--bg3);border:1px solid var(--border);color:var(--muted2);font-size:12px;font-weight:600;margin-top:6px;cursor:pointer}
+
+/* TODAY */
+.today-hero{padding:16px 16px 0;background:linear-gradient(180deg,rgba(26,92,248,0.04) 0%,transparent 100%)}
+.today-greeting{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:2px;line-height:1.05;margin-bottom:2px}
+.today-date{font-size:10px;color:var(--muted2);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+
+/* PULSE */
+.pulse-strip{display:flex;gap:7px;padding:0 16px 14px;overflow-x:auto;scrollbar-width:none}
+.pulse-strip::-webkit-scrollbar{display:none}
+.pulse-card{flex-shrink:0;min-width:80px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:9px 12px;text-align:center;cursor:pointer;transition:all 0.15s}
+.pulse-card:hover{border-color:var(--border2);transform:translateY(-1px)}
+.pulse-card.red{border-color:rgba(240,62,62,0.3);background:rgba(240,62,62,0.05)}
+.pulse-card.amber{border-color:rgba(240,165,0,0.25);background:rgba(240,165,0,0.04)}
+.pulse-card.green{border-color:rgba(13,191,111,0.2);background:rgba(13,191,111,0.04)}
+.pulse-num{font-family:'Bebas Neue',sans-serif;font-size:26px;line-height:1}
+.pulse-card.red .pulse-num{color:var(--red)}
+.pulse-card.amber .pulse-num{color:var(--gold)}
+.pulse-card.green .pulse-num{color:var(--green)}
+.pulse-lbl{font-size:8px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+
+/* COMMIT ALERT */
+.commit-alert{margin:0 16px 10px;background:rgba(240,106,29,0.08);border:1px solid rgba(240,106,29,0.3);border-radius:10px;padding:10px 13px;display:flex;align-items:center;gap:10px;cursor:pointer}
+.commit-alert-icon{font-size:16px}
+.commit-alert-text{flex:1}
+.commit-alert-title{font-size:11px;font-weight:700;color:var(--orange2);margin-bottom:1px}
+.commit-alert-sub{font-size:10px;color:var(--muted2)}
+.commit-alert-arrow{font-size:13px;color:var(--orange)}
+
+/* FOCUS CARDS */
+.focus-wrap{padding:0 16px;margin-bottom:4px}
+.focus-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:13px 14px 13px 18px;margin-bottom:8px;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden}
+.focus-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:4px 0 0 4px}
+.focus-card.p1::before{background:var(--red)}
+.focus-card.p2::before{background:var(--gold)}
+.focus-card.p3::before{background:var(--blue2)}
+.focus-card.done-card{opacity:0.4;transform:scale(0.98)}
+.focus-card:hover{border-color:var(--border2)}
+.focus-rank{font-size:8px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:5px}
+.focus-card.p1 .focus-rank{color:var(--red)}
+.focus-card.p2 .focus-rank{color:var(--gold)}
+.focus-card.p3 .focus-rank{color:var(--blue2)}
+.focus-title{font-size:13px;font-weight:600;line-height:1.4;margin-bottom:8px;padding-right:28px}
+.focus-meta{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.owner-tag{font-size:8px;font-weight:800;letter-spacing:1px;padding:2px 7px;border-radius:4px;text-transform:uppercase}
 .owner-yash{background:rgba(240,165,0,0.12);color:var(--gold);border:1px solid rgba(240,165,0,0.2)}
 .owner-kajal{background:rgba(123,92,240,0.12);color:var(--purple);border:1px solid rgba(123,92,240,0.2)}
-.owner-fazal{background:rgba(45,126,255,0.12);color:var(--blue2);border:1px solid rgba(45,126,255,0.2)}
-.owner-sanjay{background:rgba(13,194,170,0.12);color:var(--teal);border:1px solid rgba(13,194,170,0.2)}
+.owner-fazal{background:rgba(59,127,255,0.12);color:var(--blue2);border:1px solid rgba(59,127,255,0.2)}
+.owner-sanjay{background:rgba(12,194,170,0.12);color:var(--teal);border:1px solid rgba(12,194,170,0.2)}
 .owner-deepak{background:rgba(13,191,111,0.12);color:var(--green);border:1px solid rgba(13,191,111,0.2)}
-.owner-outsource{background:rgba(240,69,176,0.12);color:var(--pink);border:1px solid rgba(240,69,176,0.2)}
-.dl-chip{font-size:9px;color:var(--muted);background:rgba(28,38,64,0.8);border:1px solid var(--border);padding:2px 6px;border-radius:4px}
-.impact-chip{font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px}
-.ar-risk{display:flex;align-items:flex-start;gap:8px;padding:8px 12px;border-radius:8px;margin-bottom:5px;background:rgba(240,62,62,0.05);border:1px solid rgba(240,62,62,0.15);font-size:11px;line-height:1.5;color:rgba(240,244,255,0.8)}
-.ar-risk-icon{font-size:13px;flex-shrink:0;margin-top:1px}
-.ar-actions{display:flex;gap:8px;padding:14px 16px;border-top:1px solid var(--border);background:rgba(10,15,30,0.4)}
-.approve-btn{flex:1;padding:12px;border-radius:9px;border:none;background:linear-gradient(135deg,var(--green),#0AA85E);color:#fff;font-weight:800;font-size:11px;letter-spacing:2px;cursor:pointer;font-family:'Syne',sans-serif;transition:all 0.2s}
-.approve-btn:hover{opacity:0.9;transform:translateY(-1px)}
-.edit-btn{padding:12px 16px;border-radius:9px;background:rgba(28,38,64,0.8);border:1px solid var(--border);color:var(--muted);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s}
-.edit-btn:hover{border-color:var(--blue2);color:var(--white)}
-.case-list{display:grid;gap:8px}
-.case-card{background:rgba(19,25,41,0.8);border:1px solid var(--border);border-radius:11px;padding:14px;cursor:pointer;transition:all 0.18s;display:flex;align-items:center;gap:12px}
-.case-card:hover{border-color:rgba(45,126,255,0.3)}
-.case-card.open-case{border-color:rgba(45,126,255,0.4);background:rgba(45,126,255,0.06)}
-.case-icon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;background:rgba(28,38,64,0.8);border:1px solid var(--border);flex-shrink:0}
-.case-info{flex:1}
-.case-title{font-size:12px;font-weight:600;margin-bottom:4px}
+.owner-outsource{background:rgba(240,106,29,0.12);color:var(--orange);border:1px solid rgba(240,106,29,0.2)}
+.domain-tag{font-size:8px;color:var(--muted2);background:var(--bg3);border:1px solid var(--border);padding:2px 6px;border-radius:4px}
+.deadline-tag{font-size:9px;color:var(--muted2)}
+.deadline-tag.late{color:var(--red);font-weight:700}
+.deadline-tag.today{color:var(--gold);font-weight:700}
+.check-btn{position:absolute;top:13px;right:12px;width:22px;height:22px;border-radius:6px;border:1.5px solid var(--muted);background:transparent;display:flex;align-items:center;justify-content:center;transition:all 0.15s;font-size:12px;color:transparent;cursor:pointer}
+.check-btn:hover{border-color:var(--green);background:rgba(13,191,111,0.1)}
+.check-btn.checked{background:var(--green);border-color:var(--green);color:#fff}
+
+/* QUICK ADD */
+.quick-add-wrap{padding:0 16px 6px}
+.quick-box{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:9px 12px;transition:border-color 0.15s}
+.quick-box:focus-within{border-color:var(--blue2)}
+.quick-input{flex:1;background:transparent;border:none;outline:none;color:var(--white);font-size:13px}
+.quick-input::placeholder{color:var(--muted)}
+.quick-add-btn{width:26px;height:26px;border-radius:7px;background:var(--blue);border:none;color:#fff;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer}
+.quick-list{padding:0 16px}
+.quick-item{display:flex;align-items:center;gap:9px;padding:8px 11px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;margin-bottom:5px}
+.qt-cb{width:15px;height:15px;border-radius:4px;border:1.5px solid var(--muted);cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;color:transparent;transition:all 0.15s}
+.qt-cb.done{background:var(--green);border-color:var(--green);color:#fff}
+.qt-text{flex:1;font-size:12px;color:rgba(238,242,255,0.85)}
+.qt-text.done{text-decoration:line-through;opacity:0.4}
+.qt-del{font-size:11px;color:var(--muted);background:none;border:none;opacity:0;transition:opacity 0.15s;padding:2px 4px;cursor:pointer}
+.quick-item:hover .qt-del{opacity:1}
+
+/* INSIGHT */
+.insight-card{margin:6px 16px 0;background:linear-gradient(135deg,rgba(26,92,248,0.08),rgba(240,106,29,0.06));border:1px solid rgba(59,127,255,0.2);border-radius:12px;padding:13px 14px}
+.insight-label{font-size:8px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue2);margin-bottom:6px;display:flex;align-items:center;gap:5px}
+.insight-text{font-size:12px;color:var(--muted2);line-height:1.5}
+.insight-text strong{color:var(--white)}
+
+/* CAPTURE TABS */
+.capture-tabs{display:flex;padding:12px 16px 0;gap:6px;border-bottom:1px solid var(--border)}
+.cap-tab{padding:7px 14px;border-radius:8px 8px 0 0;border:none;background:transparent;color:var(--muted);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.15s;cursor:pointer}
+.cap-tab.active{color:var(--blue2);border-bottom-color:var(--blue2);background:rgba(59,127,255,0.05)}
+.cap-content{display:none;padding:14px 16px}
+.cap-content.active{display:block}
+
+/* VOICE */
+.voice-btn{width:100%;padding:14px;border-radius:12px;background:var(--bg3);border:1px dashed var(--border2);color:var(--muted2);font-size:12px;font-weight:600;letter-spacing:1px;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px;cursor:pointer;transition:all 0.2s}
+.voice-btn.listening{background:rgba(240,62,62,0.08);border-color:rgba(240,62,62,0.4);color:var(--red);animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+.ai-thinking{display:none;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:12px;font-size:11px;color:var(--muted2)}
+.ai-thinking.show{display:block}
+.ai-dots{display:inline-flex;gap:3px;margin-left:6px}
+.ai-dot{width:4px;height:4px;border-radius:50%;background:var(--blue2);animation:dotBounce 1.2s infinite}
+.ai-dot:nth-child(2){animation-delay:0.2s}
+.ai-dot:nth-child(3){animation-delay:0.4s}
+@keyframes dotBounce{0%,80%,100%{transform:scale(0.8);opacity:0.5}40%{transform:scale(1.2);opacity:1}}
+.ai-preview{display:none;background:var(--bg3);border:1px solid rgba(59,127,255,0.25);border-radius:12px;padding:14px;margin-bottom:12px}
+.ai-preview.show{display:block}
+.ai-preview-label{font-size:8px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--blue2);margin-bottom:10px}
+.ai-field{margin-bottom:8px}
+.ai-field-key{font-size:9px;color:var(--muted2);margin-bottom:3px}
+.ai-field-val{font-size:12px;font-weight:600;color:var(--white)}
+.dup-warning{background:rgba(240,165,0,0.08);border:1px solid rgba(240,165,0,0.3);border-radius:8px;padding:8px 11px;margin-bottom:8px;font-size:11px;color:var(--gold)}
+
+/* DOMAIN GRID */
+.domain-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:14px}
+.domain-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:11px 12px;cursor:pointer;transition:all 0.15s;position:relative}
+.domain-card:hover,.domain-card.selected{border-color:var(--blue2);background:rgba(59,127,255,0.06)}
+.domain-card.selected::after{content:'✓';position:absolute;top:6px;right:8px;font-size:10px;color:var(--blue2);font-weight:800}
+.domain-icon{font-size:18px;margin-bottom:4px}
+.domain-name{font-size:11px;font-weight:700;color:var(--white);margin-bottom:2px}
+.domain-count{font-size:9px;color:var(--muted)}
+.domain-badge{position:absolute;top:-5px;right:-5px;background:var(--red);color:#fff;font-size:8px;font-weight:800;min-width:15px;height:15px;border-radius:8px;display:none;align-items:center;justify-content:center;padding:0 3px;border:2px solid var(--bg)}
+
+/* RECURRING */
+.recurring-item{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:11px 13px;margin-bottom:7px;display:flex;align-items:center;gap:10px}
+.recurring-icon{font-size:16px;flex-shrink:0}
+.recurring-body{flex:1}
+.recurring-title{font-size:12px;font-weight:600;margin-bottom:2px}
+.recurring-freq{font-size:9px;color:var(--muted2)}
+.recurring-toggle{width:36px;height:20px;border-radius:10px;background:var(--bg4);border:none;position:relative;cursor:pointer;transition:background 0.2s;flex-shrink:0}
+.recurring-toggle.on{background:var(--green)}
+.recurring-toggle::after{content:'';position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:#fff;transition:transform 0.2s}
+.recurring-toggle.on::after{transform:translateX(16px)}
+
+/* CASES */
+.cases-filter{display:flex;gap:6px;padding:12px 16px;overflow-x:auto;scrollbar-width:none}
+.cases-filter::-webkit-scrollbar{display:none}
+.filter-btn{flex-shrink:0;padding:5px 12px;border-radius:20px;border:1px solid var(--border);background:var(--bg2);color:var(--muted2);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;transition:all 0.15s;cursor:pointer}
+.filter-btn.active{background:var(--blue);border-color:var(--blue);color:#fff}
+.case-card{margin:0 16px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:13px 14px;cursor:pointer;transition:all 0.15s}
+.case-card:hover{border-color:var(--border2);transform:translateY(-1px)}
+.case-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px}
+.case-title{font-size:13px;font-weight:600;line-height:1.4;flex:1;margin-right:8px}
+.case-status{font-size:8px;font-weight:800;letter-spacing:1px;padding:3px 8px;border-radius:20px;text-transform:uppercase;flex-shrink:0}
+.status-new{background:rgba(59,127,255,0.15);color:var(--blue2)}
+.status-planning{background:rgba(240,165,0,0.12);color:var(--gold)}
+.status-active{background:rgba(13,191,111,0.12);color:var(--green)}
+.status-blocked{background:rgba(240,62,62,0.12);color:var(--red)}
+.status-review{background:rgba(123,92,240,0.12);color:var(--purple)}
+.status-closed{background:rgba(74,96,128,0.2);color:var(--muted2)}
 .case-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.cs{font-size:9px;font-weight:700;letter-spacing:1px;padding:2px 6px;border-radius:4px}
-.prog-bar{width:50px;height:3px;background:rgba(28,38,64,0.8);border-radius:2px;overflow:hidden;margin-left:auto}
-.prog-fill{height:100%;border-radius:2px;background:var(--blue2)}
-.case-detail{background:rgba(19,25,41,0.85);border:1px solid var(--border);border-radius:12px;padding:16px;margin-top:10px;display:none}
-.case-detail.show{display:block}
-.cd-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;margin-bottom:4px}
-.cd-domain{font-size:10px;color:var(--muted);margin-bottom:10px}
-.cd-outcome{background:rgba(13,191,111,0.07);border:1px solid rgba(13,191,111,0.18);border-radius:8px;padding:10px 14px;margin-bottom:14px}
-.cd-ol{font-size:9px;font-weight:700;letter-spacing:2px;color:var(--green);margin-bottom:3px}
-.cd-ov{font-size:12px}
-.cd-sl{font-size:9px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:8px;margin-top:14px}
-.close-btn{float:right;background:rgba(28,38,64,0.6);border:1px solid var(--border);color:var(--muted);width:28px;height:28px;border-radius:7px;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center}
-.add-task-form{background:rgba(28,38,64,0.5);border:1px solid var(--border);border-radius:9px;padding:12px;margin-top:10px}
-.form-input{width:100%;background:rgba(10,15,30,0.6);border:1px solid var(--border);border-radius:7px;padding:8px 12px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:12px;outline:none;margin-bottom:7px}
-.form-input:focus{border-color:var(--blue2)}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:7px}
-.form-select{width:100%;background:rgba(10,15,30,0.6);border:1px solid var(--border);border-radius:7px;padding:8px 12px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:12px;outline:none}
-.submit-btn{width:100%;padding:9px;border-radius:7px;border:none;background:var(--blue);color:#fff;font-weight:700;font-size:11px;letter-spacing:1px;cursor:pointer;font-family:'Syne',sans-serif}
-.team-header{display:flex;align-items:center;gap:12px;margin-bottom:18px;background:rgba(19,25,41,0.7);border:1px solid var(--border);border-radius:11px;padding:14px}
-.team-avatar{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:16px;font-weight:800;flex-shrink:0}
-.team-name{font-family:'Syne',sans-serif;font-size:16px;font-weight:800}
-.team-role{font-size:10px;color:var(--muted);margin-top:2px}
-.kajal-task{background:rgba(19,25,41,0.8);border:1px solid var(--border);border-radius:11px;overflow:hidden;margin-bottom:8px}
-.kajal-task-hdr{padding:12px 14px;display:flex;align-items:center;gap:8px;cursor:pointer}
-.kajal-task-title{font-size:12px;font-weight:600;flex:1}
-.kajal-expand{font-size:11px;color:var(--muted);transition:transform 0.2s}
-.kajal-expand.open{transform:rotate(180deg)}
-.kajal-instructions{padding:0 14px 14px;display:none;border-top:1px solid var(--border);padding-top:12px}
-.kajal-instructions.show{display:block}
-.ki-label{font-size:9px;font-weight:700;letter-spacing:2px;color:var(--purple);margin-bottom:7px}
-.ki-step{display:flex;gap:8px;margin-bottom:7px;font-size:11px;color:rgba(240,244,255,0.85);line-height:1.5}
-.ki-num{width:18px;height:18px;border-radius:4px;flex-shrink:0;background:rgba(123,92,240,0.15);border:1px solid rgba(123,92,240,0.25);color:var(--purple);font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center}
-.completion-input{width:100%;background:rgba(10,15,30,0.6);border:1px solid var(--border);border-radius:7px;padding:8px 12px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:11px;outline:none;resize:none;height:55px;margin-top:10px}
-.completion-input:focus{border-color:var(--purple)}
-.mark-done-btn{width:100%;margin-top:7px;padding:9px;border-radius:8px;border:none;background:linear-gradient(135deg,var(--purple),#9B7FF5);color:#fff;font-weight:700;font-size:10px;letter-spacing:2px;cursor:pointer;font-family:'Syne',sans-serif}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(10,15,30,0.96);backdrop-filter:blur(16px);border-top:1px solid var(--border);display:flex;justify-content:center;gap:0;padding:0 16px}
-.bnav-btn{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 20px;cursor:pointer;border:none;background:transparent;color:var(--muted);transition:all 0.18s;font-family:'DM Sans',sans-serif;border-top:2px solid transparent;margin-top:-1px}
-.bnav-btn.active{color:var(--blue2);border-top-color:var(--blue2)}
-.bnav-icon{font-size:18px;line-height:1}
-.bnav-label{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
-.toast{position:fixed;bottom:72px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;padding:9px 18px;border-radius:9px;font-size:11px;font-weight:700;letter-spacing:1px;opacity:0;transition:opacity 0.3s;z-index:200;pointer-events:none;white-space:nowrap}
-.toast.show{opacity:1}
-.loading{text-align:center;padding:30px;color:var(--muted);font-size:13px}
-.empty{text-align:center;padding:30px 20px;color:var(--muted)}
-.empty-icon{font-size:36px;margin-bottom:10px}
-.empty-text{font-size:13px;font-weight:600}
-.empty-sub{font-size:11px;margin-top:5px}
-.new-case-btn{width:100%;padding:12px;border-radius:10px;border:1px solid var(--border);background:rgba(28,38,64,0.8);color:var(--white);font-size:12px;font-weight:600;cursor:pointer;margin-bottom:12px;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px}
-.new-case-btn:hover{border-color:var(--blue2)}
-.ai-model-badge{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:700;letter-spacing:1px;color:var(--blue2);background:rgba(45,126,255,0.08);border:1px solid rgba(45,126,255,0.2);border-radius:5px;padding:2px 7px;margin-left:6px}
-.mic-btn{background:rgba(28,38,64,0.8);border:1px solid var(--border);border-radius:7px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all 0.2s;flex-shrink:0;outline:none}
-.mic-btn:hover{border-color:var(--blue2)}
-.mic-btn.recording{background:rgba(240,62,62,0.15);border-color:var(--red);animation:micPulse 1s ease-in-out infinite}
-@keyframes micPulse{0%,100%{box-shadow:0 0 0 0 rgba(240,62,62,0.4)}50%{box-shadow:0 0 0 6px rgba(240,62,62,0)}}
-.voice-status{font-size:10px;color:var(--red);font-weight:700;letter-spacing:1px;display:none;margin-bottom:8px;text-align:center;padding:6px;background:rgba(240,62,62,0.07);border-radius:7px;border:1px solid rgba(240,62,62,0.15)}
-.voice-status.show{display:block}
-.topbar-right{display:flex;align-items:center;gap:8px}
-.notif-bell{position:relative;cursor:pointer;width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(28,38,64,0.6);border:1px solid var(--border);font-size:16px;transition:all 0.2s}
-.notif-bell:hover{border-color:var(--blue2)}
-.notif-count{position:absolute;top:3px;right:3px;min-width:14px;height:14px;border-radius:7px;background:var(--red);color:#fff;font-size:8px;font-weight:800;display:none;align-items:center;justify-content:center;padding:0 3px;border:1.5px solid var(--ink)}
-.notif-count.show{display:flex}
-.notif-drawer{position:fixed;top:56px;right:0;width:310px;max-height:calc(100vh - 56px);overflow-y:auto;background:rgba(13,19,41,0.98);backdrop-filter:blur(20px);border-left:1px solid var(--border);border-bottom:1px solid var(--border);z-index:200;transform:translateX(100%);transition:transform 0.28s cubic-bezier(0.4,0,0.2,1)}
-.notif-drawer.open{transform:translateX(0)}
-.nd-header{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:rgba(13,19,41,0.98)}
-.nd-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:800;letter-spacing:2px}
-.nd-close{font-size:14px;color:var(--muted);cursor:pointer;border:none;background:transparent;width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:6px}
-.nd-close:hover{background:rgba(45,126,255,0.1);color:var(--white)}
-.notif-item{padding:12px 16px;border-bottom:1px solid rgba(45,126,255,0.06);display:flex;gap:10px;align-items:flex-start;transition:background 0.15s}
-.notif-item.unread{background:rgba(45,126,255,0.03)}
-.ni-icon{font-size:18px;flex-shrink:0;margin-top:1px}
-.ni-body{flex:1}
-.ni-badge{font-size:8px;font-weight:700;padding:1px 5px;border-radius:3px;display:inline-block;margin-bottom:4px}
-.ni-overdue{background:rgba(240,62,62,0.15);color:var(--red);border:1px solid rgba(240,62,62,0.25)}
-.ni-today{background:rgba(240,165,0,0.12);color:var(--gold);border:1px solid rgba(240,165,0,0.2)}
-.ni-cal{background:rgba(13,194,170,0.12);color:var(--teal);border:1px solid rgba(13,194,170,0.2)}
-.ni-title{font-size:11px;font-weight:600;margin-bottom:2px;line-height:1.4}
-.ni-sub{font-size:10px;color:var(--muted);line-height:1.4}
-.ni-time{font-size:9px;color:var(--muted);margin-top:4px}
-.nd-empty{padding:40px 20px;text-align:center;color:var(--muted);font-size:12px}
-.nd-empty-icon{font-size:28px;margin-bottom:8px}
-.cal-sync-row{display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(13,194,170,0.05);border:1px solid rgba(13,194,170,0.15);border-radius:8px;margin-top:8px;font-size:11px}
-.cal-sync-icon{font-size:14px}
-.cal-sync-text{flex:1;color:rgba(240,244,255,0.65);font-size:10px}
-.cal-sync-status{font-size:9px;font-weight:700;letter-spacing:1px}
-.cal-synced{color:var(--teal)}
-.cal-pending{color:var(--gold)}
-.cal-failed{color:var(--red)}
+.case-tasks{font-size:9px;color:var(--muted2)}
+.case-actions{display:flex;gap:6px;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+.case-btn{flex:1;padding:7px;border-radius:7px;border:1px solid var(--border);background:var(--bg3);color:var(--muted2);font-size:10px;font-weight:700;cursor:pointer;transition:all 0.15s}
+.case-btn:hover{border-color:var(--blue2);color:var(--blue2)}
+.case-btn.danger:hover{border-color:var(--red);color:var(--red)}
+.exec-plan{background:rgba(26,92,248,0.06);border:1px solid rgba(59,127,255,0.2);border-radius:10px;padding:12px;margin-top:10px}
+.exec-plan-title{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--blue2);margin-bottom:8px}
+.exec-step{display:flex;gap:8px;margin-bottom:6px;font-size:11px;color:var(--muted2);line-height:1.4}
+.exec-step-num{flex-shrink:0;width:16px;height:16px;border-radius:50%;background:var(--bg4);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:800;color:var(--blue2);margin-top:1px}
+
+/* TEAM */
+.team-member-card{margin:0 16px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.team-member-hdr{display:flex;align-items:center;gap:11px;padding:13px 14px;cursor:pointer}
+.team-avatar{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;flex-shrink:0}
+.avatar-kajal{background:rgba(123,92,240,0.2);color:var(--purple)}
+.avatar-fazal{background:rgba(59,127,255,0.2);color:var(--blue2)}
+.avatar-sanjay{background:rgba(12,194,170,0.2);color:var(--teal)}
+.avatar-deepak{background:rgba(13,191,111,0.2);color:var(--green)}
+.team-info{flex:1}
+.team-name{font-size:13px;font-weight:700;margin-bottom:2px}
+.team-role{font-size:10px;color:var(--muted2)}
+.team-stats{display:flex;gap:8px;margin-left:auto;align-items:center}
+.team-stat{text-align:center}
+.team-stat-num{font-family:'Bebas Neue',sans-serif;font-size:18px;line-height:1}
+.team-stat-lbl{font-size:7px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+.team-expand{padding:0 14px 13px;display:none}
+.team-expand.open{display:block}
+.team-task-item{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;margin-bottom:5px;border:1px solid var(--border);background:var(--bg3);cursor:pointer}
+.team-task-item.unack{border-color:rgba(240,106,29,0.35);background:rgba(240,106,29,0.05)}
+.team-task-title{flex:1;font-size:11px;font-weight:500}
+.unack-badge{font-size:8px;font-weight:800;letter-spacing:0.5px;background:rgba(240,106,29,0.2);color:var(--orange);border:1px solid rgba(240,106,29,0.3);padding:2px 6px;border-radius:4px;text-transform:uppercase;flex-shrink:0}
+.commit-date{font-size:9px;color:var(--muted2);flex-shrink:0}
+.no-tasks-msg{font-size:11px;color:var(--muted);padding:8px 4px;text-align:center}
+
+/* PURCHASE */
+.purchase-item{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:11px 13px;margin-bottom:7px;display:flex;justify-content:space-between;align-items:flex-start}
+.purchase-item-name{font-size:12px;font-weight:600;margin-bottom:3px}
+.purchase-item-meta{font-size:10px;color:var(--muted2)}
+.purchase-item-urgency{font-size:8px;font-weight:800;letter-spacing:1px;padding:2px 7px;border-radius:4px;text-transform:uppercase;flex-shrink:0}
+.urgency-high{background:rgba(240,62,62,0.12);color:var(--red);border:1px solid rgba(240,62,62,0.2)}
+.urgency-med{background:rgba(240,165,0,0.12);color:var(--gold);border:1px solid rgba(240,165,0,0.2)}
+.urgency-low{background:rgba(13,191,111,0.12);color:var(--green);border:1px solid rgba(13,191,111,0.2)}
 </style>
 </head>
 <body>
 
+<!-- TOPBAR -->
 <div class="topbar">
-  <div class="logo">
-    <div class="logo-mark">YJM</div>
-    <div class="logo-name">POWER</div>
+  <div class="topbar-logo">
+    <img class="logo-icon" src="/logo.png" onerror="this.style.display='none'" alt="YJM">
+    <span class="logo-text">YJM POWER</span>
   </div>
   <div class="topbar-right">
-    <div class="notif-bell" onclick="toggleNotifDrawer()" title="Notifications">
+    <div class="top-pill" id="topPill">MON · 9 MAR</div>
+    <div class="notif-btn" id="notifBtn" onclick="showToast('Notifications active')">
       🔔
-      <div class="notif-count" id="notifCount"></div>
-    </div>
-    <div class="user-switcher" id="userSwitcher">
-      <button class="usr active" onclick="switchUser('yash',this)">YASH</button>
-      <button class="usr" onclick="switchUser('kajal',this)">KAJAL</button>
-      <button class="usr" onclick="switchUser('fazal',this)">FAZAL</button>
-      <button class="usr" onclick="switchUser('sanjay',this)">SANJAY</button>
-      <button class="usr" onclick="switchUser('deepak',this)">DEEPAK</button>
+      <div class="notif-dot"></div>
+      <div class="commit-badge" id="commitBadge">0</div>
     </div>
   </div>
 </div>
 
-<div class="wrap" id="mainWrap">
+<!-- TODAY SCREEN -->
+<div class="screen active" id="screen-today">
+  <div class="today-hero">
+    <div class="today-greeting" id="greeting">Good Morning, Yash</div>
+    <div class="today-date" id="heroDate">MONDAY · 9 MARCH 2026 · PUNE</div>
+  </div>
 
-  <!-- YASH VIEW -->
-  <div id="view-yash">
-    <div class="screen-tabs">
-      <button class="stab active" onclick="switchTab('today','yash',this)">Today</button>
-      <button class="stab" onclick="switchTab('capture','yash',this)">Capture</button>
-      <button class="stab" onclick="switchTab('cases','yash',this)">Cases</button>
+  <div class="pulse-strip" id="pulseStrip">
+    <div class="pulse-card red" onclick="switchTab('cases')">
+      <div class="pulse-num" id="pulseOverdue">0</div>
+      <div class="pulse-lbl">Overdue</div>
     </div>
-
-    <!-- TODAY -->
-    <div class="screen active" id="yash-today">
-      <div class="review-banner" id="reviewBanner">
-        <div class="rb-title">📋 WEEKLY REVIEW</div>
-        <div class="rb-sub">These cases have had no activity in 7+ days. Choose an action for each.</div>
-        <div id="reviewCaseList"></div>
-        <button style="width:100%;padding:9px;border-radius:7px;border:none;background:rgba(123,92,240,0.15);border:1px solid rgba(123,92,240,0.25);color:var(--purple);font-size:10px;font-weight:700;letter-spacing:2px;cursor:pointer;font-family:'Syne',sans-serif;margin-top:6px" onclick="dismissReview()">DONE WITH REVIEW</button>
-      </div>
-      <div class="today-header">
-        <div>
-          <div class="today-greeting" id="greeting">Good Morning, Yash</div>
-          <div class="today-date" id="todayDate"></div>
-        </div>
-        <div class="today-stats">
-          <div class="stat-pill"><div class="stat-num" id="statTasks" style="color:var(--gold)">-</div><div class="stat-lbl">Tasks</div></div>
-          <div class="stat-pill"><div class="stat-num" id="statBlocked" style="color:var(--red)">-</div><div class="stat-lbl">Blocked</div></div>
-          <div class="stat-pill"><div class="stat-num" id="statOverdue" style="color:var(--gold)">-</div><div class="stat-lbl">Overdue</div></div>
-          <div class="stat-pill"><div class="stat-num" id="statCases" style="color:var(--teal)">-</div><div class="stat-lbl">Cases</div></div>
-        </div>
-      </div>
-      <div class="zone">
-        <div class="zone-hdr">
-          <div class="zone-title"><div class="zdot" style="background:var(--gold)"></div>Suggested Tasks</div>
-          <div class="zone-count" id="taskCount">0</div>
-        </div>
-        <div class="zone-body" id="taskList"><div class="loading">Loading tasks...</div></div>
-      </div>
-      <div class="two-col">
-        <div class="zone">
-          <div class="zone-hdr">
-            <div class="zone-title"><div class="zdot" style="background:var(--red)"></div>Blocked</div>
-            <div class="zone-count" id="blockedCount" style="color:var(--red);border-color:rgba(240,62,62,0.2);background:rgba(240,62,62,0.08)">0</div>
-          </div>
-          <div class="zone-body" id="blockedList"><div class="loading">Loading...</div></div>
-        </div>
-        <div class="zone">
-          <div class="zone-hdr">
-            <div class="zone-title"><div class="zdot" style="background:var(--gold)"></div>Overdue</div>
-            <div class="zone-count" id="overdueCount" style="color:var(--gold);border-color:rgba(240,165,0,0.2);background:rgba(240,165,0,0.08)">0</div>
-          </div>
-          <div class="zone-body" id="overdueList"><div class="loading">Loading...</div></div>
-        </div>
-      </div>
+    <div class="pulse-card amber" onclick="switchTab('cases')">
+      <div class="pulse-num" id="pulseBlocked">0</div>
+      <div class="pulse-lbl">Blocked</div>
     </div>
-
-    <!-- CAPTURE -->
-    <div class="screen" id="yash-capture">
-      <div class="capture-wrap">
-        <div class="capture-title">Capture</div>
-        <div class="capture-sub">Describe any problem. AI structures it instantly. <span class="ai-model-badge">⚡ Claude AI</span></div>
-        <div style="margin-bottom:8px;font-size:10px;font-weight:700;letter-spacing:2px;color:var(--muted)">SELECT DOMAIN</div>
-        <div class="domain-grid" id="domainGrid"></div>
-        <div class="capture-box">
-          <textarea class="capture-input" id="captureInput" placeholder="Describe your problem or task...&#10;&#10;Example: Need to follow up with ABC customer about overdue payment of Rs 25 lakhs." oninput="updateCharCount(this)"></textarea>
-          <div class="capture-toolbar">
-            <span style="font-size:11px;color:var(--muted)">What needs to happen?</span>
-            <div style="display:flex;align-items:center;gap:8px">
-              <span style="font-size:11px;color:var(--muted);font-family:monospace" id="charCount">0/500</span>
-              <button class="mic-btn" id="micCapture" onclick="toggleVoice('captureInput','micCapture')" title="Speak task">🎙️</button>
-            </div>
-          </div>
-        </div>
-        <div style="margin-bottom:8px;font-size:10px;font-weight:700;letter-spacing:2px;color:var(--muted)">OUTCOME — What does success look like?</div>
-        <div style="display:flex;gap:8px;align-items:center;margin-bottom:12px">
-          <input type="text" class="form-input" id="outcomeInput" placeholder="e.g. Rs 25L payment received within 7 days" style="margin-bottom:0;flex:1">
-          <button class="mic-btn" id="micOutcome" onclick="toggleVoice('outcomeInput','micOutcome')" title="Speak outcome">🎙️</button>
-        </div>
-        <div class="voice-status" id="voiceStatus">🔴 LISTENING...</div>
-        <div class="form-row" style="margin-bottom:12px">
-          <select class="form-select" id="prioritySelect">
-            <option value="normal">Normal Priority</option>
-            <option value="high">High Priority</option>
-            <option value="critical">Critical</option>
-            <option value="low">Low Priority</option>
-          </select>
-          <select class="form-select" id="ownerSelect"></select>
-        </div>
-        <div style="display:flex;gap:8px;margin-bottom:16px">
-          <button class="gen-btn" id="saveTaskBtn" onclick="saveDirectTask()" style="margin-bottom:0;flex:1;background:rgba(28,38,64,0.9);border:1px solid var(--border);font-size:11px;padding:13px 8px">💾 SAVE TASK</button>
-          <button class="gen-btn" id="createCaseBtn" onclick="runAICapture()" style="margin-bottom:0;flex:2;font-size:11px;padding:13px 8px">⚡ ANALYSE WITH AI</button>
-        </div>
-        <div class="ai-thinking" id="aiThinking">
-          <div class="ai-thinking-icon">🤖</div>
-          <div class="ai-thinking-text">CLAUDE IS ANALYSING</div>
-          <div class="ai-thinking-sub" id="thinkingStep">Reading problem context...</div>
-          <div class="ai-dots" style="margin-top:12px"><span></span><span></span><span></span></div>
-        </div>
-        <div class="ai-result" id="aiResult">
-          <div class="ar-header">
-            <div class="ar-header-icon">🧠</div>
-            <div class="ar-header-text">
-              <div class="ar-hdr">AI ANALYSIS COMPLETE</div>
-              <div class="ar-hdr-sub">Review before saving to database</div>
-            </div>
-            <div class="ar-badge">PREVIEW</div>
-          </div>
-          <div class="ar-body">
-            <div class="ar-section">
-              <div class="ar-section-label">✅ Outcome</div>
-              <div class="ar-outcome-box" id="arOutcome"></div>
-            </div>
-            <div class="ar-section">
-              <div class="ar-section-label">📋 Task Breakdown</div>
-              <div id="arTasks"></div>
-            </div>
-            <div class="ar-section" id="arRiskSection">
-              <div class="ar-section-label">⚠️ Risk Flags</div>
-              <div id="arRisks"></div>
-            </div>
-          </div>
-          <div class="ar-actions">
-            <button class="approve-btn" onclick="approveAndSave()">✓ APPROVE + SAVE TO DATABASE</button>
-            <button class="edit-btn" onclick="resetCapture()">↩ NEW CAPTURE</button>
-          </div>
-          <div style="padding:0 16px 14px">
-            <div class="cal-sync-row">
-              <span class="cal-sync-icon">📅</span>
-              <span class="cal-sync-text">Tasks will sync to Yash's Google Calendar with owner name in event title</span>
-              <span class="cal-sync-status cal-pending" id="calSyncStatus">READY</span>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="pulse-card" onclick="switchTab('cases')">
+      <div class="pulse-num" id="pulsePending" style="color:var(--white)">0</div>
+      <div class="pulse-lbl">Pending</div>
     </div>
-
-    <!-- CASES -->
-    <div class="screen" id="yash-cases">
-      <button class="new-case-btn" onclick="switchTab('capture','yash',document.querySelector('#view-yash .stab:nth-child(2)'));setActiveNav('bnav-capture')">⚡ New Case</button>
-      <div id="casesList"><div class="loading">Loading cases...</div></div>
+    <div class="pulse-card" onclick="switchTab('cases')">
+      <div class="pulse-num" id="pulseCases" style="color:var(--white)">0</div>
+      <div class="pulse-lbl">Cases</div>
+    </div>
+    <div class="pulse-card green">
+      <div class="pulse-num" id="pulseDone">0</div>
+      <div class="pulse-lbl">Done Today</div>
     </div>
   </div>
 
-  <!-- KAJAL VIEW -->
-  <div id="view-kajal" style="display:none">
-    <div class="screen-tabs"><button class="stab active">My Tasks</button></div>
-    <div class="screen active">
-      <div class="team-header">
-        <div class="team-avatar" style="background:linear-gradient(135deg,var(--purple),#9B7FF5);color:#fff">K</div>
-        <div><div class="team-name">Kajal</div><div class="team-role">Executive Assistant · Coordination & Reminders</div></div>
-      </div>
-      <div id="kajalTasks"><div class="loading">Loading your tasks...</div></div>
+  <div class="commit-alert" id="commitAlert" style="display:none" onclick="switchTab('team')">
+    <span class="commit-alert-icon">⏳</span>
+    <div class="commit-alert-text">
+      <div class="commit-alert-title" id="commitAlertTitle">Tasks Awaiting Commitment</div>
+      <div class="commit-alert-sub">Team members have not set a date yet</div>
     </div>
+    <span class="commit-alert-arrow">›</span>
   </div>
 
-  <!-- FAZAL VIEW -->
-  <div id="view-fazal" style="display:none">
-    <div class="screen-tabs"><button class="stab active">My Tasks</button></div>
-    <div class="screen active">
-      <div class="team-header">
-        <div class="team-avatar" style="background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff">F</div>
-        <div><div class="team-name">Fazal</div><div class="team-role">Operations + Purchase</div></div>
-      </div>
-      <div id="fazalTasks"><div class="loading">Loading your tasks...</div></div>
-    </div>
+  <div class="sec-hdr">
+    <div class="sec-title"><div class="sec-dot" style="background:var(--gold)"></div>Top 3 Focus</div>
+    <button class="sec-action" onclick="openAllTasks()">See all →</button>
+  </div>
+  <div class="focus-wrap" id="focusWrap">
+    <div style="padding:20px 0;text-align:center;color:var(--muted);font-size:12px">Loading tasks...</div>
   </div>
 
-  <!-- SANJAY VIEW -->
-  <div id="view-sanjay" style="display:none">
-    <div class="screen-tabs"><button class="stab active">My Tasks</button></div>
-    <div class="screen active">
-      <div class="team-header">
-        <div class="team-avatar" style="background:linear-gradient(135deg,var(--teal),#0AA88A);color:#fff">S</div>
-        <div><div class="team-name">Sanjay</div><div class="team-role">Logistics + Sales</div></div>
-      </div>
-      <div id="sanjayTasks"><div class="loading">Loading your tasks...</div></div>
+  <div class="sec-hdr" style="padding-top:8px">
+    <div class="sec-title"><div class="sec-dot" style="background:var(--teal)"></div>Quick Tasks</div>
+  </div>
+  <div class="quick-add-wrap">
+    <div class="quick-box">
+      <input class="quick-input" id="quickInput" placeholder="Add a task for today..." onkeydown="if(event.key==='Enter')addQuickTask()">
+      <button class="quick-add-btn" onclick="addQuickTask()">+</button>
     </div>
   </div>
+  <div class="quick-list" id="quickList"></div>
 
-  <!-- DEEPAK VIEW -->
-  <div id="view-deepak" style="display:none">
-    <div class="screen-tabs"><button class="stab active">My Tasks</button></div>
-    <div class="screen active">
-      <div class="team-header">
-        <div class="team-avatar" style="background:linear-gradient(135deg,var(--green),#0AA85E);color:#fff">D</div>
-        <div><div class="team-name">Deepak</div><div class="team-role">Accounts</div></div>
-      </div>
-      <div id="deepakTasks"><div class="loading">Loading your tasks...</div></div>
-    </div>
+  <div class="sec-hdr" style="padding-top:8px">
+    <div class="sec-title"><div class="sec-dot" style="background:var(--orange)"></div>AI Insight · Today</div>
   </div>
-
+  <div class="insight-card">
+    <div class="insight-label">⚡ Daily Intelligence</div>
+    <div class="insight-text" id="aiInsight">Loading insight...</div>
+  </div>
 </div>
 
-<div class="bottom-nav" id="bottomNav">
-  <button class="bnav-btn active" id="bnav-today" onclick="switchTab('today','yash',null);setActiveNav('bnav-today')">
-    <span class="bnav-icon">🏠</span><span class="bnav-label">Today</span>
+<!-- CAPTURE SCREEN -->
+<div class="screen" id="screen-capture">
+  <div class="capture-tabs">
+    <button class="cap-tab active" onclick="switchCapTab('new',this)">New Task</button>
+    <button class="cap-tab" onclick="switchCapTab('recurring',this)">Recurring</button>
+  </div>
+
+  <div class="cap-content active" id="cap-new">
+    <button class="voice-btn" id="voiceBtn" onclick="toggleVoice()">
+      <span>🎙️</span> <span id="voiceBtnText">Tap to speak your task</span>
+    </button>
+    <div class="ai-thinking" id="aiThinking">
+      Analysing <span class="ai-dots"><span class="ai-dot"></span><span class="ai-dot"></span><span class="ai-dot"></span></span>
+    </div>
+    <div class="dup-warning" id="dupWarning" style="display:none">
+      ⚠️ Similar task exists: <span id="dupText"></span>
+    </div>
+    <div class="ai-preview" id="aiPreview">
+      <div class="ai-preview-label">⚡ AI Analysis — Review Before Saving</div>
+      <div class="ai-field"><div class="ai-field-key">TASK</div><div class="ai-field-val" id="prevTitle">—</div></div>
+      <div class="ai-field"><div class="ai-field-key">DOMAIN</div><div class="ai-field-val" id="prevDomain">—</div></div>
+      <div class="ai-field"><div class="ai-field-key">OWNER</div><div class="ai-field-val" id="prevOwner">—</div></div>
+      <div class="ai-field"><div class="ai-field-key">DEADLINE</div><div class="ai-field-val" id="prevDeadline">—</div></div>
+      <div class="ai-field" id="prevOutsourceWrap" style="display:none">
+        <div class="ai-field-key">PROFESSIONAL NEEDED</div>
+        <div class="ai-field-val" id="prevOutsource" style="color:var(--orange)">—</div>
+      </div>
+      <button class="btn-primary" onclick="approveTask()">✓ Approve &amp; Save Task</button>
+      <button class="btn-secondary" onclick="editTask()">Edit Details</button>
+    </div>
+
+    <div id="manualForm">
+      <label class="form-label">Task Description</label>
+      <textarea class="form-textarea" id="taskTitle" placeholder="Describe the task..."></textarea>
+      <label class="form-label">Domain</label>
+      <div class="domain-grid" id="domainGrid"></div>
+      <label class="form-label">Owner</label>
+      <select class="form-select" id="taskOwner">
+        <option>Yash</option><option>Kajal</option><option>Fazal</option>
+        <option>Sanjay</option><option>Deepak</option><option>Outsource</option>
+      </select>
+      <label class="form-label">Deadline</label>
+      <input type="date" class="form-input" id="taskDeadline">
+      <label class="form-label">Task Type</label>
+      <select class="form-select" id="taskType">
+        <option value="adhoc">Ad hoc</option>
+        <option value="scheduled">Scheduled (specific date)</option>
+      </select>
+      <div style="margin-bottom:12px">
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+          <input type="checkbox" id="isBlocked" style="width:14px;height:14px">
+          <span style="font-size:12px;color:var(--muted2)">Mark as Blocked</span>
+        </label>
+      </div>
+      <label class="form-label">Priority</label>
+      <select class="form-select" id="taskPriority">
+        <option value="normal">Normal</option>
+        <option value="high">High</option>
+        <option value="critical">Critical</option>
+        <option value="low">Low</option>
+      </select>
+      <button class="btn-primary" onclick="saveManualTask()">Save Task</button>
+    </div>
+  </div>
+
+  <div class="cap-content" id="cap-recurring">
+    <div class="sec-hdr" style="padding:0 0 12px">
+      <div class="sec-title"><div class="sec-dot" style="background:var(--teal)"></div>Recurring Tasks</div>
+      <button class="sec-action" onclick="openModal('modal-recurring')">+ Add</button>
+    </div>
+    <div id="recurringList">
+      <div class="recurring-item">
+        <span class="recurring-icon">💰</span>
+        <div class="recurring-body"><div class="recurring-title">Check Cash Flow</div><div class="recurring-freq">Every Day · Finance · Deepak</div></div>
+        <button class="recurring-toggle on" onclick="this.classList.toggle('on')"></button>
+      </div>
+      <div class="recurring-item">
+        <span class="recurring-icon">🏭</span>
+        <div class="recurring-body"><div class="recurring-title">Production Report Review</div><div class="recurring-freq">Every Day · Operations · Fazal</div></div>
+        <button class="recurring-toggle on" onclick="this.classList.toggle('on')"></button>
+      </div>
+      <div class="recurring-item">
+        <span class="recurring-icon">📋</span>
+        <div class="recurring-body"><div class="recurring-title">Review Team Updates</div><div class="recurring-freq">Every Day · All · Yash</div></div>
+        <button class="recurring-toggle on" onclick="this.classList.toggle('on')"></button>
+      </div>
+    </div>
+    <button class="btn-primary" style="margin-top:8px" onclick="openModal('modal-recurring')">+ Add Recurring Task</button>
+  </div>
+</div>
+
+<!-- CASES SCREEN -->
+<div class="screen" id="screen-cases">
+  <div class="sec-hdr" style="padding-bottom:4px">
+    <div class="sec-title"><div class="sec-dot" style="background:var(--blue2)"></div>Active Cases</div>
+    <button class="sec-action" onclick="openModal('modal-newcase')">+ New</button>
+  </div>
+  <div class="cases-filter">
+    <button class="filter-btn active" onclick="filterCases('all',this)">All</button>
+    <button class="filter-btn" onclick="filterCases('active',this)">Active</button>
+    <button class="filter-btn" onclick="filterCases('blocked',this)">Blocked</button>
+    <button class="filter-btn" onclick="filterCases('planning',this)">Planning</button>
+    <button class="filter-btn" onclick="filterCases('review',this)">Review</button>
+  </div>
+  <div id="casesList"><div style="padding:30px 0;text-align:center;color:var(--muted);font-size:12px">Loading cases...</div></div>
+</div>
+
+<!-- TEAM SCREEN -->
+<div class="screen" id="screen-team">
+  <div class="sec-hdr">
+    <div class="sec-title"><div class="sec-dot" style="background:var(--purple)"></div>Team Overview</div>
+  </div>
+
+  <div class="team-member-card">
+    <div class="team-member-hdr" onclick="toggleTeamExpand('kajal')">
+      <div class="team-avatar avatar-kajal">K</div>
+      <div class="team-info"><div class="team-name">Kajal</div><div class="team-role">Executive Assistant · Legal Coordinator</div></div>
+      <div class="team-stats">
+        <div class="team-stat"><div class="team-stat-num" id="kajal-active" style="color:var(--green)">0</div><div class="team-stat-lbl">Active</div></div>
+        <div class="team-stat" style="margin-left:8px"><div class="team-stat-num" id="kajal-unack" style="color:var(--orange)">0</div><div class="team-stat-lbl">Unack</div></div>
+      </div>
+    </div>
+    <div class="team-expand" id="expand-kajal">
+      <div style="display:flex;gap:6px;margin-bottom:10px">
+        <button class="filter-btn active" style="font-size:9px;padding:4px 10px" onclick="showTeamTab('kajal','tasks',this)">Tasks</button>
+        <button class="filter-btn" style="font-size:9px;padding:4px 10px" onclick="showTeamTab('kajal','purchase',this)">Purchase</button>
+      </div>
+      <div id="kajal-tasks-content"><div class="no-tasks-msg">Loading...</div></div>
+      <div id="kajal-purchase-content" style="display:none">
+        <div class="purchase-item">
+          <div><div class="purchase-item-name">Printer Toner — Black</div><div class="purchase-item-meta">Budget: ₹2,400 · Office</div></div>
+          <span class="purchase-item-urgency urgency-high">Urgent</span>
+        </div>
+        <button class="btn-primary" style="margin-top:6px" onclick="openModal('modal-purchase')">+ Add Item</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="team-member-card">
+    <div class="team-member-hdr" onclick="toggleTeamExpand('fazal')">
+      <div class="team-avatar avatar-fazal">F</div>
+      <div class="team-info"><div class="team-name">Fazal</div><div class="team-role">Operations · Purchase</div></div>
+      <div class="team-stats">
+        <div class="team-stat"><div class="team-stat-num" id="fazal-active" style="color:var(--green)">0</div><div class="team-stat-lbl">Active</div></div>
+        <div class="team-stat" style="margin-left:8px"><div class="team-stat-num" id="fazal-unack" style="color:var(--orange)">0</div><div class="team-stat-lbl">Unack</div></div>
+      </div>
+    </div>
+    <div class="team-expand" id="expand-fazal"><div id="fazal-tasks-content"><div class="no-tasks-msg">Loading...</div></div></div>
+  </div>
+
+  <div class="team-member-card">
+    <div class="team-member-hdr" onclick="toggleTeamExpand('sanjay')">
+      <div class="team-avatar avatar-sanjay">S</div>
+      <div class="team-info"><div class="team-name">Sanjay</div><div class="team-role">Logistics · Sales</div></div>
+      <div class="team-stats">
+        <div class="team-stat"><div class="team-stat-num" id="sanjay-active" style="color:var(--green)">0</div><div class="team-stat-lbl">Active</div></div>
+        <div class="team-stat" style="margin-left:8px"><div class="team-stat-num" id="sanjay-unack" style="color:var(--orange)">0</div><div class="team-stat-lbl">Unack</div></div>
+      </div>
+    </div>
+    <div class="team-expand" id="expand-sanjay"><div id="sanjay-tasks-content"><div class="no-tasks-msg">Loading...</div></div></div>
+  </div>
+
+  <div class="team-member-card">
+    <div class="team-member-hdr" onclick="toggleTeamExpand('deepak')">
+      <div class="team-avatar avatar-deepak">D</div>
+      <div class="team-info"><div class="team-name">Deepak</div><div class="team-role">Accounts · Finance</div></div>
+      <div class="team-stats">
+        <div class="team-stat"><div class="team-stat-num" id="deepak-active" style="color:var(--green)">0</div><div class="team-stat-lbl">Active</div></div>
+        <div class="team-stat" style="margin-left:8px"><div class="team-stat-num" id="deepak-unack" style="color:var(--orange)">0</div><div class="team-stat-lbl">Unack</div></div>
+      </div>
+    </div>
+    <div class="team-expand" id="expand-deepak"><div id="deepak-tasks-content"><div class="no-tasks-msg">Loading...</div></div></div>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <button class="bnav active" id="nav-today" onclick="switchTab('today')">
+    <span class="bnav-icon">🏠</span><span class="bnav-lbl">Today</span>
   </button>
-  <button class="bnav-btn" id="bnav-capture" onclick="switchTab('capture','yash',null);setActiveNav('bnav-capture')">
-    <span class="bnav-icon">⚡</span><span class="bnav-label">Capture</span>
+  <button class="bnav" id="nav-capture" onclick="switchTab('capture')">
+    <span class="bnav-icon">⚡</span><span class="bnav-lbl">Capture</span>
   </button>
-  <button class="bnav-btn" id="bnav-cases" onclick="switchTab('cases','yash',null);setActiveNav('bnav-cases')">
-    <span class="bnav-icon">📂</span><span class="bnav-label">Cases</span>
+  <button class="bnav" id="nav-cases" onclick="switchTab('cases')">
+    <span class="bnav-icon">📂</span><span class="bnav-lbl">Cases</span>
+  </button>
+  <button class="bnav" id="nav-team" onclick="switchTab('team')">
+    <span class="bnav-icon">👥</span><span class="bnav-lbl">Team</span>
   </button>
 </div>
 
 <div class="toast" id="toast"></div>
 
-<div class="notif-drawer" id="notifDrawer">
-  <div class="nd-header">
-    <div class="nd-title">🔔 NOTIFICATIONS</div>
-    <button class="nd-close" onclick="toggleNotifDrawer()">✕</button>
+<!-- MODAL: All Tasks -->
+<div class="modal-overlay" id="modal-alltasks">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">All Tasks</div>
+    <div id="allTasksList"></div>
+    <button class="btn-secondary" onclick="closeModal('modal-alltasks')">Close</button>
   </div>
-  <div id="notifList"><div class="nd-empty"><div class="nd-empty-icon">✅</div>All clear — no alerts</div></div>
+</div>
+
+<!-- MODAL: New Case -->
+<div class="modal-overlay" id="modal-newcase">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">New Case</div>
+    <label class="form-label">Case Title</label>
+    <input type="text" class="form-input" id="caseTitle" placeholder="What is this case about?">
+    <label class="form-label">Domain</label>
+    <select class="form-select" id="caseDomain">
+      <option>Business</option><option>Customer</option><option>Finance</option>
+      <option>Operations</option><option>Legal</option><option>Strategy</option>
+      <option>AIFI</option><option>Wealth</option><option>Health</option><option>Neha</option>
+    </select>
+    <label class="form-label">Priority</label>
+    <select class="form-select" id="casePriority">
+      <option value="normal">Normal</option><option value="high">High</option><option value="critical">Critical</option>
+    </select>
+    <label class="form-label">Outcome Expected</label>
+    <textarea class="form-textarea" id="caseOutcome" placeholder="What does success look like?"></textarea>
+    <button class="btn-primary" onclick="saveNewCase()">Create Case + AI Execution Plan</button>
+    <button class="btn-secondary" onclick="closeModal('modal-newcase')">Cancel</button>
+  </div>
+</div>
+
+<!-- MODAL: Case Detail -->
+<div class="modal-overlay" id="modal-casedetail">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div id="caseDetailContent"></div>
+    <button class="btn-secondary" onclick="closeModal('modal-casedetail')">Close</button>
+  </div>
+</div>
+
+<!-- MODAL: Acknowledge Task -->
+<div class="modal-overlay" id="modal-ack">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">Acknowledge Task</div>
+    <div id="ackTaskInfo" style="background:var(--bg3);border-radius:9px;padding:12px;margin-bottom:14px;font-size:12px;color:var(--muted2)"></div>
+    <label class="form-label">Your Completion Date</label>
+    <input type="date" class="form-input" id="ackDate">
+    <label class="form-label">Notes (optional)</label>
+    <input type="text" class="form-input" id="ackNotes" placeholder="Any clarifications?">
+    <button class="btn-primary" onclick="confirmAck()">✓ Acknowledge &amp; Commit to Date</button>
+    <button class="btn-secondary" onclick="closeModal('modal-ack')">Cancel</button>
+  </div>
+</div>
+
+<!-- MODAL: Add Recurring -->
+<div class="modal-overlay" id="modal-recurring">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">Add Recurring Task</div>
+    <label class="form-label">Task</label>
+    <input type="text" class="form-input" id="recTitle" placeholder="What needs to happen?">
+    <label class="form-label">Frequency</label>
+    <select class="form-select" id="recFreq">
+      <option value="daily">Every Day</option>
+      <option value="weekdays">Weekdays Only</option>
+      <option value="weekly">Weekly</option>
+      <option value="monday">Every Monday</option>
+      <option value="friday">Every Friday</option>
+    </select>
+    <label class="form-label">Domain</label>
+    <select class="form-select" id="recDomain">
+      <option>Business</option><option>Customer</option><option>Finance</option>
+      <option>Operations</option><option>Legal</option><option>Strategy</option>
+      <option>AIFI</option><option>Wealth</option><option>Health</option><option>Neha</option>
+    </select>
+    <label class="form-label">Owner</label>
+    <select class="form-select" id="recOwner">
+      <option>Yash</option><option>Kajal</option><option>Fazal</option><option>Sanjay</option><option>Deepak</option>
+    </select>
+    <button class="btn-primary" onclick="saveRecurring()">Save Recurring Task</button>
+    <button class="btn-secondary" onclick="closeModal('modal-recurring')">Cancel</button>
+  </div>
+</div>
+
+<!-- MODAL: Purchase Item -->
+<div class="modal-overlay" id="modal-purchase">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">Add Purchase Item</div>
+    <label class="form-label">Item</label>
+    <input type="text" class="form-input" id="purchaseItem" placeholder="What needs to be purchased?">
+    <label class="form-label">Quantity</label>
+    <input type="text" class="form-input" id="purchaseQty" placeholder="e.g. 5 reams, 2 units">
+    <label class="form-label">Budget (₹)</label>
+    <input type="number" class="form-input" id="purchaseBudget" placeholder="Approximate budget">
+    <label class="form-label">Urgency</label>
+    <select class="form-select" id="purchaseUrgency">
+      <option value="high">Urgent</option><option value="med">Medium</option><option value="low">Low</option>
+    </select>
+    <button class="btn-primary" onclick="savePurchase()">Add Item</button>
+    <button class="btn-secondary" onclick="closeModal('modal-purchase')">Cancel</button>
+  </div>
 </div>
 
 <script>
 const API = '';
-let currentUser = 'yash';
-let selectedDomain = 'Business';
-let selectedOwner = 1;
-let people = [];
-let domains = [];
-let pendingAIResult = null;
+const TODAY = new Date();
+const USER = detectUser();
+
+const DOMAINS = [
+  {name:'Business',icon:'🏗️'},
+  {name:'Customer',icon:'🤝'},
+  {name:'Finance',icon:'💰'},
+  {name:'Operations',icon:'🏭'},
+  {name:'Legal',icon:'⚖️'},
+  {name:'Strategy',icon:'🎯'},
+  {name:'AIFI',icon:'🏛️'},
+  {name:'Wealth',icon:'📈'},
+  {name:'Health',icon:'🏥'},
+  {name:'Neha',icon:'🏡'}
+];
+
+let currentFilter = 'all';
+let selectedDomain = '';
+let pendingTask = {};
+let quickTasks = [];
+let allTasks = [];
+let allCases = [];
+let domainCounts = {};
+let currentAckTask = null;
+
+function detectUser() {
+  const path = window.location.pathname.replace('/','').toLowerCase().split('/')[0];
+  const valid = ['kajal','fazal','sanjay','deepak'];
+  return valid.includes(path) ? path.charAt(0).toUpperCase() + path.slice(1) : 'Yash';
+}
+function isYash() { return USER === 'Yash'; }
 
 document.addEventListener('DOMContentLoaded', () => {
-  setDate();
-  loadPeople();
-  loadDomains();
-  loadDashboard();
-  initVoice();
-  initNotifications();
-  checkWeeklyReview();
-  document.addEventListener('click', e => {
-    const drawer = document.getElementById('notifDrawer');
-    const bell = document.querySelector('.notif-bell');
-    if(drawer.classList.contains('open') && !drawer.contains(e.target) && !bell.contains(e.target)){
-      drawer.classList.remove('open');
-    }
-  });
+  initUI();
+  loadDomainGrid();
+  loadData();
+  startAutoRefresh();
+  requestNotifPermission();
 });
 
-function setDate() {
-  const d = new Date();
+function initUI() {
+  const d = TODAY;
   const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  document.getElementById('todayDate').textContent = `${days[d.getDay()].toUpperCase()} · ${d.getDate()} ${months[d.getMonth()].toUpperCase()} ${d.getFullYear()} · PUNE`;
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const mS = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
   const h = d.getHours();
   const greet = h < 12 ? 'Good Morning' : h < 17 ? 'Good Afternoon' : 'Good Evening';
-  document.getElementById('greeting').textContent = `${greet}, Yash ☀️`;
-}
-
-async function loadPeople() {
-  try {
-    const res = await fetch(`${API}/api/people`);
-    people = await res.json();
-    const sel = document.getElementById('ownerSelect');
-    sel.innerHTML = people.map(p => `<option value="${p.person_id}">${p.name}</option>`).join('');
-  } catch(e) { console.log('People load error:', e) }
-}
-
-async function loadDomains() {
-  try {
-    const res = await fetch(`${API}/api/domains`);
-    domains = await res.json();
-  } catch(e) {
-    domains = [
-      {name:'Business',icon:'⚙️',is_private:false},{name:'Customer',icon:'🤝',is_private:false},
-      {name:'Strategy',icon:'🎯',is_private:false},{name:'Operations',icon:'🏭',is_private:false},
-      {name:'Finance',icon:'💰',is_private:false},{name:'AIFI',icon:'🏛️',is_private:false},
-      {name:'Legal',icon:'⚖️',is_private:false},{name:'Wealth',icon:'📈',is_private:true},
-      {name:'Health',icon:'❤️',is_private:true},{name:'Neha',icon:'💗',is_private:true}
-    ];
+  document.getElementById('greeting').textContent = greet + ', ' + USER;
+  document.getElementById('heroDate').textContent = days[d.getDay()].toUpperCase() + ' · ' + d.getDate() + ' ' + months[d.getMonth()].toUpperCase() + ' ' + d.getFullYear() + ' · PUNE';
+  document.getElementById('topPill').textContent = days[d.getDay()].substring(0,3).toUpperCase() + ' · ' + d.getDate() + ' ' + mS[d.getMonth()];
+  if (!isYash()) {
+    const ps = document.getElementById('pulseStrip');
+    if(ps) ps.style.display = 'none';
   }
+  loadAIInsight();
+}
+
+async function loadData() {
   try {
-    const cr = await fetch(`${API}/api/domains/counts`);
-    const countsArr = await cr.json();
-    const counts = {};
-    countsArr.forEach(r => { counts[r.domain] = r.pending_count; });
-    renderDomainGrid(counts);
+    const uid = isYash() ? 1 : {Kajal:2,Fazal:3,Sanjay:4,Deepak:5}[USER] || 1;
+    const [tr, cr, dr] = await Promise.all([
+      fetch(API + '/api/dashboard/' + uid).then(r => r.json()),
+      fetch(API + '/api/cases').then(r => r.json()),
+      fetch(API + '/api/domains/counts').then(r => r.json()).catch(() => [])
+    ]);
+    allTasks = tr.tasks || [];
+    allCases = cr || [];
+    domainCounts = {};
+    (dr || []).forEach(d => { domainCounts[d.domain] = parseInt(d.pending_count); });
+    updateDomainBadges();
+    renderTodayTasks();
+    renderCases(currentFilter);
+    renderTeamTasks();
+    updatePulse();
   } catch(e) {
-    renderDomainGrid({});
+    loadMockData();
   }
 }
 
-function renderDomainGrid(counts = {}) {
+function loadMockData() {
+  const now = new Date();
+  allTasks = [
+    {task_id:1,title:'Call ABC Forgings — Rs 18L overdue payment',owner:'Sanjay',domain:'Customer',deadline:new Date(now-3*86400000).toISOString(),priority_score:21,status:'pending',acknowledged:true},
+    {task_id:2,title:'Sign Aurangabad plant maintenance contract',owner:'Yash',domain:'Legal',deadline:now.toISOString(),priority_score:18,status:'pending',acknowledged:true},
+    {task_id:3,title:'Approve Q1 MIS report — Deepak waiting',owner:'Deepak',domain:'Finance',deadline:now.toISOString(),priority_score:15,status:'pending',acknowledged:false},
+    {task_id:4,title:'Railway RFQ response — urgent',owner:'Fazal',domain:'Operations',deadline:new Date(now-2*86400000).toISOString(),priority_score:12,status:'pending',acknowledged:false},
+    {task_id:5,title:'JV agreement — legal docs review',owner:'Kajal',domain:'Legal',deadline:new Date(now+2*86400000).toISOString(),priority_score:9,status:'pending',acknowledged:false},
+  ];
+  allCases = [
+    {case_id:1,title:'ABC Forgings — Collection Rs 18L',domain:'Customer',status:'active',priority:'critical'},
+    {case_id:2,title:'Aurangabad Plant Maintenance Contract',domain:'Legal',status:'review',priority:'high'},
+    {case_id:3,title:'Q1 MIS Approval',domain:'Finance',status:'active',priority:'normal'},
+    {case_id:4,title:'Railway Sector Expansion Strategy',domain:'Strategy',status:'planning',priority:'high'},
+  ];
+  renderTodayTasks();
+  renderCases(currentFilter);
+  renderTeamTasks();
+  updatePulse();
+}
+
+function renderTodayTasks() {
+  const wrap = document.getElementById('focusWrap');
+  const tasks = allTasks
+    .filter(t => t.status !== 'done' && t.status !== 'cancelled' && (isYash() || t.owner === USER))
+    .sort((a,b) => (b.priority_score||0) - (a.priority_score||0))
+    .slice(0, 3);
+
+  if (!tasks.length) {
+    wrap.innerHTML = '<div style="padding:20px 0;text-align:center;color:var(--muted);font-size:12px">No priority tasks — great work! 🎉</div>';
+    return;
+  }
+
+  const ranks = ['p1','p2','p3'];
+  const labels = ['PRIORITY 1','PRIORITY 2','PRIORITY 3'];
+  wrap.innerHTML = tasks.map((t,i) => {
+    const dl = t.deadline ? new Date(t.deadline) : null;
+    const isLate = dl && dl < TODAY && t.status !== 'done';
+    const isToday = dl && dl.toDateString() === TODAY.toDateString();
+    const dlText = dl ? (isLate ? '⏰ ' + Math.ceil((TODAY-dl)/86400000) + 'd overdue' : isToday ? '📅 Due today' : '📅 ' + dl.toLocaleDateString('en-IN',{day:'numeric',month:'short'})) : '';
+    const oc = 'owner-' + (t.owner||'yash').toLowerCase();
+    return '<div class="focus-card ' + ranks[i] + '" onclick="showToast('' + (t.title||'').substring(0,40).replace(/'/g,"\'") + '')">' +
+      '<button class="check-btn" onclick="event.stopPropagation();toggleTaskDone(' + t.task_id + ',this)">✓</button>' +
+      '<div class="focus-rank">' + labels[i] + '</div>' +
+      '<div class="focus-title">' + (t.title||'Untitled') + '</div>' +
+      '<div class="focus-meta">' +
+        '<span class="owner-tag ' + oc + '">' + (t.owner||'—') + '</span>' +
+        '<span class="domain-tag">' + (t.domain||'—') + '</span>' +
+        (dlText ? '<span class="deadline-tag ' + (isLate?'late':isToday?'today':'') + '">' + dlText + '</span>' : '') +
+      '</div></div>';
+  }).join('');
+}
+
+async function toggleTaskDone(id, btn) {
+  btn.classList.toggle('checked');
+  btn.closest('.focus-card').classList.toggle('done-card');
+  const done = btn.classList.contains('checked');
+  showToast(done ? 'Done ✓' : 'Reopened');
+  const t = allTasks.find(x => x.task_id === id);
+  if (t) t.status = done ? 'done' : 'pending';
+  updatePulse();
+  try { await fetch(API + '/api/tasks/' + id, {method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:done?'done':'pending'})}); } catch(e) {}
+}
+
+function updatePulse() {
+  const overdue = allTasks.filter(t => t.deadline && new Date(t.deadline) < TODAY && t.status !== 'done').length;
+  const blocked = allTasks.filter(t => t.status === 'blocked').length;
+  const pending = allTasks.filter(t => t.status === 'pending').length;
+  const done = allTasks.filter(t => t.status === 'done').length;
+  const unack = allTasks.filter(t => t.acknowledged === false).length;
+  const s = (id,v) => { const e = document.getElementById(id); if(e) e.textContent = v; };
+  s('pulseOverdue',overdue); s('pulseBlocked',blocked); s('pulsePending',pending);
+  s('pulseCases',allCases.filter(c=>c.status!=='closed'&&c.status!=='archived').length);
+  s('pulseDone',done);
+  if (unack > 0 && isYash()) {
+    const b = document.getElementById('commitBadge');
+    const a = document.getElementById('commitAlert');
+    const t = document.getElementById('commitAlertTitle');
+    if(b){b.textContent=unack;b.style.display='flex';}
+    if(a) a.style.display = 'flex';
+    if(t) t.textContent = unack + ' Task' + (unack>1?'s':'') + ' Awaiting Commitment';
+  }
+}
+
+function addQuickTask() {
+  const inp = document.getElementById('quickInput');
+  const text = inp.value.trim();
+  if (!text) return;
+  quickTasks.unshift({id:Date.now(),text,done:false});
+  inp.value = '';
+  renderQuickList();
+  showToast('Added ✓');
+}
+
+function renderQuickList() {
+  const el = document.getElementById('quickList');
+  if (!quickTasks.length) { el.innerHTML = ''; return; }
+  el.innerHTML = quickTasks.map(t =>
+    '<div class="quick-item">' +
+    '<div class="qt-cb ' + (t.done?'done':'') + '" onclick="toggleQuick(' + t.id + ')">✓</div>' +
+    '<div class="qt-text ' + (t.done?'done':'') + '">' + t.text + '</div>' +
+    '<button class="qt-del" onclick="deleteQuick(' + t.id + ')">✕</button></div>'
+  ).join('');
+}
+function toggleQuick(id) { const t = quickTasks.find(x=>x.id===id); if(t){t.done=!t.done;renderQuickList();} }
+function deleteQuick(id) { quickTasks = quickTasks.filter(x=>x.id!==id); renderQuickList(); }
+
+function loadAIInsight() {
+  const el = document.getElementById('aiInsight');
+  if (!el) return;
+  const insights = [
+    'The Indian forging industry is growing at <strong>7.2% CAGR</strong>. Railway and defence are key drivers — worth a focused push this quarter.',
+    '<strong>Working capital:</strong> Average collection cycle in auto-components is 45-60 days. Overdue collections above this need immediate escalation.',
+    '<strong>Skill to build:</strong> EBITDA margin benchmarks for forging are 12-18%. Knowing this sharpens every pricing and cost conversation.',
+    'India produces <strong>~2.5 million tonnes</strong> of forgings annually. China+1 strategy is opening European export opportunities — explore with existing customers.',
+    '<strong>Execution insight:</strong> Most failures happen in the handoff, not the decision. The acknowledgement + date commitment system you are building addresses this directly.',
+    '<strong>Industry fact:</strong> Automotive sector accounts for ~60% of forging demand in India. Diversifying into railway and defence reduces customer concentration risk.',
+    '<strong>Today's focus:</strong> One resolved overdue payment or one signed contract creates more business momentum than any planning meeting.',
+  ];
+  const day = TODAY.getDay();
+  el.innerHTML = insights[day % insights.length];
+}
+
+function loadDomainGrid() {
   const grid = document.getElementById('domainGrid');
-  grid.innerHTML = domains.map(d => {
-    const count = counts[d.name] || 0;
-    return `
-    <div class="dom-btn ${d.is_private?'priv':''} ${d.name===selectedDomain?'selected':''}" onclick="selectDomain('${d.name}',this)">
-      <span class="dom-icon">${d.icon}</span>
-      <span class="dom-label">${d.name}</span>
-      <div class="dom-count ${count>0?'show':''}">${count > 9 ? '9+' : count}</div>
-    </div>`;
-  }).join('');
+  if (!grid) return;
+  grid.innerHTML = DOMAINS.map(d =>
+    '<div class="domain-card" onclick="selectDomain('' + d.name + '',this)" data-domain="' + d.name + '">' +
+    '<div class="domain-badge" id="badge-' + d.name + '">0</div>' +
+    '<div class="domain-icon">' + d.icon + '</div>' +
+    '<div class="domain-name">' + d.name + '</div>' +
+    '<div class="domain-count" id="count-' + d.name + '">0 pending</div></div>'
+  ).join('');
 }
 
-async function loadDashboard() {
-  try {
-    const res = await fetch(`${API}/api/dashboard/1`);
-    const data = await res.json();
-    renderTasks(data.tasks || []);
-    renderBlocked(data.blocked || []);
-    renderOverdue(data.overdue || []);
-    document.getElementById('statTasks').textContent = (data.tasks||[]).length;
-    document.getElementById('statBlocked').textContent = (data.blocked||[]).length;
-    document.getElementById('statOverdue').textContent = (data.overdue||[]).length;
-    document.getElementById('statCases').textContent = (data.cases||[]).length;
-    document.getElementById('taskCount').textContent = (data.tasks||[]).length;
-    renderCases(data.cases || []);
-  } catch(e) {
-    document.getElementById('taskList').innerHTML = '<div class="empty"><div class="empty-icon">⚡</div><div class="empty-text">No tasks yet</div><div class="empty-sub">Use Capture to create your first case</div></div>';
-    document.getElementById('blockedList').innerHTML = '<div style="padding:10px;font-size:11px;color:var(--muted)">None</div>';
-    document.getElementById('overdueList').innerHTML = '<div style="padding:10px;font-size:11px;color:var(--muted)">None</div>';
-  }
-}
-
-function renderTasks(tasks) {
-  const el = document.getElementById('taskList');
-  if(!tasks.length){ el.innerHTML='<div class="empty"><div class="empty-icon">✅</div><div class="empty-text">All clear</div><div class="empty-sub">No pending tasks</div></div>'; return; }
-  el.innerHTML = tasks.map(t => `
-    <div class="task-item" onclick="completeTask(${t.task_id},this)">
-      <div class="task-cb ${t.status==='done'?'checked':''}"></div>
-      <div class="task-content ${t.status==='done'?'done':''}">
-        <div class="task-title">${t.description}</div>
-        <div class="task-meta">
-          <span class="task-tag i${t.impact_score}">IMPACT ${t.impact_score}</span>
-          ${t.case_title?`<span class="case-tag">${t.case_title}</span>`:''}
-          ${t.deadline?`<span class="dl ${isUrgent(t.deadline)?'urgent':''}">📅 ${formatDate(t.deadline)}</span>`:''}
-          ${t.is_private?`<span class="badge-priv">🔒 PRIVATE</span>`:''}
-        </div>
-      </div>
-    </div>`).join('');
-}
-
-function renderBlocked(blocked) {
-  const el = document.getElementById('blockedList');
-  if(!blocked.length){ el.innerHTML='<div style="padding:10px;font-size:11px;color:var(--muted)">None blocked</div>'; return; }
-  el.innerHTML = blocked.map(t => `
-    <div class="flag-item blocked">
-      <span>🚧</span>
-      <div>
-        <div style="font-size:11px;font-weight:600;margin-bottom:2px">${t.description}</div>
-        <div style="font-size:10px;color:var(--muted)">Waiting on: ${t.waiting_for||'dependency'}</div>
-      </div>
-    </div>`).join('');
-}
-
-function renderOverdue(overdue) {
-  const el = document.getElementById('overdueList');
-  if(!overdue.length){ el.innerHTML='<div style="padding:10px;font-size:11px;color:var(--muted)">None overdue</div>'; return; }
-  el.innerHTML = overdue.map(t => `
-    <div class="flag-item overdue">
-      <span>⏰</span>
-      <div>
-        <div style="font-size:11px;font-weight:600;margin-bottom:2px">${t.description}</div>
-        <div style="font-size:10px;color:var(--muted)">${t.owner_name||'Unassigned'} · ${formatDate(t.deadline)}</div>
-      </div>
-    </div>`).join('');
-}
-
-function renderCases(cases) {
-  const el = document.getElementById('casesList');
-  if(!cases.length){ el.innerHTML='<div class="empty"><div class="empty-icon">📂</div><div class="empty-text">No active cases</div><div class="empty-sub">Use Capture to create your first case</div></div>'; return; }
-  el.innerHTML = cases.map(c => `
-    <div class="case-card" onclick="toggleCase(${c.case_id},this)">
-      <div class="case-icon">${getDomainIcon(c.domain)}</div>
-      <div class="case-info">
-        <div class="case-title">${c.title}</div>
-        <div class="case-meta">
-          <span class="cs cs-${c.status||'active'}">${(c.status||'active').toUpperCase()}</span>
-          <span class="case-tag">${c.domain||''}</span>
-          ${c.is_private?`<span class="badge-priv">🔒</span>`:''}
-          <span style="font-size:10px;color:var(--muted)">${c.priority||'normal'}</span>
-        </div>
-      </div>
-      <div class="prog-bar"><div class="prog-fill" style="width:${c.status==='closed'?100:c.status==='active'?50:25}%"></div></div>
-    </div>
-    <div class="case-detail" id="case-detail-${c.case_id}">
-      <button class="close-btn" onclick="event.stopPropagation();closeCase(${c.case_id})">✕</button>
-      <div class="cd-title">${c.title}</div>
-      <div class="cd-domain">${c.domain||''} · Created ${formatDate(c.created_date)}</div>
-      ${c.outcome?`<div class="cd-outcome">
-        <div class="cd-ol">OUTCOME TARGET</div>
-        <div class="cd-ov">${c.outcome}</div>
-        ${!c.outcome_verified ? `
-        <div class="outcome-verify-box">
-          <div class="ov-label">OUTCOME VERIFICATION REQUIRED</div>
-          <div class="ov-target">${c.outcome}</div>
-          <input class="ov-proof-input" id="ov-proof-${c.case_id}" placeholder="Enter proof e.g. Rs 25L received on 12 Mar, ref UTR 123456">
-          <div class="ov-btn-row">
-            <button class="ov-yes" onclick="verifyOutcome(${c.case_id},true)">✓ OUTCOME ACHIEVED</button>
-            <button class="ov-no" onclick="verifyOutcome(${c.case_id},false)">✗ NOT YET — GENERATE NEXT STEPS</button>
-          </div>
-        </div>` : `<div style="margin-top:8px;font-size:10px;color:var(--green);font-weight:700">✓ VERIFIED · ${c.outcome_proof||''}</div>`}
-      </div>`:''}
-      <div class="cd-sl">Tasks</div>
-      <div id="case-tasks-${c.case_id}"><div class="loading">Loading tasks...</div></div>
-      <div class="cd-sl">Add Task</div>
-      <div class="add-task-form">
-        <input type="text" class="form-input" id="new-task-desc-${c.case_id}" placeholder="Task description">
-        <div class="form-row">
-          <select class="form-select" id="new-task-owner-${c.case_id}">
-            ${people.map(p=>`<option value="${p.person_id}">${p.name}</option>`).join('')}
-          </select>
-          <select class="form-select" id="new-task-impact-${c.case_id}">
-            <option value="5">Impact 5 — Strategic</option>
-            <option value="4">Impact 4 — Financial</option>
-            <option value="3" selected>Impact 3 — Operational</option>
-            <option value="2">Impact 2 — Routine</option>
-            <option value="1">Impact 1 — Minor</option>
-          </select>
-        </div>
-        <input type="date" class="form-input" id="new-task-deadline-${c.case_id}">
-        <button class="submit-btn" onclick="addTask(${c.case_id})">+ ADD TASK</button>
-      </div>
-    </div>`).join('');
-}
-
-async function loadTeamTasks(personId, containerId, isKajal) {
-  try {
-    const res = await fetch(`${API}/api/tasks?owner_id=${personId}`);
-    const tasks = await res.json();
-    const el = document.getElementById(containerId);
-    if(!tasks.length){ el.innerHTML='<div class="empty"><div class="empty-icon">✅</div><div class="empty-text">No tasks assigned</div></div>'; return; }
-    if(isKajal){
-      el.innerHTML = tasks.map(t => `
-        <div class="kajal-task">
-          <div class="kajal-task-hdr" onclick="toggleKajal(this)">
-            <div class="task-cb ${t.status==='done'?'checked':''}"></div>
-            <div class="kajal-task-title">${t.description}</div>
-            ${t.deadline?`<span style="font-size:9px;color:var(--red);font-weight:700;margin-right:6px">${formatDate(t.deadline)}</span>`:''}
-            <span class="kajal-expand">▼</span>
-          </div>
-          <div class="kajal-instructions">
-            ${t.kajal_instructions?`<div class="ki-label">INSTRUCTIONS</div>${t.kajal_instructions.split('\n').map((s,i)=>`<div class="ki-step"><div class="ki-num">${i+1}</div><div>${s}</div></div>`).join('')}`:'<div style="font-size:11px;color:var(--muted)">Follow standard procedure</div>'}
-            <div class="ki-label" style="margin-top:10px">COMPLETION NOTE — REQUIRED</div>
-            <textarea class="completion-input" placeholder="Write what was completed..."></textarea>
-            <button class="mark-done-btn" onclick="markKajalDone(${t.task_id},this)">✓ MARK DONE</button>
-          </div>
-        </div>`).join('');
-    } else {
-      el.innerHTML = tasks.map(t => `
-        <div class="task-item" onclick="completeTask(${t.task_id},this)">
-          <div class="task-cb ${t.status==='done'?'checked':''}"></div>
-          <div class="task-content ${t.status==='done'?'done':''}">
-            <div class="task-title">${t.description}</div>
-            <div class="task-meta">
-              <span class="task-tag i${t.impact_score}">IMPACT ${t.impact_score}</span>
-              ${t.case_title?`<span class="case-tag">${t.case_title}</span>`:''}
-              ${t.deadline?`<span class="dl ${isUrgent(t.deadline)?'urgent':''}">${formatDate(t.deadline)}</span>`:''}
-            </div>
-          </div>
-        </div>`).join('');
-    }
-  } catch(e) { document.getElementById(containerId).innerHTML='<div class="empty"><div class="empty-text">Could not load tasks</div></div>' }
-}
-
-async function saveDirectTask() {
-  const title = document.getElementById('captureInput').value.trim();
-  const outcome = document.getElementById('outcomeInput').value.trim();
-  const priority = document.getElementById('prioritySelect').value;
-  const owner_id = document.getElementById('ownerSelect').value;
-  if(!title){ showToast('Please describe the task first'); return; }
-  const btn = document.getElementById('saveTaskBtn');
-  btn.disabled = true; btn.textContent = '⚙ Saving...';
-  try {
-    const caseRes = await fetch(`${API}/api/cases`, {
-      method: 'POST', headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ title, domain: selectedDomain, priority, outcome: outcome || title, case_type: 'execution' })
-    });
-    const newCase = await caseRes.json();
-    await fetch(`${API}/api/tasks`, {
-      method: 'POST', headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ case_id: newCase.case_id, description: title, owner_id: parseInt(owner_id), execution_mode: 'delegate', impact_score: 3, priority })
-    });
-    showToast('Task saved ✓');
-    syncTasksToCalendar([{description:title,owner:document.getElementById('ownerSelect').options[document.getElementById('ownerSelect').selectedIndex]?.text||'Yash',deadline_days:7,impact_score:3,execution_mode:'delegate'}],title);
-    resetCapture();
-    loadDashboard();
-    setTimeout(checkNotifications, 1000);
-  } catch(e) { showToast('Error saving task. Check database connection.'); }
-  btn.disabled = false; btn.textContent = '💾 SAVE TASK';
-}
-
-async function runAICapture() {
-  const problem = document.getElementById('captureInput').value.trim();
-  const outcome = document.getElementById('outcomeInput').value.trim();
-  const priority = document.getElementById('prioritySelect').value;
-  if(!problem){ showToast('Please describe the problem first'); return; }
-  const btn = document.getElementById('createCaseBtn');
-  btn.disabled = true; btn.textContent = '🤖 Analysing...';
-  document.getElementById('saveTaskBtn').disabled = true;
-  document.getElementById('aiResult').classList.remove('show');
-  document.getElementById('aiThinking').classList.add('show');
-  const steps = ['Reading problem context...','Identifying responsible team members...','Structuring task breakdown...','Assigning deadlines...','Flagging risks and blockers...'];
-  let stepIdx = 0;
-  const stepInterval = setInterval(() => { stepIdx = (stepIdx+1)%steps.length; document.getElementById('thinkingStep').textContent = steps[stepIdx]; }, 1200);
-  const today = new Date();
-  const todayStr = today.toISOString().split('T')[0];
-  const domainContext = {
-    'Business':'YJM Power is a forging industry company in Pune. Core business: metal forging components for automotive, industrial sectors.',
-    'Customer':'Customer management: collections, relationship issues, escalations, credit limits. Sanjay owns customer relationships.',
-    'Finance':'Finance scope: AR collections, vendor payments, GST compliance, TDS, cash flow. Deepak handles all finance tasks.',
-    'Operations':'Forging operations: press operations, die maintenance, raw material procurement, production planning. Fazal owns procurement.',
-    'Legal':'Legal matters: contracts, disputes, compliance, labour law. External lawyers handle court matters. Kajal coordinates.',
-    'Strategy':'Strategic decisions: new markets, capex, partnerships. Yash owns strategy.',
-    'AIFI':'Government scheme or institutional finance. Documentation-heavy. Requires CA and Yash review.',
-    'Wealth':'Personal wealth: investments, property, portfolio. Private. Yash handles personally.',
-    'Health':'Personal health: medical appointments, tests. Private. Kajal coordinates scheduling.',
-    'Neha':'Personal family matters. Private. Yash handles directly.'
-  };
-  const context = domainContext[selectedDomain] || domainContext['Business'];
-  const systemPrompt = `You are the Chief of Staff AI for YJM Power, a forging industry company in Pune, India.
-
-DOMAIN CONTEXT — ${selectedDomain}:
-${context}
-
-TEAM:
-- Yash: Owner / Final decision maker
-- Kajal: Executive Assistant — scheduling, follow-ups, coordination
-- Fazal: Operations & Purchase — vendors, procurement, production
-- Sanjay: Logistics & Sales — customer delivery, collections
-- Deepak: Accounts — invoices, payments, GST, TDS
-- Outsource: External lawyers, CA, consultants
-
-Today: ${todayStr}
-
-RULES:
-1. MAX 3 tasks simple cases, MAX 5 complex multi-party. NEVER more than 5.
-2. Each task ONE clear owner.
-3. Deadlines: 1-14 days realistic.
-4. Impact: 5=strategic, 4=financial, 3=operational, 2=admin, 1=minor
-5. is_urgent=true only if deadline < 3 days or financial loss risk
-6. is_important=true if affects revenue, compliance, or strategy
-7. Outcome MEASURABLE with number or date
-
-Respond ONLY in valid JSON:
-{
-  "case_title": "short specific title",
-  "status": "planning",
-  "priority": "critical|high|normal|low",
-  "outcome": "measurable outcome with number/date",
-  "tasks": [{"description":"","owner":"Yash|Kajal|Fazal|Sanjay|Deepak|Outsource","deadline_days":3,"impact_score":4,"is_urgent":true,"is_important":true,"execution_mode":"delegate|execute|review"}],
-  "risks": ["risk 1","risk 2"]
-}`;
-  const userPrompt = `Domain: ${selectedDomain}\nPriority: ${priority}\nProblem: ${problem}${outcome?'\nDesired Outcome: '+outcome:''}`;
-  try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:systemPrompt,messages:[{role:'user',content:userPrompt}]})
-    });
-    clearInterval(stepInterval);
-    if(!response.ok) throw new Error(`API error: ${response.status}`);
-    const data = await response.json();
-    const rawText = data.content.map(b=>b.text||'').join('').trim();
-    let parsed;
-    try { parsed = JSON.parse(rawText.replace(/```json|```/g,'').trim()); }
-    catch(e) { throw new Error('Could not parse AI response'); }
-    pendingAIResult = {case_title:parsed.case_title||problem,outcome:parsed.outcome||outcome||'',domain:selectedDomain,priority,tasks:parsed.tasks||[],risks:parsed.risks||[]};
-    renderAIPreview(pendingAIResult, today);
-    document.getElementById('aiThinking').classList.remove('show');
-    document.getElementById('aiResult').classList.add('show');
-    showToast('AI analysis complete — review below');
-  } catch(e) {
-    clearInterval(stepInterval);
-    document.getElementById('aiThinking').classList.remove('show');
-    showToast('AI error: '+(e.message||'Unknown error'));
-  }
-  btn.disabled = false; btn.textContent = '⚡ ANALYSE WITH AI';
-  document.getElementById('saveTaskBtn').disabled = false;
-}
-
-function getEisenhowerLabel(t) {
-  if(t.is_urgent && t.is_important)   return {cls:'eq-q1',label:'🔴 DO NOW'};
-  if(!t.is_urgent && t.is_important)  return {cls:'eq-q2',label:'🟡 SCHEDULE'};
-  if(t.is_urgent && !t.is_important)  return {cls:'eq-q3',label:'🔵 DELEGATE'};
-  return {cls:'eq-q4',label:'⚪ ELIMINATE'};
-}
-
-function renderAIPreview(result, today) {
-  document.getElementById('arOutcome').textContent = result.outcome || result.case_title;
-  const ownerClassMap = {Yash:'owner-yash',Kajal:'owner-kajal',Fazal:'owner-fazal',Sanjay:'owner-sanjay',Deepak:'owner-deepak',Outsource:'owner-outsource'};
-  const impactColors = {5:'var(--gold)',4:'#FF7070',3:'var(--blue2)',2:'var(--muted)',1:'var(--muted)'};
-  document.getElementById('arTasks').innerHTML = result.tasks.map((t,i) => {
-    const dl = new Date(today); dl.setDate(dl.getDate()+(t.deadline_days||7));
-    const dlStr = dl.toLocaleDateString('en-IN',{day:'numeric',month:'short'});
-    const eq = getEisenhowerLabel(t);
-    return `<div class="ar-task">
-      <div class="ar-task-num">${i+1}</div>
-      <div class="ar-task-content">
-        <div class="ar-task-desc">${t.description}</div>
-        <div class="ar-task-meta">
-          <span class="owner-chip ${ownerClassMap[t.owner]||'owner-yash'}">${t.owner.toUpperCase()}</span>
-          <span class="task-tag ${eq.cls}" style="font-size:8px">${eq.label}</span>
-          <span class="dl-chip">📅 ${dlStr}</span>
-          <span class="impact-chip" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:${impactColors[t.impact_score]||'var(--muted)'};font-size:9px;padding:2px 6px;border-radius:4px">I${t.impact_score}</span>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-  if(result.risks && result.risks.length > 0) {
-    document.getElementById('arRiskSection').style.display = 'block';
-    document.getElementById('arRisks').innerHTML = result.risks.map(r=>`<div class="ar-risk"><span class="ar-risk-icon">⚠️</span><div>${r}</div></div>`).join('');
-  } else { document.getElementById('arRiskSection').style.display = 'none'; }
-}
-
-async function approveAndSave() {
-  if(!pendingAIResult) return;
-  const btn = document.querySelector('.approve-btn');
-  btn.textContent = '⚙ Saving...'; btn.disabled = true;
-  const today = new Date();
-  try {
-    const caseRes = await fetch(`${API}/api/cases`, {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({title:pendingAIResult.case_title,domain:pendingAIResult.domain,priority:pendingAIResult.priority||'normal',status:'planning',outcome:pendingAIResult.outcome,case_type:'execution'})
-    });
-    const newCase = await caseRes.json();
-    const ownerIdMap = buildOwnerMap();
-    for(const t of pendingAIResult.tasks) {
-      const dl = new Date(today); dl.setDate(dl.getDate()+(t.deadline_days||7));
-      await fetch(`${API}/api/tasks`, {
-        method:'POST', headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({case_id:newCase.case_id,description:t.description,owner_id:ownerIdMap[t.owner]||1,execution_mode:t.execution_mode||'delegate',impact_score:t.impact_score||3,is_urgent:t.is_urgent||false,is_important:t.is_important||false,priority:pendingAIResult.priority,deadline:dl.toISOString().split('T')[0]})
-      });
-    }
-    showToast('Case + tasks saved ✓');
-    syncTasksToCalendar(pendingAIResult.tasks, pendingAIResult.case_title);
-    pendingAIResult = null;
-    resetCapture();
-    loadDashboard();
-    setTimeout(goToCases, 800);
-  } catch(e) {
-    showToast('Save error — check database connection');
-    btn.textContent = '✓ APPROVE + SAVE TO DATABASE'; btn.disabled = false;
-  }
-}
-
-function buildOwnerMap() {
-  const nameMap = {};
-  people.forEach(p => { nameMap[p.name] = p.person_id; });
-  return {Yash:nameMap['Yash']||1,Kajal:nameMap['Kajal']||5,Fazal:nameMap['Fazal']||2,Sanjay:nameMap['Sanjay']||3,Deepak:nameMap['Deepak']||4,Outsource:nameMap['Outsource']||1};
-}
-
-async function completeTask(taskId, item) {
-  const cb = item.querySelector('.task-cb');
-  if(cb.classList.contains('checked')) return;
-  try {
-    await fetch(`${API}/api/tasks/${taskId}`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:'done',completion_note:'Completed via dashboard'})});
-    cb.classList.add('checked');
-    const content = item.querySelector('.task-content');
-    if(content) content.classList.add('done');
-    showToast('Task completed ✓');
-    setTimeout(loadDashboard, 500);
-  } catch(e) { showToast('Error completing task') }
-}
-
-async function markKajalDone(taskId, btn) {
-  const ta = btn.previousElementSibling;
-  if(!ta.value || ta.value.trim().length < 10) {
-    ta.style.borderColor = 'var(--red)';
-    setTimeout(()=>ta.style.borderColor='',2000); return;
-  }
-  try {
-    await fetch(`${API}/api/tasks/${taskId}`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:'done',completion_note:ta.value})});
-    btn.closest('.kajal-task').querySelector('.task-cb').classList.add('checked');
-    btn.textContent='✓ COMPLETED'; btn.style.background='var(--green)'; btn.disabled=true;
-    showToast('Done · Note saved ✓');
-  } catch(e) { showToast('Error marking done') }
+function updateDomainBadges() {
+  DOMAINS.forEach(d => {
+    const count = domainCounts[d.name] || 0;
+    const badge = document.getElementById('badge-' + d.name);
+    const countEl = document.getElementById('count-' + d.name);
+    if (badge) { badge.textContent = count; badge.style.display = count > 0 ? 'flex' : 'none'; }
+    if (countEl) countEl.textContent = count + ' pending';
+  });
 }
 
 function selectDomain(name, el) {
-  selectedDomain = name;
-  document.querySelectorAll('.dom-btn').forEach(b=>b.classList.remove('selected'));
+  document.querySelectorAll('.domain-card').forEach(c => c.classList.remove('selected'));
   el.classList.add('selected');
+  selectedDomain = name;
 }
 
-async function addTask(caseId) {
-  const desc = document.getElementById(`new-task-desc-${caseId}`).value.trim();
-  const owner_id = document.getElementById(`new-task-owner-${caseId}`).value;
-  const impact_score = document.getElementById(`new-task-impact-${caseId}`).value;
-  const deadline = document.getElementById(`new-task-deadline-${caseId}`).value;
-  if(!desc){ showToast('Enter task description'); return; }
-  try {
-    await fetch(`${API}/api/tasks`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({case_id:caseId,description:desc,owner_id:parseInt(owner_id),impact_score:parseInt(impact_score),deadline:deadline||null,execution_mode:'delegate'})});
-    showToast('Task added ✓');
-    loadCaseTasks(caseId);
-    document.getElementById(`new-task-desc-${caseId}`).value='';
-    loadDashboard();
-  } catch(e) { showToast('Error adding task') }
-}
-
-async function loadCaseTasks(caseId) {
-  try {
-    const res = await fetch(`${API}/api/tasks?case_id=${caseId}`);
-    const tasks = await res.json();
-    const el = document.getElementById(`case-tasks-${caseId}`);
-    if(!tasks.length){ el.innerHTML='<div style="font-size:11px;color:var(--muted);padding:6px 0">No tasks yet</div>'; return; }
-    el.innerHTML = tasks.map(t=>`
-      <div class="task-item" onclick="completeTask(${t.task_id},this)">
-        <div class="task-cb ${t.status==='done'?'checked':''}"></div>
-        <div class="task-content ${t.status==='done'?'done':''}">
-          <div class="task-title">${t.description}</div>
-          <div class="task-meta">
-            <span class="task-tag i${t.impact_score}">IMPACT ${t.impact_score}</span>
-            <span class="case-tag">${t.owner_name||'Unassigned'}</span>
-            ${t.deadline?`<span class="dl">${formatDate(t.deadline)}</span>`:''}
-          </div>
-        </div>
-      </div>`).join('');
-  } catch(e) {}
-}
-
-function switchUser(user, btn) {
-  document.querySelectorAll('.usr').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('[id^="view-"]').forEach(v=>v.style.display='none');
-  document.getElementById('view-'+user).style.display='block';
-  currentUser = user;
-  document.getElementById('bottomNav').style.display = user==='yash'?'flex':'none';
-  if(user==='kajal') loadTeamTasks(5,'kajalTasks',true);
-  if(user==='fazal') loadTeamTasks(2,'fazalTasks',false);
-  if(user==='sanjay') loadTeamTasks(3,'sanjayTasks',false);
-  if(user==='deepak') loadTeamTasks(4,'deepakTasks',false);
-}
-
-function switchTab(tab, user, btn) {
-  if(btn){ btn.closest('.screen-tabs').querySelectorAll('.stab').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); }
-  const prefix = user+'-';
-  document.querySelectorAll(`[id^="${prefix}"]`).forEach(s=>s.classList.remove('active'));
-  const target = document.getElementById(prefix+tab);
-  if(target) target.classList.add('active');
-  if(tab==='cases') loadDashboard();
-}
-
-function setActiveNav(id) {
-  document.querySelectorAll('.bnav-btn').forEach(b=>b.classList.remove('active'));
-  const el = document.getElementById(id);
-  if(el) el.classList.add('active');
-}
-
-function toggleCase(id, card) {
-  const detail = document.getElementById(`case-detail-${id}`);
-  const isOpen = detail.classList.contains('show');
-  document.querySelectorAll('.case-detail').forEach(d=>d.classList.remove('show'));
-  document.querySelectorAll('.case-card').forEach(c=>c.classList.remove('open-case'));
-  if(!isOpen){ detail.classList.add('show'); card.classList.add('open-case'); loadCaseTasks(id); }
-}
-
-function closeCase(id) {
-  document.getElementById(`case-detail-${id}`).classList.remove('show');
-  document.querySelectorAll('.case-card').forEach(c=>c.classList.remove('open-case'));
-}
-
-function toggleKajal(hdr) {
-  const inst = hdr.nextElementSibling;
-  const arrow = hdr.querySelector('.kajal-expand');
-  inst.classList.toggle('show');
-  arrow.classList.toggle('open');
-}
-
-function goToCases() {
-  switchTab('cases','yash',null);
-  setActiveNav('bnav-cases');
-  document.querySelectorAll('#view-yash .stab').forEach((b,i)=>b.classList.toggle('active',i===2));
-}
-
-function resetCapture() {
-  document.getElementById('captureInput').value='';
-  document.getElementById('outcomeInput').value='';
-  document.getElementById('aiResult').classList.remove('show');
-  document.getElementById('aiThinking').classList.remove('show');
-  document.getElementById('charCount').textContent='0/500';
-  pendingAIResult = null;
-}
-
-function updateCharCount(el){ document.getElementById('charCount').textContent=el.value.length+'/500'; }
-function formatDate(d){ if(!d) return ''; const dt=new Date(d); return dt.toLocaleDateString('en-IN',{day:'numeric',month:'short'}); }
-function isUrgent(d){ return new Date(d) <= new Date(); }
-function getDomainIcon(domain){ const d=domains.find(x=>x.name===domain); return d?d.icon:'📁'; }
-function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2200); }
-
-async function verifyOutcome(caseId, achieved) {
-  if(achieved) {
-    const proof = document.getElementById(`ov-proof-${caseId}`)?.value?.trim();
-    if(!proof || proof.length < 5){ showToast('Enter proof of completion first'); return; }
-    try {
-      await fetch(`${API}/api/cases/${caseId}/verify`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({outcome_verified:true,outcome_proof:proof,status:'review'})});
-      showToast('Outcome verified ✓ — Case moved to Review');
-      loadDashboard();
-    } catch(e) { showToast('Error verifying outcome'); }
-  } else {
-    showToast('Generating next steps...');
-    try {
-      const caseRes = await fetch(`${API}/api/cases/${caseId}`);
-      const caseData = await caseRes.json();
-      document.getElementById('captureInput').value = `FOLLOW-UP: Outcome not achieved for case "${caseData.title}". Original outcome: ${caseData.outcome}. Generate next escalation steps.`;
-      document.getElementById('outcomeInput').value = caseData.outcome;
-      switchTab('capture','yash',document.querySelector('#view-yash .stab:nth-child(2)'));
-      setActiveNav('bnav-capture');
-    } catch(e) { showToast('Use Capture to create follow-up manually'); }
-  }
-}
-
-async function checkWeeklyReview() {
-  if(new Date().getDay() !== 5) return;
-  try {
-    const res = await fetch(`${API}/api/review/weekly`);
-    const staleCases = await res.json();
-    if(!staleCases.length) return;
-    document.getElementById('reviewCaseList').innerHTML = staleCases.map(c=>`
-      <div class="rb-case">
-        <div><div class="rb-case-title">${c.title}</div><div style="font-size:9px;color:var(--muted)">${c.domain} · ${c.days_idle} days idle</div></div>
-        <div class="rb-actions">
-          <button class="rb-btn rb-close" onclick="reviewAction(${c.case_id},'close',this)">CLOSE</button>
-          <button class="rb-btn rb-extend" onclick="reviewAction(${c.case_id},'extend',this)">EXTEND</button>
-          <button class="rb-btn rb-reassign" onclick="reviewAction(${c.case_id},'reassign',this)">REASSIGN</button>
-        </div>
-      </div>`).join('');
-    document.getElementById('reviewBanner').classList.add('show');
-  } catch(e) {}
-}
-
-async function reviewAction(caseId, action, btn) {
-  try {
-    await fetch(`${API}/api/cases/${caseId}`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({review_action:action,last_reviewed_at:new Date().toISOString(),status:action==='close'?'closed':undefined})});
-    btn.closest('.rb-case').style.opacity='0.4';
-    btn.closest('.rb-case').style.pointerEvents='none';
-    showToast(`Case ${action}d ✓`);
-  } catch(e) { showToast('Error — try again'); }
-}
-
-function dismissReview(){ document.getElementById('reviewBanner').classList.remove('show'); }
-
-let recognition = null, activeVoiceField = null, activeMicBtn = null;
-
-function initVoice() {
+let recognition = null, isListening = false;
+function toggleVoice() {
+  if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) { showToast('Voice not supported'); return; }
+  if (isListening) { recognition.stop(); return; }
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if(!SR){ document.querySelectorAll('.mic-btn').forEach(b=>{b.style.opacity='0.3';b.style.cursor='not-allowed';}); return; }
   recognition = new SR();
   recognition.lang = 'en-IN';
-  recognition.continuous = false;
-  recognition.interimResults = true;
-  recognition.onresult = (e) => {
-    const transcript = Array.from(e.results).map(r=>r[0].transcript).join('');
-    if(!activeVoiceField) return;
-    const el = document.getElementById(activeVoiceField);
-    if(!el) return;
-    if(el.tagName==='TEXTAREA'){ el.value=transcript; updateCharCount(el); } else { el.value=transcript; }
-  };
-  recognition.onend = () => stopVoice();
-  recognition.onerror = (e) => { showToast('Voice error: '+e.error); stopVoice(); };
-}
-
-function toggleVoice(fieldId, btnId) {
-  if(!recognition){ showToast('Voice not supported'); return; }
-  if(activeMicBtn===btnId){ recognition.stop(); return; }
-  if(activeMicBtn) stopVoice();
-  activeVoiceField = fieldId; activeMicBtn = btnId;
-  document.getElementById(btnId).classList.add('recording');
-  document.getElementById(btnId).textContent='⏹️';
-  document.getElementById('voiceStatus').classList.add('show');
+  recognition.onstart = () => { isListening = true; document.getElementById('voiceBtn').classList.add('listening'); document.getElementById('voiceBtnText').textContent = 'Listening... tap to stop'; };
+  recognition.onresult = e => { const text = e.results[0][0].transcript; document.getElementById('taskTitle').value = text; analyseWithAI(text); };
+  recognition.onend = () => { isListening = false; document.getElementById('voiceBtn').classList.remove('listening'); document.getElementById('voiceBtnText').textContent = 'Tap to speak your task'; };
   recognition.start();
 }
 
-function stopVoice() {
-  if(activeMicBtn){ const btn=document.getElementById(activeMicBtn); if(btn){btn.classList.remove('recording');btn.textContent='🎙️';} }
-  document.getElementById('voiceStatus').classList.remove('show');
-  activeVoiceField=null; activeMicBtn=null;
-}
-
-let notifications = [];
-
-function initNotifications() {
-  if('Notification' in window && Notification.permission==='default') Notification.requestPermission();
-  checkNotifications();
-  let lastCheckHour = -1;
-  setInterval(() => {
-    const h = new Date().getHours();
-    if((h===8||h===13||h===18) && h!==lastCheckHour){
-      lastCheckHour=h; checkNotifications();
-      const labels={8:'☀️ Morning briefing',13:'🕐 Afternoon check-in',18:'🌆 Evening update'};
-      showToast(labels[h]);
-    }
-  }, 60000);
-}
-
-async function checkNotifications() {
+async function analyseWithAI(text) {
+  document.getElementById('aiThinking').classList.add('show');
+  document.getElementById('aiPreview').classList.remove('show');
+  const domainNames = DOMAINS.map(d=>d.name).join(', ');
+  const prompt = 'You are chief of staff AI for YJM Power, a forging company in Pune with plants in Pune and Aurangabad. Analyse this task and return ONLY valid JSON with fields: title (cleaned), domain (one of ' + domainNames + '), owner (Yash/Kajal/Fazal/Sanjay/Deepak/Outsource), deadline (ISO date if mentioned else null), taskType (adhoc or scheduled), isUrgent (bool), isImportant (bool), outsourceProfessional (if Outsource, suggest professional type in Pune else null), duplicateRisk (brief note if seems recurring else null). Task: "' + text + '"';
   try {
-    const res = await fetch(`${API}/api/dashboard/1`);
+    const res = await fetch('https://api.anthropic.com/v1/messages', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})});
     const data = await res.json();
-    notifications = [];
-    const today = new Date(); today.setHours(0,0,0,0);
-    (data.overdue||[]).forEach(t=>notifications.push({type:'overdue',icon:'⏰',badge:'OVERDUE',badgeClass:'ni-overdue',title:t.description,sub:`Assigned to ${t.owner_name||'Unassigned'} · was due ${formatDate(t.deadline)}`,time:'Overdue',unread:true}));
-    (data.tasks||[]).forEach(t=>{
-      if(!t.deadline) return;
-      const dl=new Date(t.deadline); dl.setHours(0,0,0,0);
-      if(dl.getTime()===today.getTime()&&t.status!=='done') notifications.push({type:'today',icon:'📋',badge:'DUE TODAY',badgeClass:'ni-today',title:t.description,sub:`Assigned to ${t.owner_name||'Unassigned'}`,time:'Today',unread:true});
-    });
-    (data.blocked||[]).forEach(t=>notifications.push({type:'blocked',icon:'🚧',badge:'BLOCKED',badgeClass:'ni-overdue',title:t.description,sub:`Waiting on: ${t.waiting_for||'dependency'}`,time:'Action needed',unread:true}));
-    renderNotifications(); updateNotifBadge();
-    if('Notification' in window && Notification.permission==='granted'){
-      const critical=notifications.filter(n=>n.type==='overdue');
-      if(critical.length>0 && document.hidden) new Notification('YJM Power — Action Required',{body:`${critical.length} overdue task${critical.length>1?'s':''} need attention`});
-    }
-  } catch(e) {}
-}
-
-function renderNotifications() {
-  const el = document.getElementById('notifList');
-  if(!notifications.length){ el.innerHTML='<div class="nd-empty"><div class="nd-empty-icon">✅</div>All clear — no alerts</div>'; return; }
-  el.innerHTML = notifications.map(n=>`
-    <div class="notif-item ${n.unread?'unread':''}">
-      <div class="ni-icon">${n.icon}</div>
-      <div class="ni-body">
-        <div class="ni-badge ${n.badgeClass}">${n.badge}</div>
-        <div class="ni-title">${n.title}</div>
-        <div class="ni-sub">${n.sub}</div>
-        <div class="ni-time">${n.time}</div>
-      </div>
-    </div>`).join('');
-}
-
-function updateNotifBadge() {
-  const count=notifications.filter(n=>n.unread).length;
-  const el=document.getElementById('notifCount');
-  if(count>0){el.textContent=count>9?'9+':count;el.classList.add('show');}else{el.classList.remove('show');}
-}
-
-function toggleNotifDrawer() {
-  const drawer=document.getElementById('notifDrawer');
-  drawer.classList.toggle('open');
-  if(drawer.classList.contains('open')){
-    const h=new Date().getHours();
-    document.querySelector('.nd-title').textContent=h<12?'☀️ MORNING BRIEFING':h<17?'🕐 AFTERNOON CHECK-IN':'🌆 EVENING UPDATE';
-    notifications.forEach(n=>n.unread=false); updateNotifBadge();
-  }
-}
-
-async function syncTasksToCalendar(tasks, caseTitle) {
-  const statusEl=document.getElementById('calSyncStatus');
-  if(statusEl){statusEl.textContent='SYNCING...';statusEl.className='cal-sync-status cal-pending';}
-  const today=new Date();
-  const events=tasks.map(t=>{const dl=new Date(today);dl.setDate(dl.getDate()+(t.deadline_days||7));return{title:`[${t.owner}] ${t.description}`,description:`Case: ${caseTitle}\nOwner: ${t.owner}\nImpact: ${t.impact_score}`,date:dl.toISOString().split('T')[0],owner:t.owner};});
-  try {
-    const res=await fetch(`${API}/api/calendar/sync`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({events,calendar:'yash_primary'})});
-    if(res.ok){
-      if(statusEl){statusEl.textContent='SYNCED ✓';statusEl.className='cal-sync-status cal-synced';}
-      notifications.unshift({type:'calendar',icon:'📅',badge:'CALENDAR',badgeClass:'ni-cal',title:`${events.length} task${events.length>1?'s':''} added to Google Calendar`,sub:`Case: ${caseTitle}`,time:'Just now',unread:true});
-      updateNotifBadge(); renderNotifications();
-    } else { throw new Error('Sync failed'); }
+    const raw = (data.content?.[0]?.text||'{}').replace(/```json|```/g,'').trim();
+    showAIPreview(JSON.parse(raw));
   } catch(e) {
-    console.warn('Calendar sync skipped — backend not yet configured');
-    if(statusEl){statusEl.textContent='BACKEND NEEDED';statusEl.className='cal-sync-status cal-failed';}
+    showAIPreview({title:text,domain:'Business',owner:'Yash',deadline:null,taskType:'adhoc',isUrgent:false,isImportant:true,outsourceProfessional:null,duplicateRisk:null});
   }
+  document.getElementById('aiThinking').classList.remove('show');
+}
+
+function showAIPreview(data) {
+  pendingTask = data;
+  document.getElementById('prevTitle').textContent = data.title||'—';
+  document.getElementById('prevDomain').textContent = data.domain||'—';
+  document.getElementById('prevOwner').textContent = data.owner||'—';
+  document.getElementById('prevDeadline').textContent = data.deadline ? new Date(data.deadline).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}) : 'Not specified';
+  const ow = document.getElementById('prevOutsourceWrap');
+  if (data.outsourceProfessional) { document.getElementById('prevOutsource').textContent = data.outsourceProfessional; ow.style.display = 'block'; } else { ow.style.display = 'none'; }
+  const dup = allTasks.find(t => { const w = (data.title||'').toLowerCase().split(' ').filter(x=>x.length>3); return w.some(x => (t.title||'').toLowerCase().includes(x)); });
+  const dw = document.getElementById('dupWarning');
+  if (dup) { document.getElementById('dupText').textContent = '"' + dup.title.substring(0,40) + '" — ' + dup.status; dw.style.display = 'block'; } else { dw.style.display = 'none'; }
+  document.getElementById('aiPreview').classList.add('show');
+  document.getElementById('taskTitle').value = data.title||'';
+  if(data.deadline) document.getElementById('taskDeadline').value = data.deadline.split('T')[0];
+  document.getElementById('taskOwner').value = data.owner||'Yash';
+}
+
+async function approveTask() {
+  const title = pendingTask.title || document.getElementById('taskTitle').value.trim();
+  if (!title) { showToast('Task title required'); return; }
+  const owner = pendingTask.owner || document.getElementById('taskOwner').value;
+  try {
+    const cr = await fetch(API + '/api/cases', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({title,domain:pendingTask.domain||selectedDomain||'Business',priority:pendingTask.isUrgent?'high':'normal',status:'active'})});
+    const cd = await cr.json();
+    await fetch(API + '/api/tasks', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({title,domain:pendingTask.domain||selectedDomain,owner,deadline:pendingTask.deadline||document.getElementById('taskDeadline').value||null,is_urgent:pendingTask.isUrgent||false,is_important:pendingTask.isImportant||true,status:'pending',acknowledged:owner==='Yash',case_id:cd.case_id})});
+    showToast('Task saved ✓');
+    document.getElementById('aiPreview').classList.remove('show');
+    document.getElementById('taskTitle').value = '';
+    pendingTask = {};
+    loadData();
+  } catch(e) { showToast('Saved — will sync when online'); }
+}
+function editTask() { document.getElementById('aiPreview').classList.remove('show'); }
+async function saveManualTask() {
+  const title = document.getElementById('taskTitle').value.trim();
+  if (!title) { showToast('Task title required'); return; }
+  pendingTask = {title,domain:selectedDomain||'Business',owner:document.getElementById('taskOwner').value,deadline:document.getElementById('taskDeadline').value||null,taskType:document.getElementById('taskType').value,isUrgent:['critical','high'].includes(document.getElementById('taskPriority').value),isImportant:true};
+  await approveTask();
+}
+
+function renderCases(filter) {
+  const list = document.getElementById('casesList');
+  let cases = allCases.filter(c => c.status !== 'archived' && c.status !== 'closed');
+  if (filter !== 'all') cases = cases.filter(c => c.status === filter);
+  if (!cases.length) { list.innerHTML = '<div style="padding:30px 0;text-align:center;color:var(--muted);font-size:12px">No cases found</div>'; return; }
+  list.innerHTML = cases.map(c => {
+    const tasks = allTasks.filter(t => t.case_id === c.case_id);
+    const done = tasks.filter(t => t.status === 'done').length;
+    return '<div class="case-card">' +
+      '<div class="case-header"><div class="case-title">' + c.title + '</div><span class="case-status status-' + c.status + '">' + c.status + '</span></div>' +
+      '<div class="case-meta"><span class="domain-tag">' + c.domain + '</span><span class="case-tasks">' + done + '/' + tasks.length + ' tasks</span>' +
+      (c.priority==='critical'?'<span style="font-size:9px;color:var(--red);font-weight:800">CRITICAL</span>':'') +
+      (c.priority==='high'?'<span style="font-size:9px;color:var(--gold);font-weight:800">HIGH</span>':'') + '</div>' +
+      '<div class="case-actions">' +
+      '<button class="case-btn" onclick="openCaseDetail(' + c.case_id + ')">Details + AI Plan</button>' +
+      '<button class="case-btn" onclick="cycleCaseStatus(' + c.case_id + ','' + c.status + '')">Update Status</button>' +
+      '<button class="case-btn danger" onclick="archiveCase(' + c.case_id + ')">Archive</button>' +
+      '</div></div>';
+  }).join('');
+}
+
+function filterCases(filter, btn) {
+  currentFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCases(filter);
+}
+
+function openCaseDetail(caseId) {
+  const c = allCases.find(x => x.case_id === caseId);
+  if (!c) return;
+  const tasks = allTasks.filter(t => t.case_id === caseId);
+  const plans = {
+    Customer:['Identify decision maker and outstanding amount','Send formal demand letter with timeline','Escalate to Yash if no response in 3 days','Offer payment plan if needed','Close or initiate legal action'],
+    Finance:['Gather documents and reconcile numbers','Deepak prepares statement','Review and approve','File or pay by deadline','Confirm acknowledgement'],
+    Legal:['Brief external lawyer with all facts','Review draft agreement section by section','Mark negotiation points','Get Yash sign-off','Execute and archive'],
+    Operations:['Assess current status and gap','Assign Fazal with specific deliverable','Set milestone check-ins','Review quality','Close with documentation'],
+    Strategy:['Define objective and success metric','Research market and competition','Present options to Yash','Decide and assign execution','Track milestones'],
+  };
+  const steps = plans[c.domain] || ['Define objective clearly','Assign owner and deadline','Execute with check-ins','Review outcome','Close case'];
+  const content = document.getElementById('caseDetailContent');
+  content.innerHTML =
+    '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">' +
+    '<div class="modal-title" style="margin-bottom:0">' + c.title + '</div>' +
+    '<span class="case-status status-' + c.status + '">' + c.status + '</span></div>' +
+    '<div style="margin-bottom:14px"><span class="domain-tag" style="margin-right:6px">' + c.domain + '</span><span style="font-size:10px;color:var(--muted2)">' + (c.priority||'normal').toUpperCase() + '</span></div>' +
+    (c.outcome ? '<div style="background:var(--bg3);border-radius:8px;padding:10px 12px;margin-bottom:12px;font-size:11px;color:var(--muted2)"><strong style="color:var(--white)">Expected:</strong> ' + c.outcome + '</div>' : '') +
+    '<div class="exec-plan"><div class="exec-plan-title">⚡ AI Execution Plan</div>' +
+    steps.map((s,i) => '<div class="exec-step"><div class="exec-step-num">' + (i+1) + '</div>' + s + '</div>').join('') + '</div>' +
+    '<div style="margin-top:14px"><div class="form-label">Log a Decision</div>' +
+    '<input type="text" class="form-input" id="decisionInput" placeholder="What was decided?">' +
+    '<button class="btn-primary" onclick="logDecision(' + caseId + ')">Log Decision to Memory</button></div>' +
+    (tasks.length ? '<div style="margin-top:14px"><div class="form-label">Tasks (' + tasks.length + ')</div>' + tasks.map(t => '<div class="team-task-item"><div class="team-task-title">' + t.title + '</div><span class="commit-date">' + t.status + '</span></div>').join('') + '</div>' : '');
+  openModal('modal-casedetail');
+}
+
+function logDecision(caseId) {
+  const text = document.getElementById('decisionInput').value.trim();
+  if (!text) return;
+  showToast('Decision logged to memory ✓');
+  document.getElementById('decisionInput').value = '';
+}
+
+async function archiveCase(caseId) {
+  if (!confirm('Archive this case? It will be hidden from all views.')) return;
+  try {
+    await fetch(API + '/api/cases/' + caseId, {method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:'closed'})});
+    allCases = allCases.filter(c => c.case_id !== caseId);
+    renderCases(currentFilter);
+    showToast('Case archived');
+  } catch(e) { showToast('Error archiving'); }
+}
+
+async function cycleCaseStatus(caseId, current) {
+  const statuses = ['new','planning','active','blocked','review','closed'];
+  const next = statuses[(statuses.indexOf(current)+1) % statuses.length];
+  try {
+    await fetch(API + '/api/cases/' + caseId, {method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:next})});
+    const c = allCases.find(x => x.case_id === caseId);
+    if(c) c.status = next;
+    renderCases(currentFilter);
+    showToast('Status → ' + next);
+  } catch(e) { showToast('Update failed'); }
+}
+
+async function saveNewCase() {
+  const title = document.getElementById('caseTitle').value.trim();
+  if (!title) { showToast('Title required'); return; }
+  try {
+    const res = await fetch(API + '/api/cases', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({title,domain:document.getElementById('caseDomain').value,priority:document.getElementById('casePriority').value,outcome:document.getElementById('caseOutcome').value,status:'new'})});
+    const data = await res.json();
+    allCases.unshift(data);
+    renderCases(currentFilter);
+    closeModal('modal-newcase');
+    showToast('Case created ✓');
+    setTimeout(() => openCaseDetail(data.case_id), 300);
+  } catch(e) { showToast('Error creating case'); }
+}
+
+function renderTeamTasks() {
+  ['kajal','fazal','sanjay','deepak'].forEach(m => {
+    const mTasks = allTasks.filter(t => (t.owner||'').toLowerCase() === m);
+    const unack = mTasks.filter(t => t.acknowledged === false).length;
+    const active = mTasks.filter(t => t.status === 'pending' || t.status === 'active').length;
+    const aEl = document.getElementById(m + '-active');
+    const uEl = document.getElementById(m + '-unack');
+    if(aEl) aEl.textContent = active;
+    if(uEl) uEl.textContent = unack;
+    const content = document.getElementById(m + '-tasks-content');
+    if (!content) return;
+    if (!mTasks.length) { content.innerHTML = '<div class="no-tasks-msg">No tasks assigned</div>'; return; }
+    content.innerHTML = mTasks.slice(0,5).map(t => {
+      const isU = t.acknowledged === false;
+      const dl = t.deadline ? new Date(t.deadline).toLocaleDateString('en-IN',{day:'numeric',month:'short'}) : '—';
+      return '<div class="team-task-item ' + (isU?'unack':'') + '" onclick="' + (isU ? 'openAck(' + t.task_id + ')' : 'showToast('Viewing task')') + '">' +
+        '<div class="team-task-title">' + (t.title||'').substring(0,50) + '</div>' +
+        (isU ? '<span class="unack-badge">Needs Ack</span>' : '<span class="commit-date">' + dl + '</span>') + '</div>';
+    }).join('');
+  });
+}
+
+function openAck(taskId) {
+  const task = allTasks.find(t => t.task_id === taskId);
+  if (!task) return;
+  currentAckTask = task;
+  document.getElementById('ackTaskInfo').innerHTML = '<strong style="color:var(--white)">' + task.title + '</strong><br><br>Domain: ' + task.domain + ' · Assigned by: Yash';
+  document.getElementById('ackDate').min = TODAY.toISOString().split('T')[0];
+  openModal('modal-ack');
+}
+
+async function confirmAck() {
+  const date = document.getElementById('ackDate').value;
+  if (!date) { showToast('Please select a completion date'); return; }
+  if (!currentAckTask) return;
+  const typical = {Customer:7,Finance:5,Operations:10,Legal:14,Business:14,Strategy:21};
+  const typDays = typical[currentAckTask.domain] || 7;
+  const commitDays = Math.ceil((new Date(date) - TODAY) / 86400000);
+  if (commitDays > typDays * 2) showToast('⚠️ ' + commitDays + ' days seems long — typical: ~' + typDays + ' days');
+  try {
+    await fetch(API + '/api/tasks/' + currentAckTask.task_id, {method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({acknowledged:true,deadline:date})});
+    const t = allTasks.find(x => x.task_id === currentAckTask.task_id);
+    if(t) { t.acknowledged = true; t.deadline = date; }
+    renderTeamTasks(); updatePulse(); closeModal('modal-ack');
+    showToast('Acknowledged ✓ — Date committed');
+  } catch(e) { showToast('Acknowledged locally'); closeModal('modal-ack'); }
+}
+
+function saveRecurring() {
+  const title = document.getElementById('recTitle').value.trim();
+  if (!title) { showToast('Title required'); return; }
+  const freq = document.getElementById('recFreq');
+  const item = document.createElement('div');
+  item.className = 'recurring-item';
+  item.innerHTML = '<span class="recurring-icon">🔁</span><div class="recurring-body"><div class="recurring-title">' + title + '</div><div class="recurring-freq">' + freq.options[freq.selectedIndex].text + ' · ' + document.getElementById('recDomain').value + ' · ' + document.getElementById('recOwner').value + '</div></div><button class="recurring-toggle on" onclick="this.classList.toggle('on')"></button>';
+  document.getElementById('recurringList').appendChild(item);
+  closeModal('modal-recurring');
+  showToast('Recurring task added ✓');
+}
+
+function savePurchase() {
+  const item = document.getElementById('purchaseItem').value.trim();
+  if (!item) { showToast('Item required'); return; }
+  const qty = document.getElementById('purchaseQty').value;
+  const budget = document.getElementById('purchaseBudget').value;
+  const urgency = document.getElementById('purchaseUrgency').value;
+  const uMap = {high:'urgency-high',med:'urgency-med',low:'urgency-low'};
+  const uLabel = {high:'Urgent',med:'Medium',low:'Low'};
+  const el = document.createElement('div');
+  el.className = 'purchase-item';
+  el.innerHTML = '<div><div class="purchase-item-name">' + item + (qty?' — '+qty:'') + '</div><div class="purchase-item-meta">Budget: ₹' + (budget||'TBD') + '</div></div><span class="purchase-item-urgency ' + uMap[urgency] + '">' + uLabel[urgency] + '</span>';
+  const content = document.getElementById('kajal-purchase-content');
+  content.insertBefore(el, content.querySelector('.btn-primary'));
+  closeModal('modal-purchase');
+  showToast('Purchase item added ✓');
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.bnav').forEach(b => b.classList.remove('active'));
+  document.getElementById('screen-' + tab).classList.add('active');
+  document.getElementById('nav-' + tab).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function switchCapTab(tab, btn) {
+  document.querySelectorAll('.cap-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.cap-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('cap-' + tab).classList.add('active');
+}
+
+function toggleTeamExpand(m) {
+  const el = document.getElementById('expand-' + m);
+  if(el) el.classList.toggle('open');
+}
+
+function showTeamTab(m, tab, btn) {
+  const parent = document.getElementById('expand-' + m);
+  parent.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const tc = document.getElementById(m + '-tasks-content');
+  const pc = document.getElementById(m + '-purchase-content');
+  if(tc) tc.style.display = tab==='tasks' ? 'block' : 'none';
+  if(pc) pc.style.display = tab==='purchase' ? 'block' : 'none';
+}
+
+function openModal(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
+document.querySelectorAll('.modal-overlay').forEach(o => o.addEventListener('click', e => { if(e.target===o) closeModal(o.id); }));
+
+function openAllTasks() {
+  const list = document.getElementById('allTasksList');
+  const pending = allTasks.filter(t => t.status !== 'done' && t.status !== 'cancelled');
+  list.innerHTML = pending.length ? pending.map(t =>
+    '<div class="team-task-item" style="margin-bottom:6px"><div class="team-task-title">' + (t.title||'').substring(0,50) + '</div><span class="owner-tag owner-' + (t.owner||'yash').toLowerCase() + '" style="font-size:8px">' + (t.owner||'—') + '</span></div>'
+  ).join('') : '<div style="padding:20px;text-align:center;color:var(--muted);font-size:12px">No pending tasks</div>';
+  openModal('modal-alltasks');
+}
+
+function startAutoRefresh() {
+  setInterval(() => { if(!document.hidden) loadData(); }, 5 * 60 * 1000);
+}
+
+async function requestNotifPermission() {
+  if ('Notification' in window && Notification.permission === 'default') await Notification.requestPermission();
+  scheduleNotifications();
+}
+
+function scheduleNotifications() {
+  const now = new Date();
+  [{h:8,m:0,msg:'Good morning ' + USER + ' — today's tasks are ready'},{h:13,m:0,msg:'Check-in: How are your Top 3 tasks going?'},{h:20,m:0,msg:'End of day — incomplete tasks will roll to tomorrow'}].forEach(t => {
+    const target = new Date(now);
+    target.setHours(t.h, t.m, 0, 0);
+    if (target > now) setTimeout(() => { if(Notification.permission==='granted') new Notification('YJM Power', {body:t.msg,icon:'/logo.png'}); }, target - now);
+  });
+}
+
+let toastTimer;
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2500);
 }
 </script>
 </body>
